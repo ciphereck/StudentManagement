@@ -24,18 +24,11 @@ public class UserDAOImpl implements UserDAO {
 			statement.setString(1, username);
 			statement.setString(2, password);
 			
-			ResultSet rs = MySQLQuery.executeQuery(conn, statement);
-			
-			try {
-				while(rs.next()) {
+			ResultSet rs = MySQLQuery.executeQuery(statement);
+			while(rs.next()) {
 					typeOfUser = rs.getString("type");
 					count++;
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				logger.fatal(e.getMessage());
 			}
-			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
