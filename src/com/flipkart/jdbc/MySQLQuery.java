@@ -3,9 +3,16 @@ package com.flipkart.jdbc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.apache.log4j.Logger;
+
+import com.flipkart.DAO.UserDAOImpl;
+
 import java.sql.Connection;
 
 public abstract class MySQLQuery {
+	private static final Logger logger = Logger.getLogger(UserDAOImpl.class);
+	
 	public int executeUpdate(Connection conn) {
 		PreparedStatement statement = null;
 		int rows = 0;
@@ -15,7 +22,7 @@ public abstract class MySQLQuery {
 			rows = statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.fatal(e.getMessage());
 		}
 		return rows;
 	}
@@ -29,7 +36,7 @@ public abstract class MySQLQuery {
 			rs = statement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.fatal(e.getMessage());
 		}
 		return rs;
 	}

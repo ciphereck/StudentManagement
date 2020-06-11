@@ -1,18 +1,36 @@
 package com.flipkart.client;
 
-import java.util.Scanner;
+import java.util.Scanner;import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
 import org.apache.log4j.Logger;
 
 import com.flipkart.service.LoginService;
 import com.flipkart.service.Service;
 
-public class RootClient implements Client {
+public class RootClient {
 	private static final Logger logger = Logger.getLogger(RootClient.class);
 	
 	public static void main(String[] args) {
 		logger.error("Pragram Started.....");
-		login();
+		showMenu();
+	}
+	
+	public static void showMenu() {
+		Scanner sc = new Scanner(System.in);
+		int option;
+		do {
+			logger.error("0. To Exit");
+			logger.error("1. Student Registration");
+			logger.error("2. Login");
+			
+			option = sc.nextInt();
+			if(option == 2) {
+				login();
+			} else {
+				logger.error("Enter Some Other Option");
+			}
+
+		} while(option != 0);
 	}
 	
 	public static void login() {

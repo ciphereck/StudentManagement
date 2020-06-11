@@ -27,7 +27,7 @@ public class UserDAOImpl implements UserDAO {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.fatal(e.getMessage());
 		}
 		
 		

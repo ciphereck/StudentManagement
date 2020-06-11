@@ -8,8 +8,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
+import com.flipkart.DAO.UserDAOImpl;
+
 public class DBUtil {
-	
+	private static final Logger logger = Logger.getLogger(UserDAOImpl.class);
 	private static Connection connection = null;
 	
 	public static Connection getConnection() {
@@ -28,13 +32,13 @@ public class DBUtil {
                 Class.forName(driver);
                 connection = DriverManager.getConnection(url, user, password);
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            	logger.fatal(e.getMessage());
             } catch (SQLException e) {
-                e.printStackTrace();
+            	logger.fatal(e.getMessage());
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+            	logger.fatal(e.getMessage());
             } catch (IOException e) {
-                e.printStackTrace();
+            	logger.fatal(e.getMessage());
             }
             return connection;
         }
