@@ -18,4 +18,12 @@ public class UserService implements Service {
 	public void addUser(String username, String password, String role) {
 		userDAO.addUser(username, password, role);
 	}
+	
+	public void deleteUser(String username) {
+		userDAO.deleteUser(username);
+	}
+	
+	public void viewUsers() {
+		userDAO.printAllUsers();
+	}
 }

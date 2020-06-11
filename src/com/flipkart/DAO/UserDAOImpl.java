@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
 import com.flipkart.constant.SqlQueryConstant;
+import com.flipkart.model.Catalogue;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
@@ -54,4 +55,35 @@ public class UserDAOImpl implements UserDAO {
 		return role;
 	}
 
+	@Override
+	public void deleteUser(String username) {
+		Connection conn = DBUtil.getConnection();
+		try {
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.DELETE_USER);
+			statement.setString(1, username);
+			
+			int row = MySQLQuery.executeUpdate(statement);
+			logger.info("Row affected: " + row);
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+	}
+
+	@Override
+	public void printAllUsers() {
+		Connection conn = DBUtil.getConnection();
+		try {
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_USER);
+			
+			ResultSet rs = MySQLQuery.executeQuery(statement);
+			while(rs.next()) {
+					String username = rs.getString("username");
+					String type = rs.getString("type");
+
+					logger.info("username: " + username + ", TYPE: " + type);
+			}
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+	}
 }
