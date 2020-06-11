@@ -44,6 +44,9 @@ public class StudentClient {
 		} else if(option == 2) {
 			String courseId = sc.next();
 			studentService.addStudentCourse(courseId);
+		} else if(option == 3) {
+			String courseId = sc.next();
+			studentService.deleteStudentCourse(courseId);
 		} else if(option == 4) {
 			studentService.printStudentCourse();
 		}

@@ -27,4 +27,8 @@ public class StudentService implements Service {
 		studentCourseDAO.addCourse(courseId, student.getUsername());
 	}
 	
+	public void deleteStudentCourse(String courseId) {
+		studentCourseDAO.deleteCourse(courseId, student.getUsername());
+	}
+	
 }

@@ -11,7 +11,7 @@ public class LoginService implements Service {
 	
 	public String checkIdentity(String username, String password) {
 		String typeOfUser = userDAO.checkIdentity(username, password);
-		logger.error(typeOfUser + " type of user found");
+		logger.info(typeOfUser + " type of user found");
 		return typeOfUser;
 	}
 }
