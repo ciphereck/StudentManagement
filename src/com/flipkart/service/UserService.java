@@ -11,6 +11,10 @@ public class UserService implements Service {
 	
 	public String checkIdentity(String username, String password) {
 		String typeOfUser = userDAO.checkIdentity(username, password);
+		if(typeOfUser.length() == 0) {
+			logger.info("no user found");
+			return typeOfUser;
+		}
 		logger.info(typeOfUser + " type of user found");
 		return typeOfUser;
 	}

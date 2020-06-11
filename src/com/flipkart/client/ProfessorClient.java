@@ -2,7 +2,7 @@ package com.flipkart.client;
 
 import org.apache.log4j.Logger;
 
-public class ProfessorClient {
+public class ProfessorClient implements SubClient {
 	private static final Logger logger = Logger.getLogger(StudentClient.class);
 	
 	public void showMenu() {

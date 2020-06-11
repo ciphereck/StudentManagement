@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import com.flipkart.model.Student;
 import com.flipkart.service.StudentService;
 
-public class StudentClient {
+public class StudentClient implements SubClient {
 	private final Logger logger = Logger.getLogger(StudentClient.class);
 	private final StudentService studentService;
 	

@@ -9,10 +9,12 @@ import com.flipkart.service.Service;
 
 public class RootClient {
 	private static final Logger logger = Logger.getLogger(RootClient.class);
+	private static int loginTry = 0;
 	
 	public static void main(String[] args) {
 		logger.info("Pragram Started.....");
 		showMenu();
+		logger.info("End of Program");
 	}
 	
 	public static void showMenu() {
@@ -24,6 +26,9 @@ public class RootClient {
 			logger.info("2. Login");
 			
 			option = sc.nextInt();
+			if(option == 0) {
+				return;
+			}
 			
 			logger.error("Enter Username Password");
 			String username = sc.next();
@@ -37,7 +42,7 @@ public class RootClient {
 				logger.info("Enter Some Other Option");
 			}
 
-		} while(option != 0);
+		} while(loginTry < 4);
 	}
 	
 	private static void registerStudent(String username, String password) {
@@ -54,17 +59,20 @@ public class RootClient {
 }
 	
 	public static void showSubClient(String typeOfUser, String username) {
+		SubClient client = null;
 		if("STUDENT".equals(typeOfUser)) {
-			StudentClient studentClient = new StudentClient(username);
-			studentClient.showMenu();
+			client = new StudentClient(username);
 		} else if("PROFESSOR".equals(typeOfUser)) {
-			ProfessorClient professorClient = new ProfessorClient();
-			professorClient.showMenu();
+			client = new ProfessorClient();
 		} else if("ADMIN".equals(typeOfUser)) {
-			AdminClient adminClient = new AdminClient();
-			adminClient.showMenu();
+			client = new AdminClient();
 		} else {
+			loginTry++;
 			logger.info("wrong username / password function");
+			return;
 		}
+		
+		loginTry = 0;
+		client.showMenu();
 	}
 }

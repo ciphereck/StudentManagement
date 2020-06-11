@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.flipkart.service.UserService;
 
-public class AdminClient {
+public class AdminClient implements SubClient {
 	private static final Logger logger = Logger.getLogger(StudentClient.class);
 	UserService userService = new UserService();
 	
