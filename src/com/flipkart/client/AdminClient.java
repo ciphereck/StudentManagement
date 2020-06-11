@@ -6,9 +6,9 @@ public class AdminClient {
 	private static final Logger logger = Logger.getLogger(StudentClient.class);
 	
 	public void showMenu() {
-		logger.error("1. Add User");
-		logger.error("2. Remove User");
-		logger.error("3. Update User");
-		logger.error("4. Generate Report Card");
+		logger.info("1. Add User");
+		logger.info("2. Remove User");
+		logger.info("3. Update User");
+		logger.info("4. Generate Report Card");
 	}
 }

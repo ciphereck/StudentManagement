@@ -6,9 +6,9 @@ public class ProfessorClient {
 	private static final Logger logger = Logger.getLogger(StudentClient.class);
 	
 	public void showMenu() {
-		logger.error("1. Record Grades");
-		logger.error("2. View Course Info");
-		logger.error("3. Select Course to Teach");
-		logger.error("4. View Catalogue");
+		logger.info("1. Record Grades");
+		logger.info("2. View Course Info");
+		logger.info("3. Select Course to Teach");
+		logger.info("4. View Catalogue");
 	}
 }
