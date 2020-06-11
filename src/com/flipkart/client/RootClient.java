@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.flipkart.service.LoginService;
+import com.flipkart.service.UserService;
 import com.flipkart.service.Service;
 
 public class RootClient {
@@ -24,8 +24,15 @@ public class RootClient {
 			logger.info("2. Login");
 			
 			option = sc.nextInt();
-			if(option == 2) {
-				login();
+			
+			logger.error("Enter Username Password");
+			String username = sc.next();
+			String password = sc.next();
+			
+			if(option == 1) {
+				registerStudent(username, password);
+			} else if(option == 2) {
+				login(username, password);
 			} else {
 				logger.info("Enter Some Other Option");
 			}
@@ -33,15 +40,15 @@ public class RootClient {
 		} while(option != 0);
 	}
 	
-	public static void login() {
-		logger.error("Enter Username Password");
-		Scanner sc = new Scanner(System.in);
-			
-		String username = sc.next();
-		String password = sc.next();
-			
-		LoginService loginService = new LoginService();
-		String typeOfUser = loginService.checkIdentity(username, password);
+	private static void registerStudent(String username, String password) {
+		UserService userService = new UserService();
+		userService.addUser(username, password, "STUDENT");
+		login(username, password);
+	}
+
+	public static void login(String username, String password) {
+		UserService userService = new UserService();
+		String typeOfUser = userService.checkIdentity(username, password);
 		
 		showSubClient(typeOfUser, username);
 }
