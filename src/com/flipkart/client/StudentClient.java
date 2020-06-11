@@ -36,10 +36,14 @@ public class StudentClient {
 	}
 
 	private void processOption(int option) {
+		Scanner sc = new Scanner(System.in);
 		if(option == 0) {
 			return;
 		} else if(option == 1) {
 			studentService.printCatalogue();
+		} else if(option == 2) {
+			String courseId = sc.next();
+			studentService.addStudentCourse(courseId);
 		} else if(option == 4) {
 			studentService.printStudentCourse();
 		}

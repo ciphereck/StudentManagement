@@ -23,4 +23,8 @@ public class StudentService implements Service {
 		catalogueDAO.printCatalogueByStudentUsername(student.getUsername());
 	}
 	
+	public void addStudentCourse(String courseId) {
+		studentCourseDAO.addCourse(courseId, student.getUsername());
+	}
+	
 }
