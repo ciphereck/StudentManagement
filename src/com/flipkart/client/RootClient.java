@@ -43,12 +43,12 @@ public class RootClient {
 		LoginService loginService = new LoginService();
 		String typeOfUser = loginService.checkIdentity(username, password);
 		
-		showSubClient(typeOfUser);
+		showSubClient(typeOfUser, username);
 }
 	
-	public static void showSubClient(String typeOfUser) {
+	public static void showSubClient(String typeOfUser, String username) {
 		if("STUDENT".equals(typeOfUser)) {
-			StudentClient studentClient = new StudentClient();
+			StudentClient studentClient = new StudentClient(username);
 			studentClient.showMenu();
 		} else if("PROFESSOR".equals(typeOfUser)) {
 			ProfessorClient professorClient = new ProfessorClient();

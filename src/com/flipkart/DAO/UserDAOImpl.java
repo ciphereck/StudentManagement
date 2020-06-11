@@ -9,9 +9,10 @@ import org.apache.log4j.Logger;
 
 import com.flipkart.constant.SqlQueryConstant;
 import com.flipkart.utils.DBUtil;
+import com.flipkart.utils.MySQLQuery;
 
 public class UserDAOImpl implements UserDAO {
-	private static final Logger logger = Logger.getLogger(UserDAOImpl.class);
+	private final Logger logger = Logger.getLogger(UserDAOImpl.class);
 
 	@Override
 	public String checkIdentity(String username, String password) {
@@ -29,9 +30,8 @@ public class UserDAOImpl implements UserDAO {
 					typeOfUser = rs.getString("type");
 					count++;
 			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
 		}
 		
 		return count==1 ? typeOfUser: "";

@@ -1,15 +1,47 @@
 package com.flipkart.client;
 
+import java.util.Scanner;
+
 import org.apache.log4j.Logger;
 
+import com.flipkart.model.Student;
+import com.flipkart.service.StudentService;
+
 public class StudentClient {
-	private static final Logger logger = Logger.getLogger(StudentClient.class);
+	private final Logger logger = Logger.getLogger(StudentClient.class);
+	private final StudentService studentService;
+	
+	public StudentClient(String username) {
+		this.studentService = new StudentService(new Student(username));
+	}
 	
 	public void showMenu() {
-		logger.info("1. View Catalogue");
-		logger.info("2. Add Course");
-		logger.info("3. Drop Course");
-		logger.info("4. View Report Card");
-		logger.info("5. Pay Fee");
+		int option = 0;
+		do {
+			logger.info("0. Logout");
+			logger.info("1. View Catalogue");
+			logger.info("2. Add Course");
+			logger.info("3. Drop Course");
+			logger.info("4. View Course");
+			logger.info("5. View Report Card");
+			logger.info("6. Pay Fee");
+			
+			Scanner sc = new Scanner(System.in);
+			option = sc.nextInt();
+			
+			processOption(option);
+		} while(option !=0);
+		
+		
+	}
+
+	private void processOption(int option) {
+		if(option == 0) {
+			return;
+		} else if(option == 1) {
+			studentService.printCatalogue();
+		} else if(option == 4) {
+			studentService.printStudentCourse();
+		}
 	}
 }

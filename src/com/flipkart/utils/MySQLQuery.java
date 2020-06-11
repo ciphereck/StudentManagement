@@ -1,10 +1,12 @@
-package com.flipkart.DAO;
+package com.flipkart.utils;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
+
+import com.flipkart.DAO.UserDAOImpl;
 
 public class MySQLQuery {
 private static final Logger logger = Logger.getLogger(UserDAOImpl.class);
