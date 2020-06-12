@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
 import com.flipkart.service.ProfessorService;
+import com.flipkart.service.Service;
 import com.flipkart.service.StudentService;
 
 public class ProfessorClient implements SubClient {
@@ -45,7 +46,9 @@ public class ProfessorClient implements SubClient {
 	private void processOption(int option) {
 		Scanner sc = new Scanner(System.in);
 		if(option == 2) {
-			professorService.printCatalogue();
+			professorService
+				.printCatalogue()
+				.forEach(logger::info);
 		} else if(option == 3) {
 			String courseId = sc.next();
 			professorService.addCouseToTeach(courseId);
@@ -53,7 +56,9 @@ public class ProfessorClient implements SubClient {
 			String courseId = sc.next();
 			professorService.deleteCourseToTeach(courseId);
 		} else if(option == 5) {
-			professorService.viewCoursesToTeach();
+			professorService
+				.viewCoursesToTeach()
+				.forEach(logger::info);
 		}
 	}
 }

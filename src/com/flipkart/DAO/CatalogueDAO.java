@@ -1,7 +1,11 @@
 package com.flipkart.DAO;
 
+import java.util.List;
+
+import com.flipkart.model.Catalogue;
+
 public interface CatalogueDAO {
-	public void printCatalogue();
-	public void printCatalogueByStudentUsername(String username);
-	public void printCatalogueByProfessorUsername(String username);
+	public List<Catalogue> printCatalogue();
+	public List<Catalogue> printCatalogueByStudentUsername(String username);
+	public List<Catalogue> printCatalogueByProfessorUsername(String username);
 }

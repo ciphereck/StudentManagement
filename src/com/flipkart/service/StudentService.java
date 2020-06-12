@@ -1,7 +1,10 @@
 package com.flipkart.service;
 
+import java.util.List;
+
 import com.flipkart.DAO.StudentCourseDAO;
 import com.flipkart.DAO.StudentCourseDAOImpl;
+import com.flipkart.model.Catalogue;
 import com.flipkart.model.Student;
 
 public class StudentService implements Service {
@@ -12,8 +15,8 @@ public class StudentService implements Service {
 		this.student = student;
 	}
 	
-	public void printStudentCourse() {
-		catalogueDAO.printCatalogueByStudentUsername(student.getUsername());
+	public List<Catalogue> printStudentCourse() {
+		return catalogueDAO.printCatalogueByStudentUsername(student.getUsername());
 	}
 	
 	public void addStudentCourse(String courseId) {

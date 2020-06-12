@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -16,7 +18,8 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 	private final Logger logger = Logger.getLogger(CatalogueDAO.class);
 	
 	@Override
-	public void printCatalogue() {
+	public List<Catalogue> printCatalogue() {
+		List<Catalogue> catalogue = new ArrayList();
 		Connection conn = DBUtil.getConnection();
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_CATALOGUE);
@@ -26,15 +29,18 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 					String courseId = rs.getString("courseId");
 					String courseName = rs.getString("courseName");
 
-					logger.info(new Catalogue(courseId, courseName).toString());
+					catalogue.add(new Catalogue(courseId, courseName));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
+		
+		return catalogue;
 	}
 	
 	@Override
-	public void printCatalogueByStudentUsername(String username) {
+	public List<Catalogue> printCatalogueByStudentUsername(String username) {
+		List<Catalogue> catalogue = new ArrayList();
 		Connection conn = DBUtil.getConnection();
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE_BY_STUDENT);
@@ -47,15 +53,17 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 				String courseName = rs.getString("courseName");
 				String lastUpdateTime = rs.getString("timeofLastUpdate");
 
-				logger.info(new Catalogue(courseId, courseName, lastUpdateTime).toString());
+				catalogue.add(new Catalogue(courseId, courseName, lastUpdateTime));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
+		return catalogue;
 	}
 
 	@Override
-	public void printCatalogueByProfessorUsername(String username) {
+	public List<Catalogue> printCatalogueByProfessorUsername(String username) {
+		List<Catalogue> catalogue = new ArrayList();
 		Connection conn = DBUtil.getConnection();
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE_BY_PROFESSOR);
@@ -66,11 +74,12 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 				String courseId = rs.getString("courseId");
 				String courseName = rs.getString("courseName");
 
-				logger.info(new Catalogue(courseId, courseName).toString());
+				catalogue.add(new Catalogue(courseId, courseName));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
+		return catalogue;
 	}
 
 }

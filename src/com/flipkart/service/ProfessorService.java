@@ -1,7 +1,10 @@
 package com.flipkart.service;
 
+import java.util.List;
+
 import com.flipkart.DAO.ProfessorCourseDAOImpl;
 import com.flipkart.DAO.ProfessourCourseDAO;
+import com.flipkart.model.Catalogue;
 import com.flipkart.model.Professor;
 
 public class ProfessorService implements Service {
@@ -20,7 +23,7 @@ public class ProfessorService implements Service {
 		professorCourseDAO.deleteCourse(courseId, professor.getUsername());
 	}
 	
-	public void viewCoursesToTeach() {
-		catalogueDAO.printCatalogueByProfessorUsername(professor.getUsername());
+	public List<Catalogue> viewCoursesToTeach() {
+		return catalogueDAO.printCatalogueByProfessorUsername(professor.getUsername());
 	}
 }
