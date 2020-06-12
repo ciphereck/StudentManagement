@@ -1,5 +1,5 @@
 package com.flipkart.DAO;
 
-public interface StudentDAO {
+public interface StudentDAO extends UserDAO {
 
 }

@@ -11,6 +11,7 @@ import com.flipkart.service.ProfessorService;
 public class AdminClient implements SubClient {
 	private static final Logger logger = Logger.getLogger(StudentClient.class);
 	AdminService adminService = new AdminService();
+	String roleName[] = {"STUDENT", "PROFESSOR", "ADMIN"};
 	
 	public AdminClient() {
 		showCurrentTime(true, "ADMIN");
@@ -42,8 +43,7 @@ public class AdminClient implements SubClient {
 		Scanner sc = new Scanner(System.in);
 		if(option == 1) {
 			logger.info("Enter username, password, role");
-			logger.info("Enter role as 1: student, 2: Professor, 3: Admin");
-			String roleName[] = {"STUDENT", "PROFESSOR", "ADMIN"};
+			logger.info("Enter role as 1: Student, 2: Professor, 3: Admin");
 			
 			String username = sc.next();
 			String password = sc.next();
@@ -60,7 +60,16 @@ public class AdminClient implements SubClient {
 			
 			adminService.deleteUser(username);
 		} else if(option == 3) {
-			adminService.viewUsers();
+			logger.info("Enter role as 1: Student, 2: Professor, 3: Admin");
+			int role = sc.nextInt();
+			
+			if(role - 1 < roleName.length) {
+				adminService
+					.viewUsers(roleName[role-1])
+					.forEach(logger::info);
+			} else {
+				logger.info("Enter proper role");
+			}
 		}
 	}
 }
