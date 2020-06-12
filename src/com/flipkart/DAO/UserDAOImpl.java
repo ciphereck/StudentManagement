@@ -41,18 +41,19 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public String addUser(String username, String password, String role) {
 		Connection conn = DBUtil.getConnection();
+		int row = 0;
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_USER);
 			statement.setString(1, username);
 			statement.setString(2, password);
 			statement.setString(3, role);
 			
-			int row = MySQLQuery.executeUpdate(statement);
+			row = MySQLQuery.executeUpdate(statement);
 			logger.info("Row affected: " + row);
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
-		return role;
+		return (row != 0) ? role : "";
 	}
 
 	@Override

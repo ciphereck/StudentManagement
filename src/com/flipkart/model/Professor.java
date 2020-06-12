@@ -1,9 +1,9 @@
 package com.flipkart.model;
 
-public class Student {
+public class Professor {
 	String username;
 	
-	public Student(String username) {
+	public Professor(String username) {
 		this.username = username;
 	}
 

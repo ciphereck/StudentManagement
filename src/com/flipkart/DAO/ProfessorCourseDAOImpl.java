@@ -10,14 +10,14 @@ import com.flipkart.constant.SqlQueryConstant;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
-public class StudentCourseDAOImpl implements StudentCourseDAO {
+public class ProfessorCourseDAOImpl implements ProfessourCourseDAO {
 	private final Logger logger = Logger.getLogger(CatalogueDAO.class);
-
+	
 	@Override
-	public void addCourse(String courseId, String username) {
+	public void addCourseToTeach(String courseId, String username) {
 		Connection conn = DBUtil.getConnection();
 		try {
-			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_SYUDENT_COURSE);
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_PROFESSOR_COURSE);
 			statement.setString(1, courseId);
 			statement.setString(2, username);
 			
@@ -32,7 +32,7 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
 	public void deleteCourse(String courseId, String username) {
 		Connection conn = DBUtil.getConnection();
 		try {
-			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.DELETE_STUDENT_COURSE);
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.DELETE_PROFESSOR_COURSE);
 			statement.setString(1, courseId);
 			statement.setString(2, username);
 			
@@ -43,8 +43,4 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
 		}
 	}
 	
-	
-	
-	
-
 }

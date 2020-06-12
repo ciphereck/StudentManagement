@@ -19,8 +19,8 @@ public class UserService implements Service {
 		return typeOfUser;
 	}
 	
-	public void addUser(String username, String password, String role) {
-		userDAO.addUser(username, password, role);
+	public String addUser(String username, String password, String role) {
+		return userDAO.addUser(username, password, role);
 	}
 	
 	public void deleteUser(String username) {

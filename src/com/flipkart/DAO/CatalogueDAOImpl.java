@@ -25,9 +25,8 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 			while(rs.next()) {
 					String courseId = rs.getString("courseId");
 					String courseName = rs.getString("courseName");
-					String profUsername = rs.getString("professorUsername");
 
-					logger.info(new Catalogue(courseId, courseName, profUsername).toString());
+					logger.info(new Catalogue(courseId, courseName).toString());
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
@@ -45,9 +44,8 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 			while(rs.next()) {
 				String courseId = rs.getString("courseId");
 				String courseName = rs.getString("courseName");
-				String profUsername = rs.getString("professorUsername");
 
-				logger.info(new Catalogue(courseId, courseName, profUsername).toString());
+				logger.info(new Catalogue(courseId, courseName).toString());
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());

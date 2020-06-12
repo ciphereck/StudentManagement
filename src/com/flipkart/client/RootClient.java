@@ -47,7 +47,12 @@ public class RootClient {
 	
 	private static void registerStudent(String username, String password) {
 		UserService userService = new UserService();
-		userService.addUser(username, password, "STUDENT");
+		String role = userService.addUser(username, password, "STUDENT");
+		if(role.length() == 0) {
+			loginTry++;
+			logger.info("Duplicate username, Please select another username");
+			return;
+		}
 		login(username, password);
 	}
 
@@ -63,7 +68,7 @@ public class RootClient {
 		if("STUDENT".equals(typeOfUser)) {
 			client = new StudentClient(username);
 		} else if("PROFESSOR".equals(typeOfUser)) {
-			client = new ProfessorClient();
+			client = new ProfessorClient(username);
 		} else if("ADMIN".equals(typeOfUser)) {
 			client = new AdminClient();
 		} else {

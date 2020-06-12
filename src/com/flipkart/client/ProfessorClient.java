@@ -1,14 +1,54 @@
 package com.flipkart.client;
 
+import java.util.Scanner;
+
 import org.apache.log4j.Logger;
+
+import com.flipkart.model.Professor;
+import com.flipkart.model.Student;
+import com.flipkart.service.ProfessorService;
+import com.flipkart.service.StudentService;
 
 public class ProfessorClient implements SubClient {
 	private static final Logger logger = Logger.getLogger(StudentClient.class);
+	private final ProfessorService professorService;
+	
+	public ProfessorClient(String username) {
+		this.professorService = new ProfessorService(new Professor(username));
+	}
 	
 	public void showMenu() {
-		logger.info("1. Record Grades");
-		logger.info("2. View Course Info");
-		logger.info("3. Select Course to Teach");
-		logger.info("4. View Catalogue");
+			Scanner sc = new Scanner(System.in);
+			int option = 0;
+			
+			do {
+				logger.info("0. logout");
+				logger.info("1. Record Grades");
+				logger.info("2. View Catalogue");
+				logger.info("3. Add Course to Teach");
+				logger.info("4. Delete Course to teach");
+				logger.info("5. View Teaching courses");
+				logger.info("6. View Student's list");
+				
+				option = sc.nextInt();
+				
+				if(option == 0) {
+					return;
+				}
+				processOption(option);
+			} while(option !=0);
+		}
+
+	private void processOption(int option) {
+		Scanner sc = new Scanner(System.in);
+		if(option == 2) {
+			professorService.printCatalogue();
+		} else if(option == 3) {
+			String courseId = sc.next();
+			professorService.addCouseToTeach(courseId);
+		} else if(option == 4) {
+			String courseId = sc.next();
+			professorService.deleteStudentCourse(courseId);
+		}
 	}
 }
