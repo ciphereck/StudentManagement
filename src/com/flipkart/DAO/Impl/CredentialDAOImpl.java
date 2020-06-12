@@ -7,14 +7,14 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.flipkart.DAO.UserDAO;
+import com.flipkart.DAO.CredentialDAO;
 import com.flipkart.constant.SqlQueryConstant;
 import com.flipkart.model.Catalogue;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
-public class UserDAOImpl implements UserDAO {
-	private final Logger logger = Logger.getLogger(UserDAOImpl.class);
+public class CredentialDAOImpl implements CredentialDAO {
+	private final Logger logger = Logger.getLogger(CredentialDAOImpl.class);
 
 	@Override
 	public String checkIdentity(String username, String password) {

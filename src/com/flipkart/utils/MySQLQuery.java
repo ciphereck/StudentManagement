@@ -8,8 +8,6 @@ import java.time.LocalTime;
 
 import org.apache.log4j.Logger;
 
-import com.flipkart.DAO.Impl.UserDAOImpl;
-
 public class MySQLQuery {
 private static final Logger logger = Logger.getLogger(MySQLQuery.class);
 	

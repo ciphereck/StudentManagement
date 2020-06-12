@@ -2,15 +2,15 @@ package com.flipkart.service;
 
 import org.apache.log4j.Logger;
 
-import com.flipkart.DAO.UserDAO;
-import com.flipkart.DAO.Impl.UserDAOImpl;
+import com.flipkart.DAO.CredentialDAO;
+import com.flipkart.DAO.Impl.CredentialDAOImpl;
 
 public class CredentialService {
 	Logger logger = Logger.getLogger(CredentialService.class);
-	UserDAO userDAO = new UserDAOImpl();
+	CredentialDAO credentialDAO = new CredentialDAOImpl();
 	
 	public final String checkIdentityAndRole(String username, String password) {
-		String typeOfUser = userDAO.checkIdentity(username, password);
+		String typeOfUser = credentialDAO.checkIdentity(username, password);
 		if(typeOfUser.length() == 0) {
 			logger.info("no user found");
 			return typeOfUser;
@@ -19,6 +19,6 @@ public class CredentialService {
 	}
 	
 	public String addUser(String username, String password, String role) {
-		return userDAO.addUser(username, password, role);
+		return credentialDAO.addUser(username, password, role);
 	}
 }

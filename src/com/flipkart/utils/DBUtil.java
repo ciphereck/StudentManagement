@@ -10,10 +10,10 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-import com.flipkart.DAO.Impl.UserDAOImpl;
+import com.flipkart.DAO.Impl.CredentialDAOImpl;
 
 public class DBUtil {
-	private static final Logger logger = Logger.getLogger(UserDAOImpl.class);
+	private static final Logger logger = Logger.getLogger(DBUtil.class);
 	private static Connection connection = null;
 	
 	public static Connection getConnection() {
@@ -44,8 +44,6 @@ public class DBUtil {
         }
 
     }
-
-
 }
 
 
