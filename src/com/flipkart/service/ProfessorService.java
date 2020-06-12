@@ -23,7 +23,11 @@ public class ProfessorService implements Service {
 		professorCourseDAO.addCourseToTeach(courseId, professor.getUsername());
 	}
 	
-	public void deleteStudentCourse(String courseId) {
+	public void deleteCourseToTeach(String courseId) {
 		professorCourseDAO.deleteCourse(courseId, professor.getUsername());
+	}
+	
+	public void viewCoursesToTeach() {
+		catalogueDAO.printCatalogueByProfessorUsername(professor.getUsername());
 	}
 }

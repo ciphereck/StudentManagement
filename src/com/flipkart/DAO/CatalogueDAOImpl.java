@@ -52,4 +52,23 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 		}
 	}
 
+	@Override
+	public void printCatalogueByProfessorUsername(String username) {
+		Connection conn = DBUtil.getConnection();
+		try {
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE_BY_PROFESSOR);
+			statement.setString(1, username);
+			
+			ResultSet rs = MySQLQuery.executeQuery(statement);
+			while(rs.next()) {
+				String courseId = rs.getString("courseId");
+				String courseName = rs.getString("courseName");
+
+				logger.info(new Catalogue(courseId, courseName).toString());
+			}
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+	}
+
 }

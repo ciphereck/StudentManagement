@@ -30,7 +30,7 @@ public class RootClient {
 				return;
 			}
 			
-			logger.error("Enter Username Password");
+			logger.info("Enter Username Password");
 			String username = sc.next();
 			String password = sc.next();
 			

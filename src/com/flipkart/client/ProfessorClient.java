@@ -48,7 +48,9 @@ public class ProfessorClient implements SubClient {
 			professorService.addCouseToTeach(courseId);
 		} else if(option == 4) {
 			String courseId = sc.next();
-			professorService.deleteStudentCourse(courseId);
+			professorService.deleteCourseToTeach(courseId);
+		} else if(option == 5) {
+			professorService.viewCoursesToTeach();
 		}
 	}
 }
