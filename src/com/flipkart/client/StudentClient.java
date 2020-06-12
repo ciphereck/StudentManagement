@@ -12,6 +12,7 @@ public class StudentClient implements SubClient {
 	private final StudentService studentService;
 	
 	public StudentClient(String username) {
+		showCurrentTime(true, "STUDENT");
 		this.studentService = new StudentService(new Student(username));
 	}
 	
@@ -32,7 +33,7 @@ public class StudentClient implements SubClient {
 			processOption(option);
 		} while(option !=0);
 		
-		
+		showCurrentTime(false, "STUDENT");
 	}
 
 	private void processOption(int option) {

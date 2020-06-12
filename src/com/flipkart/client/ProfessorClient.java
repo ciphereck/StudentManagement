@@ -14,6 +14,7 @@ public class ProfessorClient implements SubClient {
 	private final ProfessorService professorService;
 	
 	public ProfessorClient(String username) {
+		showCurrentTime(true, "PROFESSOR");
 		this.professorService = new ProfessorService(new Professor(username));
 	}
 	
@@ -33,10 +34,12 @@ public class ProfessorClient implements SubClient {
 				option = sc.nextInt();
 				
 				if(option == 0) {
-					return;
+					break;
 				}
 				processOption(option);
 			} while(option !=0);
+			
+			showCurrentTime(false, "PROFESSOR");
 		}
 
 	private void processOption(int option) {

@@ -15,7 +15,7 @@ public class UserService implements Service {
 			logger.info("no user found");
 			return typeOfUser;
 		}
-		logger.info(typeOfUser + " type of user found");
+//		logger.debug(typeOfUser + " type of user found");
 		return typeOfUser;
 	}
 	

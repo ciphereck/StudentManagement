@@ -10,6 +10,10 @@ public class AdminClient implements SubClient {
 	private static final Logger logger = Logger.getLogger(StudentClient.class);
 	UserService userService = new UserService();
 	
+	public AdminClient() {
+		showCurrentTime(true, "ADMIN");
+	}
+	
 	public void showMenu() {
 		Scanner sc = new Scanner(System.in);
 		int option = 0;
@@ -24,10 +28,12 @@ public class AdminClient implements SubClient {
 			option = sc.nextInt();
 			
 			if(option == 0) {
-				return;
+				break;
 			}
 			processOption(option);
 		} while(option !=0);
+		
+		showCurrentTime(false, "ADMIN");
 	}
 
 	private void processOption(int option) {
