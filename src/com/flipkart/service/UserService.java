@@ -2,7 +2,7 @@ package com.flipkart.service;
 
 import java.util.List;
 
-import com.flipkart.DAO.CatalogueDAOImpl;
+import com.flipkart.DAO.Impl.CatalogueDAOImpl;
 import com.flipkart.model.Catalogue;
 
 public interface UserService {

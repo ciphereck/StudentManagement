@@ -3,7 +3,7 @@ package com.flipkart.service;
 import java.util.List;
 
 import com.flipkart.DAO.StudentCourseDAO;
-import com.flipkart.DAO.StudentCourseDAOImpl;
+import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
 import com.flipkart.model.Catalogue;
 import com.flipkart.model.Student;
 

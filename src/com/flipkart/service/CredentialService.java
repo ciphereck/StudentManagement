@@ -3,7 +3,7 @@ package com.flipkart.service;
 import org.apache.log4j.Logger;
 
 import com.flipkart.DAO.UserDAO;
-import com.flipkart.DAO.UserDAOImpl;
+import com.flipkart.DAO.Impl.UserDAOImpl;
 
 public class CredentialService {
 	Logger logger = Logger.getLogger(CredentialService.class);

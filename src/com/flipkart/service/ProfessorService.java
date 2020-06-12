@@ -2,8 +2,8 @@ package com.flipkart.service;
 
 import java.util.List;
 
-import com.flipkart.DAO.ProfessorCourseDAOImpl;
 import com.flipkart.DAO.ProfessourCourseDAO;
+import com.flipkart.DAO.Impl.ProfessorCourseDAOImpl;
 import com.flipkart.model.Catalogue;
 import com.flipkart.model.Professor;
 

@@ -1,4 +1,4 @@
-package com.flipkart.DAO;
+package com.flipkart.DAO.Impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+import com.flipkart.DAO.UserDAO;
 import com.flipkart.constant.SqlQueryConstant;
 import com.flipkart.model.Catalogue;
 import com.flipkart.utils.DBUtil;
