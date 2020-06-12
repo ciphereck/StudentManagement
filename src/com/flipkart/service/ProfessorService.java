@@ -7,7 +7,7 @@ import com.flipkart.DAO.ProfessourCourseDAO;
 import com.flipkart.model.Catalogue;
 import com.flipkart.model.Professor;
 
-public class ProfessorService implements Service {
+public class ProfessorService implements UserService {
 	private Professor professor;
 	private ProfessourCourseDAO professorCourseDAO = new ProfessorCourseDAOImpl();
 	

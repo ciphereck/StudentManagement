@@ -26,6 +26,8 @@ public class StudentClient implements SubClient {
 			logger.info("4. View Course");
 			logger.info("5. View Report Card");
 			logger.info("6. Pay Fee");
+			logger.info("7. Edit Details");
+			logger.info("8. View My Details");
 			
 			Scanner sc = new Scanner(System.in);
 			option = sc.nextInt();
@@ -54,6 +56,8 @@ public class StudentClient implements SubClient {
 			studentService
 				.printStudentCourse()
 				.forEach(logger::info);
+		} else if(option == 7) {
+			
 		}
 	}
 }

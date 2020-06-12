@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.flipkart.service.UserService;
+import com.flipkart.service.AdminService;
+import com.flipkart.service.CredentialService;
+import com.flipkart.service.ProfessorService;
 
 public class AdminClient implements SubClient {
 	private static final Logger logger = Logger.getLogger(StudentClient.class);
-	UserService userService = new UserService();
+	AdminService adminService = new AdminService();
 	
 	public AdminClient() {
 		showCurrentTime(true, "ADMIN");
@@ -48,7 +50,7 @@ public class AdminClient implements SubClient {
 			int role = sc.nextInt();
 			
 			if(role - 1 < roleName.length) {
-				userService.addUser(username, password, roleName[role-1]);
+				adminService.addUser(username, password, roleName[role-1]);
 			} else {
 				logger.info("Enter proper role");
 			}
@@ -56,9 +58,9 @@ public class AdminClient implements SubClient {
 			logger.info("Enter username to remove");
 			String username = sc.next();
 			
-			userService.deleteUser(username);
+			adminService.deleteUser(username);
 		} else if(option == 3) {
-			userService.viewUsers();
+			adminService.viewUsers();
 		}
 	}
 }

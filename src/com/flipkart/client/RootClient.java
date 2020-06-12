@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.flipkart.service.CredentialService;
 import com.flipkart.service.UserService;
-import com.flipkart.service.Service;
 
 public class RootClient {
 	private static final Logger logger = Logger.getLogger(RootClient.class);
@@ -46,8 +46,8 @@ public class RootClient {
 	}
 	
 	private static void registerStudent(String username, String password) {
-		UserService userService = new UserService();
-		String role = userService.addUser(username, password, "STUDENT");
+		CredentialService credentialService = new CredentialService();
+		String role = credentialService.addUser(username, password, "STUDENT");
 		if(role.length() == 0) {
 			loginTry++;
 			logger.info("Duplicate username, Please select another username");
@@ -57,8 +57,8 @@ public class RootClient {
 	}
 
 	public static void login(String username, String password) {
-		UserService userService = new UserService();
-		String typeOfUser = userService.checkIdentity(username, password);
+		CredentialService credentialService = new CredentialService();
+		String typeOfUser = credentialService.checkIdentityAndRole(username, password);
 		
 		showSubClient(typeOfUser, username);
 }

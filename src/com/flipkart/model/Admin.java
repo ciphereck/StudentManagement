@@ -2,28 +2,28 @@ package com.flipkart.model;
 
 import org.apache.log4j.Logger;
 
-public class Professor implements User {
+public class Admin implements User {
 	String username;
 	String name;
 	String dob;
 	char gender;
-	private Logger logger = Logger.getLogger(Professor.class);
+	private Logger logger = Logger.getLogger(Admin.class);
 	
-	public Professor(String username, String name, String dob, char gender) {
+	public Admin(String username, String name, String dob, char gender) {
 		this.username = username;
 		this.name = name;
 		this.dob = dob;
 		this.gender = gender;
 	}
 
-	public Professor(String username) {
+	public Admin(String username) {
 		this.username = username;
 	}
 	
 	public void printUser() {
 		logger.info(this);
 	}
-
+	
 	public String getUsername() {
 		return username;
 	}

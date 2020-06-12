@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
 import com.flipkart.service.ProfessorService;
-import com.flipkart.service.Service;
+import com.flipkart.service.UserService;
 import com.flipkart.service.StudentService;
 
 public class ProfessorClient implements SubClient {
