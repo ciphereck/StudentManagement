@@ -1,5 +1,10 @@
 package com.flipkart.service;
 
-public interface Service {
+import com.flipkart.DAO.CatalogueDAOImpl;
 
+public interface Service {
+	CatalogueDAOImpl catalogueDAO = new CatalogueDAOImpl();
+	public default void printCatalogue() {
+		catalogueDAO.printCatalogue();
+	}
 }
