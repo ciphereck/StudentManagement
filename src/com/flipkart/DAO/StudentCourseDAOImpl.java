@@ -20,6 +20,8 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_SYUDENT_COURSE);
 			statement.setString(1, courseId);
 			statement.setString(2, username);
+			statement.setString(3, MySQLQuery.getDateTime());
+			
 			
 			int row = MySQLQuery.executeUpdate(statement);
 			logger.info("Row affected: " + row);

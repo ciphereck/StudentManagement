@@ -39,13 +39,15 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE_BY_STUDENT);
 			statement.setString(1, username);
+			statement.setString(2, username);
 			
 			ResultSet rs = MySQLQuery.executeQuery(statement);
 			while(rs.next()) {
 				String courseId = rs.getString("courseId");
 				String courseName = rs.getString("courseName");
+				String lastUpdateTime = rs.getString("timeofLastUpdate");
 
-				logger.info(new Catalogue(courseId, courseName).toString());
+				logger.info(new Catalogue(courseId, courseName, lastUpdateTime).toString());
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
