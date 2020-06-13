@@ -14,7 +14,11 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 		try {
 			String username = rs.getString("username");
 			String name = rs.getString("name");
-			char gender = rs.getString("gender").charAt(0);
+			String genderString = rs.getString("gender");
+			char gender = 0;
+			if(genderString != null) {
+				gender = genderString.charAt(0);
+			}
 			String dob = rs.getString("dob");
 			
 			professor = new Professor(username, name, dob, gender);

@@ -48,7 +48,14 @@ public class CredentialDAOImpl implements CredentialDAO {
 			statement.setString(1, username);
 			statement.setString(2, password);
 			statement.setString(3, role);
+			row = MySQLQuery.executeUpdate(statement);
+			logger.info("Row affected: " + row);
 			
+			
+			statement = conn
+					.prepareStatement(SqlQueryConstant
+							.ADD_USER.replace("$tableName", role.toLowerCase()));
+			statement.setString(1, username);
 			row = MySQLQuery.executeUpdate(statement);
 			logger.info("Row affected: " + row);
 		} catch (SQLException e) {

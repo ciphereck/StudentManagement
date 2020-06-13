@@ -17,4 +17,5 @@ public class SqlQueryConstant {
 	public static final String DELETE_PROFESSOR_COURSE = "delete from professorCourse where courseId=? and professorUsername=?";
 	
 	public static final String GET_USER = "select * from $tableName";
+	public static final String ADD_USER = "insert into $tableName (username) values(?)";
 }
