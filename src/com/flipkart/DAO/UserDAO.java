@@ -39,4 +39,23 @@ public interface UserDAO {
 	
 	public User convertToUser(ResultSet rs);
 	
+	default public int editUser(User user) {
+		Connection conn = DBUtil.getConnection();
+		int row = 0;
+		
+		PreparedStatement statement;
+		try {
+			statement = getPreparedStatementForEditUser(user, conn);
+			System.out.println(statement.toString());
+			if(statement != null)
+				return MySQLQuery.executeUpdate(statement);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public PreparedStatement getPreparedStatementForEditUser(User user, Connection conn) throws SQLException;
+	
 }

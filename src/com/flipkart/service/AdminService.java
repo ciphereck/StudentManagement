@@ -6,9 +6,17 @@ import com.flipkart.DAO.UserDAO;
 import com.flipkart.DAO.Impl.AdminDAOImpl;
 import com.flipkart.DAO.Impl.ProfessorDAOImpl;
 import com.flipkart.DAO.Impl.StudentDAOImpl;
+import com.flipkart.model.Admin;
 import com.flipkart.model.User;
 
 public class AdminService extends CredentialService implements UserService {	
+	private Admin admin;
+	
+	public AdminService(Admin admin) {
+		super();
+		this.admin = admin;
+	}
+
 	public void deleteUser(String username) {
 		credentialDAO.deleteUser(username);
 	}
@@ -23,5 +31,9 @@ public class AdminService extends CredentialService implements UserService {
 			userDAO = new AdminDAOImpl();
 		}
 		return userDAO.printUserByType(role);
+	}
+	
+	public Admin getAdmin() {
+		return admin;
 	}
 }

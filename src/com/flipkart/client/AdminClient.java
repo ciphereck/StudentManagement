@@ -4,17 +4,18 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.flipkart.model.Admin;
+import com.flipkart.model.Student;
 import com.flipkart.service.AdminService;
-import com.flipkart.service.CredentialService;
-import com.flipkart.service.ProfessorService;
 
 public class AdminClient implements SubClient {
 	private static final Logger logger = Logger.getLogger(StudentClient.class);
-	AdminService adminService = new AdminService();
+	AdminService adminService;
 	String roleName[] = {"STUDENT", "PROFESSOR", "ADMIN"};
 	
-	public AdminClient() {
+	public AdminClient(String username) {
 		showCurrentTime(true, "ADMIN");
+		adminService = new AdminService(new Admin(username));
 	}
 	
 	public void showMenu() {
@@ -26,7 +27,8 @@ public class AdminClient implements SubClient {
 			logger.info("1. Add User");
 			logger.info("2. Remove User");
 			logger.info("3. View Users");
-			logger.info("3. Generate Report Card");
+			logger.info("4. Generate Report Card");
+			logger.info("5. Edit My Details");
 			
 			option = sc.nextInt();
 			
@@ -66,10 +68,27 @@ public class AdminClient implements SubClient {
 			if(role - 1 < roleName.length) {
 				adminService
 					.viewUsers(roleName[role-1])
-					.forEach(logger::info);
+					.stream()
+					.filter(user -> user.getGender()=='M')
+					.forEach(user -> logger.info("Mr. " + user.getName() + " " + user.getUsername()));
+				
+				adminService
+					.viewUsers(roleName[role-1])
+					.stream()
+					.filter(user -> user.getGender()=='F')
+					.forEach(user -> logger.info("Ms. " + user.getName() + " " + user.getUsername()));
 			} else {
 				logger.info("Enter proper role");
 			}
+		} else if(option == 5) {
+			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
+			
+			Admin admin = adminService.getAdmin();
+			admin.setName(sc.next());
+			admin.setDob(sc.next());
+			admin.setGender(sc.next().charAt(0));
+			int row = adminService.editUser(admin);
+			logger.info("Row affected: " + row);
 		}
 	}
 }

@@ -18,4 +18,8 @@ public class SqlQueryConstant {
 	
 	public static final String GET_USER = "select * from $tableName";
 	public static final String ADD_USER = "insert into $tableName (username) values(?)";
+	
+	public static final String UPDATE_STUDENT = "update student set name=?, dob=?, gender=? where username=?";
+	public static final String UPDATE_PROFESSOR = "update professor set name=?, dob=?, gender=? where username=?";
+	public static final String UPDATE_ADMIN = "update admin set name=?, dob=?, gender=? where username=?";
 }

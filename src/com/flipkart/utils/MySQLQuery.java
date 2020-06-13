@@ -17,7 +17,7 @@ private static final Logger logger = Logger.getLogger(MySQLQuery.class);
 			rows = statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			logger.fatal(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		return rows;
 	}
@@ -28,7 +28,7 @@ private static final Logger logger = Logger.getLogger(MySQLQuery.class);
 			rs = statement.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			logger.fatal(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		return rs;
 	}

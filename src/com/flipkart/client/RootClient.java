@@ -70,7 +70,7 @@ public class RootClient {
 		} else if("PROFESSOR".equals(typeOfUser)) {
 			client = new ProfessorClient(username);
 		} else if("ADMIN".equals(typeOfUser)) {
-			client = new AdminClient();
+			client = new AdminClient(username);
 		} else {
 			loginTry++;
 			logger.info("wrong username / password function");

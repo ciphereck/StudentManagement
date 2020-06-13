@@ -1,5 +1,7 @@
 package com.flipkart.DAO.Impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -27,6 +29,12 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 			e.printStackTrace();
 		}
 		return professor;
+	}
+
+	@Override
+	public PreparedStatement getPreparedStatementForEditUser(User user, Connection conn) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

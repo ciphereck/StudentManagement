@@ -27,4 +27,7 @@ public class StudentService implements UserService {
 		studentCourseDAO.deleteCourse(courseId, student.getUsername());
 	}
 	
+	public Student getStudent() {
+		return student;
+	}
 }

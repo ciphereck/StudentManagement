@@ -57,7 +57,14 @@ public class StudentClient implements SubClient {
 				.printStudentCourse()
 				.forEach(logger::info);
 		} else if(option == 7) {
+			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			
+			Student student = studentService.getStudent();
+			student.setName(sc.next());
+			student.setDob(sc.next());
+			student.setGender(sc.next().charAt(0));
+			int row = studentService.editUser(student);
+			logger.info("Row affected: " + row);
 		}
 	}
 }

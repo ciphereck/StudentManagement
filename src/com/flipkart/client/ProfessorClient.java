@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.flipkart.model.Admin;
 import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
 import com.flipkart.service.ProfessorService;
@@ -31,6 +32,7 @@ public class ProfessorClient implements SubClient {
 				logger.info("4. Delete Course to teach");
 				logger.info("5. View Teaching courses");
 				logger.info("6. View Student's list");
+				logger.info("7. Edit Details");
 				
 				option = sc.nextInt();
 				
@@ -59,6 +61,15 @@ public class ProfessorClient implements SubClient {
 			professorService
 				.viewCoursesToTeach()
 				.forEach(logger::info);
+		} else if(option == 7) {
+			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
+			
+			Professor professor = professorService.getProfessor();
+			professor.setName(sc.next());
+			professor.setDob(sc.next());
+			professor.setGender(sc.next().charAt(0));
+			int row = professorService.editUser(professor);
+			logger.info("Row affected: " + row);
 		}
 	}
 }
