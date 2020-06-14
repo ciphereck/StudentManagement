@@ -16,6 +16,11 @@ public class Professor implements User {
 		this.gender = gender;
 	}
 
+	@Override
+	public String toString() {
+		return "Professor [username=" + username + ", name=" + name + ", dob=" + dob + ", gender=" + gender + "]";
+	}
+
 	public Professor(String username) {
 		this.username = username;
 	}

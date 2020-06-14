@@ -12,7 +12,7 @@ import com.flipkart.service.UserService;
 import com.flipkart.service.StudentService;
 
 public class ProfessorClient implements SubClient {
-	private static final Logger logger = Logger.getLogger(StudentClient.class);
+	private static final Logger logger = Logger.getLogger(ProfessorClient.class);
 	private final ProfessorService professorService;
 	
 	public ProfessorClient(String username) {
@@ -65,12 +65,15 @@ public class ProfessorClient implements SubClient {
 		} else if(option == 7) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			
-			Professor professor = professorService.getProfessor();
+			Professor professor = (Professor) professorService.getUser();
 			professor.setName(sc.next());
 			professor.setDob(sc.next());
 			professor.setGender("" + sc.next().charAt(0));
 			int row = professorService.editUser(professor);
 			logger.info("Row affected: " + row);
+		} else if(option == 8) {
+			Professor professor = (Professor) professorService.getUser();
+			logger.info(professor);
 		}
 	}
 }

@@ -49,7 +49,6 @@ public interface UserDAO {
 			if(statement != null)
 				return MySQLQuery.executeUpdate(statement);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;

@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.flipkart.DAO.ProfessorDAO;
+import com.flipkart.constant.SqlQueryConstant;
+import com.flipkart.model.Admin;
 import com.flipkart.model.Professor;
 import com.flipkart.model.User;
 
@@ -28,9 +30,14 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 	}
 
 	@Override
-	public PreparedStatement getPreparedStatementForEditUser(User user, Connection conn) {
-		// TODO Auto-generated method stub
-		return null;
+	public PreparedStatement getPreparedStatementForEditUser(User user, Connection conn) throws SQLException {
+		Professor professor = (Professor) user;
+		PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.UPDATE_PROFESSOR);
+		statement.setString(1, professor.getName());
+		statement.setString(2, professor.getDob());
+		statement.setString(3, "" + professor.getGender());
+		statement.setString(4, professor.getUsername());
+		return statement;
 	}
 
 }
