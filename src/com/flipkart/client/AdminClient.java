@@ -69,13 +69,13 @@ public class AdminClient implements SubClient {
 				adminService
 					.viewUsers(roleName[role-1])
 					.stream()
-					.filter(user -> user.getGender()=='M')
+					.filter(user -> user.getGender().charAt(0)=='M')
 					.forEach(user -> logger.info("Mr. " + user.getName() + " " + user.getUsername()));
 				
 				adminService
 					.viewUsers(roleName[role-1])
 					.stream()
-					.filter(user -> user.getGender()=='F')
+					.filter(user -> user.getGender().charAt(0)=='F')
 					.forEach(user -> logger.info("Ms. " + user.getName() + " " + user.getUsername()));
 			} else {
 				logger.info("Enter proper role");
@@ -83,10 +83,10 @@ public class AdminClient implements SubClient {
 		} else if(option == 5) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			
-			Admin admin = adminService.getAdmin();
+			Admin admin = (Admin)adminService.getUser();
 			admin.setName(sc.next());
 			admin.setDob(sc.next());
-			admin.setGender(sc.next().charAt(0));
+			admin.setGender("" + sc.next().charAt(0));
 			int row = adminService.editUser(admin);
 			logger.info("Row affected: " + row);
 		}

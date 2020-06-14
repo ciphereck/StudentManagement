@@ -20,7 +20,7 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 	
 	@Override
 	public List<Catalogue> printCatalogue() {
-		List<Catalogue> catalogue = new ArrayList();
+		List<Catalogue> catalogue = new ArrayList<>();
 		Connection conn = DBUtil.getConnection();
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_CATALOGUE);
@@ -29,8 +29,10 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 			while(rs.next()) {
 					String courseId = rs.getString("courseId");
 					String courseName = rs.getString("courseName");
+					int fees = rs.getInt("fees");
+					double credit = rs.getDouble("credit");
 
-					catalogue.add(new Catalogue(courseId, courseName));
+					catalogue.add(new Catalogue(courseId, courseName, fees, credit));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
@@ -41,7 +43,7 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 	
 	@Override
 	public List<Catalogue> printCatalogueByStudentUsername(String username) {
-		List<Catalogue> catalogue = new ArrayList();
+		List<Catalogue> catalogue = new ArrayList<>();
 		Connection conn = DBUtil.getConnection();
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE_BY_STUDENT);
@@ -52,9 +54,11 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 			while(rs.next()) {
 				String courseId = rs.getString("courseId");
 				String courseName = rs.getString("courseName");
-				String lastUpdateTime = rs.getString("timeofLastUpdate");
+				int fees = rs.getInt("fees");
+				double credit = rs.getDouble("credit");
+				String timestamp = rs.getString("timeOfLastUpdate");
 
-				catalogue.add(new Catalogue(courseId, courseName, lastUpdateTime));
+				catalogue.add(new Catalogue(courseId, courseName, fees, credit, timestamp));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
@@ -64,7 +68,7 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 
 	@Override
 	public List<Catalogue> printCatalogueByProfessorUsername(String username) {
-		List<Catalogue> catalogue = new ArrayList();
+		List<Catalogue> catalogue = new ArrayList<>();
 		Connection conn = DBUtil.getConnection();
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE_BY_PROFESSOR);
@@ -74,8 +78,10 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 			while(rs.next()) {
 				String courseId = rs.getString("courseId");
 				String courseName = rs.getString("courseName");
+				int fees = rs.getInt("fees");
+				double credit = rs.getDouble("credit");
 
-				catalogue.add(new Catalogue(courseId, courseName));
+				catalogue.add(new Catalogue(courseId, courseName, fees, credit));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());

@@ -6,10 +6,10 @@ public class Student implements User {
 	String username;
 	String name;
 	String dob;
-	char gender;
+	String gender;	
 	private Logger logger = Logger.getLogger(Student.class);
 	
-	public Student(String username, String name, String dob, char gender) {
+	public Student(String username, String name, String dob, String gender) {
 		super();
 		this.username = username;
 		this.name = name;
@@ -17,6 +17,11 @@ public class Student implements User {
 		this.gender = gender;
 	}
 	
+	@Override
+	public String toString() {
+		return "Student [username=" + username + ", name=" + name + ", dob=" + dob + ", gender=" + gender +"]";
+	}
+
 	public void printUser() {
 		logger.info(this);
 	}
@@ -49,11 +54,11 @@ public class Student implements User {
 		this.dob = dob;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 }

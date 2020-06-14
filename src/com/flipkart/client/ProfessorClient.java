@@ -67,7 +67,7 @@ public class ProfessorClient implements SubClient {
 			Professor professor = professorService.getProfessor();
 			professor.setName(sc.next());
 			professor.setDob(sc.next());
-			professor.setGender(sc.next().charAt(0));
+			professor.setGender("" + sc.next().charAt(0));
 			int row = professorService.editUser(professor);
 			logger.info("Row affected: " + row);
 		}

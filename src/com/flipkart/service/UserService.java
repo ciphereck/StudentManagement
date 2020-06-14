@@ -15,11 +15,12 @@ import com.flipkart.model.User;
 
 public interface UserService {
 	CatalogueDAOImpl catalogueDAO = new CatalogueDAOImpl();
+	
 	public default List<Catalogue> printCatalogue() {
 		return catalogueDAO.printCatalogue();
 	}
+	
 	public default int editUser(User user) {
-		System.out.println(user);
 		UserDAO userDAO = null;
 		if(user instanceof Student) {
 			userDAO = new StudentDAOImpl();
@@ -33,4 +34,6 @@ public interface UserService {
 		
 		return userDAO.editUser(user);
 	}
+	
+	public User getUser();
 }

@@ -6,10 +6,10 @@ public class Professor implements User {
 	String username;
 	String name;
 	String dob;
-	char gender;
+	String gender;
 	private Logger logger = Logger.getLogger(Professor.class);
 	
-	public Professor(String username, String name, String dob, char gender) {
+	public Professor(String username, String name, String dob, String gender) {
 		this.username = username;
 		this.name = name;
 		this.dob = dob;
@@ -48,11 +48,11 @@ public class Professor implements User {
 		this.dob = dob;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 }

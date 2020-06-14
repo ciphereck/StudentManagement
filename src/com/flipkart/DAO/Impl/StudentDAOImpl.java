@@ -19,11 +19,7 @@ public class StudentDAOImpl implements StudentDAO {
 		try {
 			String username = rs.getString("username");
 			String name = rs.getString("name");
-			String genderString = rs.getString("gender");
-			char gender = 0;
-			if(genderString != null) {
-				gender = genderString.charAt(0);
-			}
+			String gender = rs.getString("gender");
 			String dob = rs.getString("dob");
 			
 			student = new Student(username, name, dob, gender);

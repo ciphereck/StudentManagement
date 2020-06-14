@@ -32,8 +32,10 @@ public class AdminService extends CredentialService implements UserService {
 		}
 		return userDAO.printUserByType(role + 's');
 	}
-	
-	public Admin getAdmin() {
+
+	@Override
+	public User getUser() {
 		return admin;
 	}
+	
 }

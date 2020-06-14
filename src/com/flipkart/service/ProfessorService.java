@@ -6,6 +6,7 @@ import com.flipkart.DAO.ProfessourCourseDAO;
 import com.flipkart.DAO.Impl.ProfessorCourseDAOImpl;
 import com.flipkart.model.Catalogue;
 import com.flipkart.model.Professor;
+import com.flipkart.model.User;
 
 public class ProfessorService implements UserService {
 	private Professor professor;
@@ -28,6 +29,11 @@ public class ProfessorService implements UserService {
 	}
 	
 	public Professor getProfessor() {
+		return professor;
+	}
+
+	@Override
+	public User getUser() {
 		return professor;
 	}
 }

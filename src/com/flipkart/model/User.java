@@ -15,7 +15,7 @@ public interface User {
 
 	public void setDob(String dob);
 
-	public char getGender();
+	public String getGender();
 
-	public void setGender(char gender);
+	public void setGender(String gender);
 }

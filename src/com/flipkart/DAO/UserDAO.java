@@ -46,7 +46,6 @@ public interface UserDAO {
 		PreparedStatement statement;
 		try {
 			statement = getPreparedStatementForEditUser(user, conn);
-			System.out.println(statement.toString());
 			if(statement != null)
 				return MySQLQuery.executeUpdate(statement);
 		} catch (SQLException e) {

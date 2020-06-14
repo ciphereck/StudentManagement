@@ -25,7 +25,7 @@ public class StudentClient implements SubClient {
 			logger.info("3. Drop Course");
 			logger.info("4. View Course");
 			logger.info("5. View Report Card");
-			logger.info("6. Pay Fee");
+			logger.info("6. Pay Fee and Register");
 			logger.info("7. Edit Details");
 			logger.info("8. View My Details");
 			
@@ -59,12 +59,15 @@ public class StudentClient implements SubClient {
 		} else if(option == 7) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			
-			Student student = studentService.getStudent();
+			Student student = (Student)studentService.getUser();
 			student.setName(sc.next());
 			student.setDob(sc.next());
-			student.setGender(sc.next().charAt(0));
+			student.setGender("" + sc.next().charAt(0));
 			int row = studentService.editUser(student);
 			logger.info("Row affected: " + row);
+		} else if(option == 8) {
+			Student student = (Student) studentService.getUser();
+			logger.info(student);
 		}
 	}
 }

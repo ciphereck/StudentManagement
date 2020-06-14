@@ -6,6 +6,7 @@ import com.flipkart.DAO.StudentCourseDAO;
 import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
 import com.flipkart.model.Catalogue;
 import com.flipkart.model.Student;
+import com.flipkart.model.User;
 
 public class StudentService implements UserService {
 	private final Student student;
@@ -26,8 +27,9 @@ public class StudentService implements UserService {
 	public void deleteStudentCourse(String courseId) {
 		studentCourseDAO.deleteCourse(courseId, student.getUsername());
 	}
-	
-	public Student getStudent() {
+
+	@Override
+	public User getUser() {
 		return student;
 	}
 }
