@@ -15,6 +15,11 @@ public class Admin implements User {
 		this.dob = dob;
 		this.gender = gender;
 	}
+	
+	@Override
+	public String toString() {
+		return "Admin [username=" + username + ", name=" + name + ", dob=" + dob + ", gender=" + gender + "]";
+	}
 
 	public Admin(String username) {
 		this.username = username;

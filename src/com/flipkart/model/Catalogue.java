@@ -26,12 +26,7 @@ public class Catalogue {
 
 	@Override
 	public String toString() {
-		String details = String
-				.format("id: %s, name: %s, fees: %d, credit %.2f", 
-						courseId, courseName, fees, credit);
-		if(timestamp != null) {
-			details = String.format("%s, lastUpdate: %s", details, timestamp);
-		}
-		return details;
+		return "Catalogue [courseId=" + courseId + ", courseName=" + courseName + ", fees=" + fees + ", credit="
+				+ credit + ", lastUpdate=" + timestamp + "]";
 	}
 }

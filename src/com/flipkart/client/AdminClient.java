@@ -27,8 +27,10 @@ public class AdminClient implements SubClient {
 			logger.info("1. Add User");
 			logger.info("2. Remove User");
 			logger.info("3. View Users");
-			logger.info("4. Generate Report Card");
-			logger.info("5. Edit My Details");
+			logger.info("4. View Catalogue");
+			logger.info("5. View Report Card");
+			logger.info("6. Edit My Details");
+			logger.info("7. View My Details");
 			
 			option = sc.nextInt();
 			
@@ -69,18 +71,30 @@ public class AdminClient implements SubClient {
 				adminService
 					.viewUsers(roleName[role-1])
 					.stream()
+					.filter(user -> user.getGender() != null)
 					.filter(user -> user.getGender().charAt(0)=='M')
 					.forEach(user -> logger.info("Mr. " + user.getName() + " " + user.getUsername()));
 				
 				adminService
 					.viewUsers(roleName[role-1])
 					.stream()
+					.filter(user -> user.getGender() != null)
 					.filter(user -> user.getGender().charAt(0)=='F')
 					.forEach(user -> logger.info("Ms. " + user.getName() + " " + user.getUsername()));
+				
+				adminService
+					.viewUsers(roleName[role-1])
+					.stream()
+					.filter(user -> user.getGender() == null)
+					.forEach(user -> logger.info("Mr./Ms. " + user.getName() + " " + user.getUsername()));
 			} else {
 				logger.info("Enter proper role");
 			}
-		} else if(option == 5) {
+		} else if(option == 4) {
+			adminService
+				.printCatalogue()
+				.forEach(logger::info);
+		} else if(option == 6) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			
 			Admin admin = (Admin)adminService.getUser();
@@ -89,6 +103,9 @@ public class AdminClient implements SubClient {
 			admin.setGender("" + sc.next().charAt(0));
 			int row = adminService.editUser(admin);
 			logger.info("Row affected: " + row);
+		} else if(option == 7) {
+			Admin admin = (Admin) adminService.getUser();
+			logger.info(admin);
 		}
 	}
 }
