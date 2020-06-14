@@ -24,8 +24,8 @@ public class StudentClient implements SubClient {
 			logger.info("2. Add Course");
 			logger.info("3. Drop Course");
 			logger.info("4. View Course");
-			logger.info("5. View Report Card");
-			logger.info("6. Pay Fee and Register");
+			logger.info("5. Pay Fee and Register");
+			logger.info("6. View Report Card");
 			logger.info("7. Edit Details"); //TODO: roll number, branch, year
 			logger.info("8. View My Details");
 			
@@ -56,6 +56,17 @@ public class StudentClient implements SubClient {
 			studentService
 				.printStudentCourse()
 				.forEach(logger::info);
+		} else if(option == 5) {
+			int regStatus = studentService.registerStudent();
+			if(regStatus == -1) {
+				logger.info("Wrong Number of courses");
+			} else if(regStatus == -2) {
+				logger.info("payment failed.....No Money will deduct from your account");
+			} else if(regStatus == 0) {
+				logger.info("payment succeed. Registration failed.... Your transaction will be reverted");
+			} else {
+				logger.info("Congrats! You have registered for Courses successfully");
+			}
 		} else if(option == 7) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			

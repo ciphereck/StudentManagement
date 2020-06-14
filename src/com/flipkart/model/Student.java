@@ -6,15 +6,17 @@ public class Student implements User {
 	String username;
 	String name;
 	String dob;
-	String gender;	
+	String gender;
+	int payment;
 	private Logger logger = Logger.getLogger(Student.class);
 	
-	public Student(String username, String name, String dob, String gender) {
+	public Student(String username, String name, String dob, String gender, int payment) {
 		super();
 		this.username = username;
 		this.name = name;
 		this.dob = dob;
 		this.gender = gender;
+		this.payment = payment;
 	}
 	
 	@Override

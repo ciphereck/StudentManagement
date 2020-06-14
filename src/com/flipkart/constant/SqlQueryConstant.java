@@ -22,4 +22,6 @@ public class SqlQueryConstant {
 	public static final String UPDATE_STUDENT = "update students set name=?, dob=?, gender=? where username=?";
 	public static final String UPDATE_PROFESSOR = "update professors set name=?, dob=?, gender=? where username=?";
 	public static final String UPDATE_ADMIN = "update admins set name=?, dob=?, gender=? where username=?";
+	
+	public static final String REGISTER_STUDENT = "insert into studentRegistrations (studentUsername, regId, feesPaid, paymentId) values(?, ?, ?, ?);";
 }

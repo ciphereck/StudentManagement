@@ -21,8 +21,9 @@ public class StudentDAOImpl implements StudentDAO {
 			String name = rs.getString("name");
 			String gender = rs.getString("gender");
 			String dob = rs.getString("dob");
+			int payment = rs.getInt("payment");
 			
-			student = new Student(username, name, dob, gender);
+			student = new Student(username, name, dob, gender, payment);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
