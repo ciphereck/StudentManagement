@@ -18,7 +18,7 @@ public class CredentialService {
 		return typeOfUser;
 	}
 	
-	public String addUser(String username, String password, String role) {
+	public int addUser(String username, String password, String role) {
 		return credentialDAO.addUser(username, password, role);
 	}
 }

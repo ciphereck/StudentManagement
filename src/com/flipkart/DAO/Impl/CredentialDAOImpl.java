@@ -29,7 +29,7 @@ public class CredentialDAOImpl implements CredentialDAO {
 			
 			ResultSet rs = MySQLQuery.executeQuery(statement);
 			while(rs.next()) {
-					typeOfUser = rs.getString("type");
+					typeOfUser = rs.getString("role");
 					count++;
 			}
 		} catch (SQLException e) {
@@ -40,7 +40,7 @@ public class CredentialDAOImpl implements CredentialDAO {
 	}
 
 	@Override
-	public String addUser(String username, String password, String role) {
+	public int addUser(String username, String password, String role) {
 		Connection conn = DBUtil.getConnection();
 		int row = 0;
 		try {
@@ -48,20 +48,13 @@ public class CredentialDAOImpl implements CredentialDAO {
 			statement.setString(1, username);
 			statement.setString(2, password);
 			statement.setString(3, role);
-			row = MySQLQuery.executeUpdate(statement);
-			logger.info("Row affected: " + row);
 			
-			
-			statement = conn
-					.prepareStatement(SqlQueryConstant
-							.ADD_USER.replace("$tableName", role.toLowerCase()));
-			statement.setString(1, username);
 			row = MySQLQuery.executeUpdate(statement);
 			logger.info("Row affected: " + row);
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
-		return (row != 0) ? role : "";
+		return row;
 	}
 
 	@Override

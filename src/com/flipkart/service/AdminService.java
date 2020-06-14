@@ -30,7 +30,7 @@ public class AdminService extends CredentialService implements UserService {
 		} else if(role.equals("ADMIN")) {
 			userDAO = new AdminDAOImpl();
 		}
-		return userDAO.printUserByType(role);
+		return userDAO.printUserByType(role + 's');
 	}
 	
 	public Admin getAdmin() {
