@@ -20,13 +20,13 @@ public class StudentClient implements SubClient {
 		int option = 0;
 		do {
 			logger.info("0. Logout");
-			logger.info("1. View Catalogue");
+			logger.info("1. View Catalogue"); //TODO: view catalogue by id
 			logger.info("2. Add Course");
 			logger.info("3. Drop Course");
 			logger.info("4. View Course");
 			logger.info("5. View Report Card");
 			logger.info("6. Pay Fee and Register");
-			logger.info("7. Edit Details");
+			logger.info("7. Edit Details"); //TODO: roll number, branch, year
 			logger.info("8. View My Details");
 			
 			Scanner sc = new Scanner(System.in);

@@ -27,9 +27,9 @@ public class AdminClient implements SubClient {
 			logger.info("1. Add User");
 			logger.info("2. Remove User");
 			logger.info("3. View Users");
-			logger.info("4. View Catalogue");
-			logger.info("5. View Report Card");
-			logger.info("6. Edit My Details");
+			logger.info("4. View Catalogue"); //TODO: add/update/remove catalogue
+			logger.info("5. View Report Card"); //TODO: view report card
+			logger.info("6. Edit My Details"); //TODO: email, phone number, empId, address 
 			logger.info("7. View My Details");
 			
 			option = sc.nextInt();

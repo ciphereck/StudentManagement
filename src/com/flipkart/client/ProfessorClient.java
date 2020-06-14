@@ -33,6 +33,7 @@ public class ProfessorClient implements SubClient {
 				logger.info("5. View Teaching courses");
 				logger.info("6. View Student's list");
 				logger.info("7. Edit Details");
+				logger.info("8. View My Details");
 				
 				option = sc.nextInt();
 				
