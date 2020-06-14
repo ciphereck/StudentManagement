@@ -4,12 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.flipkart.DAO.StudentDAO;
 import com.flipkart.constant.SqlQueryConstant;
 import com.flipkart.model.Admin;
 import com.flipkart.model.Student;
 import com.flipkart.model.User;
+import com.flipkart.utils.DBUtil;
+import com.flipkart.utils.MySQLQuery;
 
 public class StudentDAOImpl implements StudentDAO {
 
@@ -40,6 +44,27 @@ public class StudentDAOImpl implements StudentDAO {
 		statement.setString(3, "" + student.getGender());
 		statement.setString(4, student.getUsername());
 		return statement;
+	}
+
+	@Override
+	public List<Student> getStudentByProfessor(String username) {
+		Connection conn = DBUtil.getConnection();
+		List<Student> students = new ArrayList<>();
+		
+		try {
+			PreparedStatement statement = conn
+					.prepareStatement(SqlQueryConstant.GET_STUDENT_LIST_FOR_PROFESSOR);
+			statement.setString(1, username);
+
+			ResultSet rs = MySQLQuery.executeQuery(statement);
+			while(rs.next()) {
+				students.add((Student) convertToUser(rs));
+			}
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+		
+		return students;
 	}
 
 }

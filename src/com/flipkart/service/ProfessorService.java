@@ -5,9 +5,11 @@ import java.util.List;
 import com.flipkart.DAO.ProfessorDAO;
 import com.flipkart.DAO.ProfessourCourseDAO;
 import com.flipkart.DAO.StudentCourseDAO;
+import com.flipkart.DAO.StudentDAO;
 import com.flipkart.DAO.Impl.ProfessorCourseDAOImpl;
 import com.flipkart.DAO.Impl.ProfessorDAOImpl;
 import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
+import com.flipkart.DAO.Impl.StudentDAOImpl;
 import com.flipkart.constant.Roles;
 import com.flipkart.model.Catalogue;
 import com.flipkart.model.Professor;
@@ -18,6 +20,7 @@ public class ProfessorService implements UserService {
 	private Professor professor;
 	private ProfessourCourseDAO professorCourseDAO = new ProfessorCourseDAOImpl();
 	private ProfessorDAO professorDAO = new ProfessorDAOImpl();
+	private StudentDAO studentDAO = new StudentDAOImpl();
 	private StudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();
 	
 	public ProfessorService(Professor professor) {
@@ -68,5 +71,9 @@ public class ProfessorService implements UserService {
 	@Override
 	public String getUsername() {
 		return professor.getUsername();
+	}
+	
+	public List<Student> getStudentTaughtByProfessor() {
+		return studentDAO.getStudentByProfessor(professor.getUsername());
 	}
 }

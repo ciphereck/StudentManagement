@@ -26,5 +26,7 @@ public class SqlQueryConstant {
 	public static final String UPDATE_PROFESSOR = "update professors set name=?, dob=?, gender=? where username=?";
 	public static final String UPDATE_ADMIN = "update admins set name=?, dob=?, gender=? where username=?";
 	
+	public static final String GET_STUDENT_LIST_FOR_PROFESSOR = "select * from students where username in (select studentUsername from studentCourses where courseId in (select courseId from professorCourses where professorUsername=?))";
+	
 	public static final String REGISTER_STUDENT = "insert into studentRegistrations (studentUsername, regId, feesPaid, paymentId) values(?, ?, ?, ?);";
 }

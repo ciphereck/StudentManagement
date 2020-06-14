@@ -31,8 +31,8 @@ public class ProfessorClient implements SubClient {
 				logger.info("3. Add Course to Teach");
 				logger.info("4. Delete Course to teach");
 				logger.info("5. View Teaching courses");
-				logger.info("6. View Students Grade");
-				logger.info("7. View Student's list");
+				logger.info("6. View Student's list");
+				logger.info("7. View Students Grade");
 				logger.info("8. Edit Details");
 				logger.info("9. View My Details");
 				
@@ -76,14 +76,18 @@ public class ProfessorClient implements SubClient {
 		} else if(option == 4) {
 			String courseId = sc.next();
 			professorService.deleteCourseToTeach(courseId);
-		} else if(option == 6) {
+		} else if(option == 5) {
+			professorService
+			.viewCoursesToTeach()
+			.forEach(logger::info);
+		} else if(option == 7) {
 			String username = sc.next();
 			professorService
 				.getReportCard(username)
 				.forEach(logger::info);
-		} else if(option == 7) {
+		} else if(option == 6) {
 			professorService
-				.viewCoursesToTeach()
+				.getStudentTaughtByProfessor()
 				.forEach(logger::info);
 		} else if(option == 8) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");

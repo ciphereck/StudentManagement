@@ -1,5 +1,9 @@
 package com.flipkart.DAO;
 
-public interface StudentDAO extends UserDAO {
+import java.util.List;
 
+import com.flipkart.model.Student;
+
+public interface StudentDAO extends UserDAO {
+	public List<Student> getStudentByProfessor(String username);
 }
