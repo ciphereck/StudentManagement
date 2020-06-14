@@ -17,6 +17,27 @@ import com.flipkart.utils.MySQLQuery;
 public interface UserDAO {
 	Logger logger = Logger.getLogger(UserDAO.class);
 	
+	default public User getUserDetail(String role, String username) {
+		Connection conn = DBUtil.getConnection();
+		User user = null;
+		
+		try {
+			PreparedStatement statement = conn
+					.prepareStatement(SqlQueryConstant
+							.GET_USER_BY_ID.replace("$tableName", role.toLowerCase()+'s'));
+			statement.setString(1, username);
+
+			ResultSet rs = MySQLQuery.executeQuery(statement);
+			while(rs.next()) {
+				user = convertToUser(rs);
+			}
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+		
+		return user;
+	}
+	
 	default public List<User> printUserByType(String role) {
 		List<User> users = new ArrayList<>();
 		Connection conn = DBUtil.getConnection();

@@ -48,7 +48,24 @@ public class ProfessorClient implements SubClient {
 
 	private void processOption(int option) {
 		Scanner sc = new Scanner(System.in);
-		if(option == 2) {
+		if(option == 1) {
+			logger.info("Enter courseId, username, grade");
+			String courseId = sc.next();
+			String username = sc.next();
+			String grade = sc.next();
+			int res = professorService.updateGrades(courseId, username, grade);
+			if(res == -1) {
+				logger.info("no such student");
+			} else if(res == -2) {
+				logger.info("student not registered");
+			} else if(res == 0) {
+				logger.info("DB error");
+			} else if(res == -3) {
+				logger.info("You are not teaching this course");
+			} else {
+				logger.info("Student Grades Updated Successfully");
+			}
+		} else if(option == 2) {
 			professorService
 				.printCatalogue()
 				.forEach(logger::info);

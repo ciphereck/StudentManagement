@@ -47,7 +47,7 @@ public class PaymentGateway {
 				return false;
 			}
 		}
-		if(paymentCompletion < 9) {
+		if(paymentCompletion % 4 != 0) {
 			return true;
 		} else {
 			return false;

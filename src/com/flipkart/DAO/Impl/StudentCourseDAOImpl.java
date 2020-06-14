@@ -22,8 +22,6 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_SYUDENT_COURSE);
 			statement.setString(1, courseId);
 			statement.setString(2, username);
-//			statement.setString(3, MySQLQuery.getDateTime());
-			
 			
 			int row = MySQLQuery.executeUpdate(statement);
 			logger.info("Row affected: " + row);
@@ -46,9 +44,24 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
 			logger.error(e.getMessage());
 		}
 	}
-	
-	
-	
-	
 
+	@Override
+	public int updateGrade(String courseId, String grade, String username) {
+		Connection conn = DBUtil.getConnection();
+		int row = 0;
+		try {
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.UPDATE_STUDENT_GRADE);
+			statement.setString(1, grade);
+			statement.setString(2, username);
+			statement.setString(3, courseId);
+			
+			row = MySQLQuery.executeUpdate(statement);
+			logger.info("Row affected: " + row);
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return row;
+	}
+	
+	
 }

@@ -3,9 +3,12 @@ package com.flipkart.service;
 import java.util.List;
 
 import com.flipkart.DAO.StudentCourseDAO;
+import com.flipkart.DAO.StudentDAO;
 import com.flipkart.DAO.StudentRegistrationDAO;
 import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
+import com.flipkart.DAO.Impl.StudentDAOImpl;
 import com.flipkart.DAO.Impl.StudentRegistrationImpl;
+import com.flipkart.constant.Roles;
 import com.flipkart.gateway.PaymentGateway;
 import com.flipkart.gateway.RegistrationGateway;
 import com.flipkart.model.Catalogue;
@@ -14,9 +17,10 @@ import com.flipkart.model.StudentRegistration;
 import com.flipkart.model.User;
 
 public class StudentService implements UserService {
-	private final Student student;
+	private Student student;
 	private final StudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();
 	private final StudentRegistrationDAO studentRegistrationDAO = new StudentRegistrationImpl();
+	private final StudentDAO studentDAO = new StudentDAOImpl();
 	
 	public StudentService(Student student) {
 		this.student = student;
@@ -36,6 +40,10 @@ public class StudentService implements UserService {
 
 	@Override
 	public User getUser() {
+		User user = studentDAO.getUserDetail(Roles.STUDENT.toString(), student.getUsername());
+		if(user != null && user instanceof Student) {
+			student = (Student) user;
+		}
 		return student;
 	}
 	

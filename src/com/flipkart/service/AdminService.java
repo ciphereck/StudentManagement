@@ -2,15 +2,19 @@ package com.flipkart.service;
 
 import java.util.List;
 
+import com.flipkart.DAO.AdminDAO;
 import com.flipkart.DAO.UserDAO;
 import com.flipkart.DAO.Impl.AdminDAOImpl;
 import com.flipkart.DAO.Impl.ProfessorDAOImpl;
 import com.flipkart.DAO.Impl.StudentDAOImpl;
+import com.flipkart.constant.Roles;
 import com.flipkart.model.Admin;
+import com.flipkart.model.Student;
 import com.flipkart.model.User;
 
 public class AdminService extends CredentialService implements UserService {	
 	private Admin admin;
+	private AdminDAO adminDAO = new AdminDAOImpl();
 	
 	public AdminService(Admin admin) {
 		super();
@@ -35,6 +39,10 @@ public class AdminService extends CredentialService implements UserService {
 
 	@Override
 	public User getUser() {
+		User user = adminDAO.getUserDetail(Roles.ADMIN.toString(), admin.getUsername());
+		if(user != null && user instanceof Admin) {
+			admin = (Admin) user;
+		}
 		return admin;
 	}
 	

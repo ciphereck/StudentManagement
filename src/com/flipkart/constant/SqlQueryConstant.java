@@ -12,11 +12,13 @@ public class SqlQueryConstant {
 	
 	public static final String ADD_SYUDENT_COURSE = "insert into studentCourses (courseId, studentUsername) values(?, ?)";
 	public static final String DELETE_STUDENT_COURSE = "delete from studentCourses where courseId=? and studentUsername=?";
+	public static final String UPDATE_STUDENT_GRADE = "update studentCourses set grades = ? where studentUsername=? and courseId=?";
 	
 	public static final String ADD_PROFESSOR_COURSE = "insert into professorCourses (courseId, professorusername) values(?, ?)";
 	public static final String DELETE_PROFESSOR_COURSE = "delete from professorCourses where courseId=? and professorUsername=?";
 	
 	public static final String GET_USER = "select * from $tableName";
+	public static final String GET_USER_BY_ID = "select * from $tableName where username=?";
 	public static final String ADD_USER = "insert into $tableName (username) values(?)";
 	
 	public static final String UPDATE_STUDENT = "update students set name=?, dob=?, gender=? where username=?";
