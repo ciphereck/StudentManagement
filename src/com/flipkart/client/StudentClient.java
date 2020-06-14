@@ -67,6 +67,10 @@ public class StudentClient implements SubClient {
 			} else {
 				logger.info("Congrats! You have registered for Courses successfully");
 			}
+		} else if(option == 6) {
+			studentService
+				.getReportCard(studentService.getUsername())
+				.forEach(logger::info);
 		} else if(option == 7) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			

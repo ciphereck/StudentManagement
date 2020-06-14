@@ -45,5 +45,10 @@ public class AdminService extends CredentialService implements UserService {
 		}
 		return admin;
 	}
+
+	@Override
+	public String getUsername() {
+		return admin.getUsername();
+	}
 	
 }

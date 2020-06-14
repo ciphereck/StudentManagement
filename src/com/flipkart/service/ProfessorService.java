@@ -64,4 +64,9 @@ public class ProfessorService implements UserService {
 			return studentCourseDAO.updateGrade(courseId, grade, student.getUsername());
 		else return -2;
 	}
+	
+	@Override
+	public String getUsername() {
+		return professor.getUsername();
+	}
 }

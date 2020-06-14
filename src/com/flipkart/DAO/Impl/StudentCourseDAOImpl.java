@@ -2,13 +2,18 @@ package com.flipkart.DAO.Impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.flipkart.DAO.CatalogueDAO;
 import com.flipkart.DAO.StudentCourseDAO;
 import com.flipkart.constant.SqlQueryConstant;
+import com.flipkart.model.Catalogue;
+import com.flipkart.model.StudentCourse;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
@@ -61,6 +66,29 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
 			logger.error(e.getMessage());
 		}
 		return row;
+	}
+
+	@Override
+	public List<StudentCourse> getReportCard(String username) {
+		List<StudentCourse> course = new ArrayList<>();
+		Connection conn = DBUtil.getConnection();
+		
+		try {
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_GRADES_BY_STUDENT);
+			statement.setString(1, username);
+			
+			ResultSet rs = MySQLQuery.executeQuery(statement);
+			while(rs.next()) {
+					String courseId = rs.getString("courseId");
+					String grades = rs.getString("grades");
+
+					course.add(new StudentCourse(courseId, grades, username));
+			}
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+		
+		return course;
 	}
 	
 	

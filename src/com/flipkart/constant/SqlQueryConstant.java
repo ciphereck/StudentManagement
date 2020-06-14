@@ -13,6 +13,7 @@ public class SqlQueryConstant {
 	public static final String ADD_SYUDENT_COURSE = "insert into studentCourses (courseId, studentUsername) values(?, ?)";
 	public static final String DELETE_STUDENT_COURSE = "delete from studentCourses where courseId=? and studentUsername=?";
 	public static final String UPDATE_STUDENT_GRADE = "update studentCourses set grades = ? where studentUsername=? and courseId=?";
+	public static final String GET_GRADES_BY_STUDENT = "select * from studentCourses where studentUsername=?";
 	
 	public static final String ADD_PROFESSOR_COURSE = "insert into professorCourses (courseId, professorusername) values(?, ?)";
 	public static final String DELETE_PROFESSOR_COURSE = "delete from professorCourses where courseId=? and professorUsername=?";

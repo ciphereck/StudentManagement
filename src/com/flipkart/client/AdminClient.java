@@ -28,7 +28,7 @@ public class AdminClient implements SubClient {
 			logger.info("2. Remove User");
 			logger.info("3. View Users");
 			logger.info("4. View Catalogue"); //TODO: add/update/remove catalogue
-			logger.info("5. View Report Card"); //TODO: view report card
+			logger.info("5. View Student's Report Card");
 			logger.info("6. Edit My Details"); //TODO: email, phone number, empId, address 
 			logger.info("7. View My Details");
 			
@@ -93,6 +93,11 @@ public class AdminClient implements SubClient {
 		} else if(option == 4) {
 			adminService
 				.printCatalogue()
+				.forEach(logger::info);
+		} else if(option == 5) {
+			String username = sc.next();
+			adminService
+				.getReportCard(username)
 				.forEach(logger::info);
 		} else if(option == 6) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");

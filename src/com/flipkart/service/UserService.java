@@ -6,12 +6,14 @@ import com.flipkart.DAO.UserDAO;
 import com.flipkart.DAO.Impl.AdminDAOImpl;
 import com.flipkart.DAO.Impl.CatalogueDAOImpl;
 import com.flipkart.DAO.Impl.ProfessorDAOImpl;
+import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
 import com.flipkart.DAO.Impl.StudentDAOImpl;
 import com.flipkart.constant.Roles;
 import com.flipkart.model.Admin;
 import com.flipkart.model.Catalogue;
 import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
+import com.flipkart.model.StudentCourse;
 import com.flipkart.model.User;
 
 public interface UserService {
@@ -52,4 +54,9 @@ public interface UserService {
 	}
 	
 	public User getUser();
+	public String getUsername();
+	
+	default public List<StudentCourse> getReportCard(String username) {
+		return (new StudentCourseDAOImpl()).getReportCard(username);
+	}
 }

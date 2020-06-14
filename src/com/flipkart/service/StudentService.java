@@ -75,4 +75,9 @@ public class StudentService implements UserService {
 				new StudentRegistration(student.getUsername(), 
 						regId, totalFees, paymentId));
 	}
+	
+	@Override
+	public String getUsername() {
+		return student.getUsername();
+	}
 }
