@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.flipkart.model.Admin;
+import com.flipkart.model.Catalogue;
 import com.flipkart.model.Student;
 import com.flipkart.service.AdminService;
 
@@ -27,10 +28,13 @@ public class AdminClient implements SubClient {
 			logger.info("1. Add User");
 			logger.info("2. Remove User");
 			logger.info("3. View Users");
-			logger.info("4. View Catalogue"); //TODO: add/update/remove catalogue
+			logger.info("4. View Catalogue");
 			logger.info("5. View Student's Report Card");
-			logger.info("6. Edit My Details"); //TODO: email, phone number, empId, address 
-			logger.info("7. View My Details");
+			logger.info("6. Add Catalogue");
+			logger.info("7. Delete Catalogue");
+			logger.info("8. Update Catalogue");
+			logger.info("9. Edit My Details");
+			logger.info("10. View My Details");
 			
 			option = sc.nextInt();
 			
@@ -100,6 +104,25 @@ public class AdminClient implements SubClient {
 				.getReportCard(username)
 				.forEach(logger::info);
 		} else if(option == 6) {
+			String courseId = sc.next();
+			String courseName = sc.next();
+			int fees = sc.nextInt();
+			double credit = sc.nextDouble();
+			
+			Catalogue catalogue = new Catalogue(courseId, courseName, fees, credit);
+			adminService.addCatalogue(catalogue);
+		} else if(option == 7) {
+			String courseId = sc.next();
+			String courseName = sc.next();
+			int fees = sc.nextInt();
+			double credit = sc.nextDouble();
+			
+			Catalogue catalogue = new Catalogue(courseId, courseName, fees, credit);
+			adminService.addCatalogue(catalogue);
+		} else if(option == 8) {
+			String courseId = sc.next();
+			adminService.removeCatalogue(courseId);
+		} else if(option == 9) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			
 			Admin admin = (Admin)adminService.getUser();
@@ -108,7 +131,7 @@ public class AdminClient implements SubClient {
 			admin.setGender("" + sc.next().charAt(0));
 			int row = adminService.editUser(admin);
 			logger.info("Row affected: " + row);
-		} else if(option == 7) {
+		} else if(option == 10) {
 			Admin admin = (Admin) adminService.getUser();
 			logger.info(admin);
 		}

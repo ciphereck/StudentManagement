@@ -89,4 +89,20 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 		return catalogue;
 	}
 
+	@Override
+	public int addCatalogue(Catalogue catalogue) {
+		return 0;
+	}
+
+	@Override
+	public int editCatalogue(Catalogue catalogue) {
+		return 0;
+	}
+
+	@Override
+	public int deleteCatalogue(String courseId) {
+		return 0;
+	}
+	
+	
 }
