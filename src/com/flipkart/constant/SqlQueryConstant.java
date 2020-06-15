@@ -9,6 +9,8 @@ public class SqlQueryConstant {
 	public static final String GET_CATALOGUE = "select * from catalogues";
 	public static final String GET_COURSE_BY_STUDENT = "select catalogues.*, studentCourses.timeofLastUpdate from catalogues, studentCourses where catalogues.courseId IN (select courseId from studentCourses where studentUsername=?) and studentUsername=? and studentCourses.courseId = catalogues.courseId;";
 	public static final String GET_COURSE_BY_PROFESSOR = "select * from catalogues where courseId IN (select courseId from professorCourses where professorUsername=?)";
+	public static final String DELETE_CATALOGUE = "delete from catalogues where courseId=? and (? not in (select courseId from studentCourses))";
+	public static final String ADD_CATALOGUE = "insert into catalogues values(?, ?, ?, ?)";
 	
 	public static final String ADD_SYUDENT_COURSE = "insert into studentCourses (courseId, studentUsername) values(?, ?)";
 	public static final String DELETE_STUDENT_COURSE = "delete from studentCourses where courseId=? and studentUsername=?";

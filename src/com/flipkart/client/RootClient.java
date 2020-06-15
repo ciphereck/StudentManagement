@@ -1,12 +1,10 @@
 package com.flipkart.client;
 
 import java.util.Scanner;
-
 import org.apache.log4j.Logger;
 
 import com.flipkart.constant.Roles;
 import com.flipkart.service.CredentialService;
-import com.flipkart.service.UserService;
 
 public class RootClient {
 	private static final Logger logger = Logger.getLogger(RootClient.class);

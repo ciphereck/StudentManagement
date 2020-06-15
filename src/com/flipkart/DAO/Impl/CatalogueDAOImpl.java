@@ -91,7 +91,21 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 
 	@Override
 	public int addCatalogue(Catalogue catalogue) {
-		return 0;
+		Connection conn = DBUtil.getConnection();
+		int row = 0;
+		try {
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_CATALOGUE);
+			statement.setString(1, catalogue.getCourseId());
+			statement.setString(2, catalogue.getCourseName());
+			statement.setInt(3, catalogue.getFees());
+			statement.setDouble(4, catalogue.getCredit());
+			
+			row = MySQLQuery.executeUpdate(statement);
+			logger.info("Row affected: " + row);
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return row;
 	}
 
 	@Override
@@ -101,7 +115,19 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 
 	@Override
 	public int deleteCatalogue(String courseId) {
-		return 0;
+		Connection conn = DBUtil.getConnection();
+		int row = 0;
+		try {
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.DELETE_CATALOGUE);
+			statement.setString(1, courseId);
+			statement.setString(2, courseId);
+			
+			row = MySQLQuery.executeUpdate(statement);
+			logger.info("Row affected: " + row);
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return row;
 	}
 	
 	

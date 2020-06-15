@@ -113,16 +113,16 @@ public class AdminClient implements SubClient {
 			adminService.addCatalogue(catalogue);
 		} else if(option == 7) {
 			String courseId = sc.next();
+			adminService.removeCatalogue(courseId);
+		} else if(option == 8) {
+			String courseId = sc.next();
 			String courseName = sc.next();
 			int fees = sc.nextInt();
 			double credit = sc.nextDouble();
 			
 			Catalogue catalogue = new Catalogue(courseId, courseName, fees, credit);
 			adminService.addCatalogue(catalogue);
-		} else if(option == 8) {
-			String courseId = sc.next();
-			adminService.removeCatalogue(courseId);
-		} else if(option == 9) {
+		}  else if(option == 9) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			
 			Admin admin = (Admin)adminService.getUser();
