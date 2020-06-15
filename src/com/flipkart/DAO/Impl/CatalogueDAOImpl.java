@@ -110,7 +110,22 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 
 	@Override
 	public int editCatalogue(Catalogue catalogue) {
-		return 0;
+		Connection conn = DBUtil.getConnection();
+		int row = 0;
+		try {
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.UPDATE_CATALOGUE);
+			statement.setString(4, catalogue.getCourseId());
+			statement.setString(1, catalogue.getCourseName());
+			statement.setInt(2, catalogue.getFees());
+			statement.setDouble(3, catalogue.getCredit());
+			statement.setString(5, catalogue.getCourseId());
+			
+			row = MySQLQuery.executeUpdate(statement);
+			logger.info("Row affected: " + row);
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return row;
 	}
 
 	@Override

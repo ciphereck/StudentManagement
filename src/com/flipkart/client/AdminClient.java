@@ -121,7 +121,7 @@ public class AdminClient implements SubClient {
 			double credit = sc.nextDouble();
 			
 			Catalogue catalogue = new Catalogue(courseId, courseName, fees, credit);
-			adminService.addCatalogue(catalogue);
+			adminService.editCatalogue(catalogue);
 		}  else if(option == 9) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			
