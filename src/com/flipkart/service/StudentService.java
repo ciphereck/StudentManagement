@@ -8,6 +8,7 @@ import com.flipkart.DAO.StudentRegistrationDAO;
 import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
 import com.flipkart.DAO.Impl.StudentDAOImpl;
 import com.flipkart.DAO.Impl.StudentRegistrationImpl;
+import com.flipkart.constant.PaymentMode;
 import com.flipkart.constant.Roles;
 import com.flipkart.gateway.PaymentGateway;
 import com.flipkart.gateway.RegistrationGateway;
@@ -73,7 +74,7 @@ public class StudentService implements UserService {
 				.register(student.getUsername(), totalFees);
 		return studentRegistrationDAO.addRegistrationDetails(
 				new StudentRegistration(student.getUsername(), 
-						regId, totalFees, paymentId));
+						regId, totalFees, paymentId, PaymentMode.CREDIT_CARD.toString()));
 	}
 	
 	@Override
