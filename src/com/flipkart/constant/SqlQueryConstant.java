@@ -1,10 +1,9 @@
 package com.flipkart.constant;
 
 public class SqlQueryConstant {
-	public static final String AUTH_CRED_CHECK = "select role from credentials where username=? and password=?";
-	public static final String ADD_USER_CREDENTIAL = "insert into credentials values(?, ?, ?)";
-	public static final String DELETE_USER_CREDENTIAL = "delete from credentials where username=?";
-	public static final String GET_USER_CREDENTIAL = "select username, type from credentials order by role";
+	public static final String AUTH_CHECK_USERS = "select role from users where username=? and password=?";
+	public static final String ADD_USER = "insert into users values(?, ?, ?)";
+	public static final String DELETE_USER = "delete from users where username=?";
 	
 	public static final String GET_CATALOGUE = "select * from catalogues";
 	public static final String GET_COURSE_BY_STUDENT = "select catalogues.*, studentCourses.timeofLastUpdate from catalogues, studentCourses where catalogues.courseId IN (select courseId from studentCourses where studentUsername=?) and studentUsername=? and studentCourses.courseId = catalogues.courseId;";
@@ -23,7 +22,6 @@ public class SqlQueryConstant {
 	
 	public static final String GET_USER = "select * from $tableName";
 	public static final String GET_USER_BY_ID = "select * from $tableName where username=?";
-	public static final String ADD_USER = "insert into $tableName (username) values(?)";
 	
 	public static final String UPDATE_STUDENT = "update students set name=?, dob=?, gender=? where username=?";
 	public static final String UPDATE_PROFESSOR = "update professors set name=?, dob=?, gender=? where username=?";
@@ -31,5 +29,5 @@ public class SqlQueryConstant {
 	
 	public static final String GET_STUDENT_LIST_FOR_PROFESSOR = "select * from students where username in (select studentUsername from studentCourses where courseId in (select courseId from professorCourses where professorUsername=?))";
 	
-	public static final String REGISTER_STUDENT = "insert into studentRegistrations (studentUsername, regId, feesPaid, paymentId) values(?, ?, ?, ?);";
+	public static final String REGISTER_STUDENT = "insert into registrations (studentUsername, regId, feesPaid, paymentId, paymentModeId) values(?, ?, ?, ?, ?);";
 }

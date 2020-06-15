@@ -23,7 +23,7 @@ public class CredentialDAOImpl implements CredentialDAO {
 		String typeOfUser = "";
 		
 		try {
-			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.AUTH_CRED_CHECK);
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.AUTH_CHECK_USERS);
 			statement.setString(1, username);
 			statement.setString(2, password);
 			
@@ -44,7 +44,7 @@ public class CredentialDAOImpl implements CredentialDAO {
 		Connection conn = DBUtil.getConnection();
 		int row = 0;
 		try {
-			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_USER_CREDENTIAL);
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_USER);
 			statement.setString(1, username);
 			statement.setString(2, password);
 			statement.setString(3, role);
@@ -61,7 +61,7 @@ public class CredentialDAOImpl implements CredentialDAO {
 	public void deleteUser(String username) {
 		Connection conn = DBUtil.getConnection();
 		try {
-			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.DELETE_USER_CREDENTIAL);
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.DELETE_USER);
 			statement.setString(1, username);
 			
 			int row = MySQLQuery.executeUpdate(statement);

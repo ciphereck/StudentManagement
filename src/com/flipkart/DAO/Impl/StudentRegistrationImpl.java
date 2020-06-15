@@ -25,6 +25,7 @@ public class StudentRegistrationImpl implements StudentRegistrationDAO {
 			statement.setString(2, regData.getRegId());
 			statement.setInt(3, regData.getFees());
 			statement.setString(4, regData.getPaymentId());
+			statement.setString(5, regData.getPaymentModeId());
 			
 			row = MySQLQuery.executeUpdate(statement);
 			logger.info("Row affected: " + row);
