@@ -5,17 +5,18 @@ public class SqlQueryConstant {
 	public static final String ADD_USER = "insert into users values(?, ?, ?)";
 	public static final String DELETE_USER = "delete from users where username=?";
 	
-	public static final String GET_CATALOGUE = "select * from catalogues";
-	public static final String GET_COURSE_BY_STUDENT = "select catalogues.*, studentCourses.timeofLastUpdate from catalogues, studentCourses where catalogues.courseId IN (select courseId from studentCourses where studentUsername=?) and studentUsername=? and studentCourses.courseId = catalogues.courseId;";
-	public static final String GET_COURSE_BY_PROFESSOR = "select * from catalogues where courseId IN (select courseId from professorCourses where professorUsername=?)";
-	public static final String DELETE_CATALOGUE = "delete from catalogues where courseId=? and (? not in (select courseId from studentCourses))";
-	public static final String ADD_CATALOGUE = "insert into catalogues values(?, ?, ?, ?)";
-	public static final String UPDATE_CATALOGUE = "update catalogues set courseName=?, fees=?, credit=? where courseId=? and (? not in (select courseId from studentCourses))";
+	public static final String GET_COURSE = "select * from courses";
+	public static final String GET_COURSE_BY_STUDENT = "select courses.*, studentCourses.timeofLastUpdate from courses, studentCourses where courses.courseId IN (select courseId from studentCourses where studentUsername=?) and studentUsername=? and studentCourses.courseId = courses.courseId;";
+	public static final String GET_COURSE_BY_PROFESSOR = "select * from courses where courseId IN (select courseId from professorCourses where professorUsername=?)";
+	public static final String DELETE_COURSE = "delete from courses where courseId=? and (? not in (select courseId from studentCourses))";
+	public static final String ADD_COURSE = "insert into courses values(?, ?, ?, ?)";
+	public static final String UPDATE_COURSE = "update courses set courseName=?, fees=?, credit=? where courseId=? and (? not in (select courseId from studentCourses))";
 	
 	public static final String ADD_SYUDENT_COURSE = "insert into studentCourses (courseId, studentUsername) values(?, ?)";
 	public static final String DELETE_STUDENT_COURSE = "delete from studentCourses where courseId=? and studentUsername=?";
 	public static final String UPDATE_STUDENT_GRADE = "update studentCourses set grades = ? where studentUsername=? and courseId=?";
 	public static final String GET_GRADES_BY_STUDENT = "select * from studentCourses where studentUsername=?";
+	
 	
 	public static final String ADD_PROFESSOR_COURSE = "insert into professorCourses (courseId, professorusername) values(?, ?)";
 	public static final String DELETE_PROFESSOR_COURSE = "delete from professorCourses where courseId=? and professorUsername=?";
