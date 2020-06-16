@@ -23,7 +23,7 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 		List<Catalogue> catalogue = new ArrayList<>();
 		Connection conn = DBUtil.getConnection();
 		try {
-			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_CATALOGUE);
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE);
 			
 			ResultSet rs = MySQLQuery.executeQuery(statement);
 			while(rs.next()) {
@@ -94,7 +94,7 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 		Connection conn = DBUtil.getConnection();
 		int row = 0;
 		try {
-			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_CATALOGUE);
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_COURSE);
 			statement.setString(1, catalogue.getCourseId());
 			statement.setString(2, catalogue.getCourseName());
 			statement.setInt(3, catalogue.getFees());
@@ -113,7 +113,7 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 		Connection conn = DBUtil.getConnection();
 		int row = 0;
 		try {
-			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.UPDATE_CATALOGUE);
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.UPDATE_COURSE);
 			statement.setString(4, catalogue.getCourseId());
 			statement.setString(1, catalogue.getCourseName());
 			statement.setInt(2, catalogue.getFees());
@@ -133,7 +133,7 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 		Connection conn = DBUtil.getConnection();
 		int row = 0;
 		try {
-			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.DELETE_CATALOGUE);
+			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.DELETE_COURSE);
 			statement.setString(1, courseId);
 			statement.setString(2, courseId);
 			
