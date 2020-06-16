@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 
 import com.flipkart.DAO.CredentialDAO;
 import com.flipkart.constant.SqlQueryConstant;
-import com.flipkart.model.Catalogue;
+import com.flipkart.model.Course;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
