@@ -10,7 +10,7 @@ import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
 import com.flipkart.DAO.Impl.StudentDAOImpl;
 import com.flipkart.constant.Roles;
 import com.flipkart.model.Admin;
-import com.flipkart.model.Catalogue;
+import com.flipkart.model.Course;
 import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
 import com.flipkart.model.StudentCourse;
@@ -19,7 +19,7 @@ import com.flipkart.model.User;
 public interface UserService {
 	CatalogueDAOImpl catalogueDAO = new CatalogueDAOImpl();
 	
-	public default List<Catalogue> printCatalogue() {
+	public default List<Course> printAllCourses() {
 		return catalogueDAO.printCatalogue();
 	}
 	

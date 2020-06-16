@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 
 import com.flipkart.DAO.CatalogueDAO;
 import com.flipkart.constant.SqlQueryConstant;
-import com.flipkart.model.Catalogue;
+import com.flipkart.model.Course;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
@@ -19,8 +19,8 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 	private final Logger logger = Logger.getLogger(CatalogueDAO.class);
 	
 	@Override
-	public List<Catalogue> printCatalogue() {
-		List<Catalogue> catalogue = new ArrayList<>();
+	public List<Course> printCatalogue() {
+		List<Course> course = new ArrayList<>();
 		Connection conn = DBUtil.getConnection();
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE);
@@ -31,19 +31,20 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 					String courseName = rs.getString("courseName");
 					int fees = rs.getInt("fees");
 					double credit = rs.getDouble("credit");
+					String catalogueId = rs.getString("catalogueId");
 
-					catalogue.add(new Catalogue(courseId, courseName, fees, credit));
+					course.add(new Course(courseId, courseName, fees, credit, catalogueId));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		
-		return catalogue;
+		return course;
 	}
 	
 	@Override
-	public List<Catalogue> printCatalogueByStudentUsername(String username) {
-		List<Catalogue> catalogue = new ArrayList<>();
+	public List<Course> printCatalogueByStudentUsername(String username) {
+		List<Course> course = new ArrayList<>();
 		Connection conn = DBUtil.getConnection();
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE_BY_STUDENT);
@@ -57,18 +58,19 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 				int fees = rs.getInt("fees");
 				double credit = rs.getDouble("credit");
 				String timestamp = rs.getString("timeOfLastUpdate");
+				String catalogueId = rs.getString("catalogueId");
 
-				catalogue.add(new Catalogue(courseId, courseName, fees, credit, timestamp));
+				course.add(new Course(courseId, courseName, fees, credit, timestamp, catalogueId));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
-		return catalogue;
+		return course;
 	}
 
 	@Override
-	public List<Catalogue> printCatalogueByProfessorUsername(String username) {
-		List<Catalogue> catalogue = new ArrayList<>();
+	public List<Course> printCatalogueByProfessorUsername(String username) {
+		List<Course> course = new ArrayList<>();
 		Connection conn = DBUtil.getConnection();
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE_BY_PROFESSOR);
@@ -80,25 +82,27 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 				String courseName = rs.getString("courseName");
 				int fees = rs.getInt("fees");
 				double credit = rs.getDouble("credit");
+				String catalogueId = rs.getString("catalogueId");
 
-				catalogue.add(new Catalogue(courseId, courseName, fees, credit));
+				course.add(new Course(courseId, courseName, fees, credit, catalogueId));
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
-		return catalogue;
+		return course;
 	}
 
 	@Override
-	public int addCatalogue(Catalogue catalogue) {
+	public int addCatalogue(Course course) {
 		Connection conn = DBUtil.getConnection();
 		int row = 0;
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.ADD_COURSE);
-			statement.setString(1, catalogue.getCourseId());
-			statement.setString(2, catalogue.getCourseName());
-			statement.setInt(3, catalogue.getFees());
-			statement.setDouble(4, catalogue.getCredit());
+			statement.setString(1, course.getCourseId());
+			statement.setString(2, course.getCourseName());
+			statement.setInt(3, course.getFees());
+			statement.setDouble(4, course.getCredit());
+			statement.setString(5, course.getCatalogueId());
 			
 			row = MySQLQuery.executeUpdate(statement);
 			logger.info("Row affected: " + row);
@@ -109,16 +113,17 @@ public class CatalogueDAOImpl implements CatalogueDAO {
 	}
 
 	@Override
-	public int editCatalogue(Catalogue catalogue) {
+	public int editCatalogue(Course course) {
 		Connection conn = DBUtil.getConnection();
 		int row = 0;
 		try {
 			PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.UPDATE_COURSE);
-			statement.setString(4, catalogue.getCourseId());
-			statement.setString(1, catalogue.getCourseName());
-			statement.setInt(2, catalogue.getFees());
-			statement.setDouble(3, catalogue.getCredit());
-			statement.setString(5, catalogue.getCourseId());
+			statement.setString(6, course.getCourseId());
+			statement.setString(1, course.getCourseName());
+			statement.setInt(2, course.getFees());
+			statement.setDouble(3, course.getCredit());
+			statement.setString(5, course.getCourseId());
+			statement.setString(4, course.getCatalogueId());
 			
 			row = MySQLQuery.executeUpdate(statement);
 			logger.info("Row affected: " + row);

@@ -1,33 +1,44 @@
 package com.flipkart.model;
 
-public class Catalogue {
+public class Course {
 	String courseId;
 	String courseName;
 	int fees;
 	double credit;
 	String timestamp = null;
+	String catalogueId;
 	
-	public Catalogue(String courseId, String courseName, int fees, double credit, String timestamp) {
+	public Course(String courseId, String courseName, int fees, double credit, String timestamp, String catalogueId) {
 		super();
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.fees = fees;
 		this.credit = credit;
 		this.timestamp = timestamp;
+		this.catalogueId = catalogueId;
 	}
 
-	public Catalogue(String courseId, String courseName, int fees, double credit) {
+	public Course(String courseId, String courseName, int fees, double credit, String catalogueId) {
 		super();
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.fees = fees;
 		this.credit = credit;
+		this.catalogueId = catalogueId;
 	}
 
 	@Override
 	public String toString() {
-		return "Catalogue [courseId=" + courseId + ", courseName=" + courseName + ", fees=" + fees + ", credit="
+		return "Course [courseId=" + courseId + ", courseName=" + courseName + ", fees=" + fees + ", credit="
 				+ credit + ", lastUpdate=" + timestamp + "]";
+	}
+
+	public String getCatalogueId() {
+		return catalogueId;
+	}
+
+	public void setCatalogueId(String catalogueId) {
+		this.catalogueId = catalogueId;
 	}
 
 	/**
