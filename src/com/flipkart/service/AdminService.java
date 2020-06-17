@@ -15,11 +15,11 @@ import com.flipkart.exception.IllegalRoleException;
 import com.flipkart.model.Course;
 import com.flipkart.model.User;
 
-public class AdminService extends CredentialService {	
+public class AdminService extends CredentialService implements UserService {	
 	private CourseDAO courseDAO = new CourseDAOImpl();
 
-	public void deleteUser(String username) throws SQLException {
-		credentialDAO.deleteUser(username);
+	public int deleteUser(String username) throws SQLException {
+		return credentialDAO.deleteUser(username);
 	}
 	
 	public List<User> getUserByRole(String role) throws IllegalRoleException, SQLException {
