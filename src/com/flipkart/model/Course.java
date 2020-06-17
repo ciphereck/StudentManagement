@@ -5,19 +5,15 @@ public class Course {
 	String courseName;
 	int fees;
 	double credit;
-	String timestamp = null;
 	String catalogueId;
 	
-	public Course(String courseId, String courseName, int fees, double credit, String timestamp, String catalogueId) {
-		super();
-		this.courseId = courseId;
-		this.courseName = courseName;
-		this.fees = fees;
-		this.credit = credit;
-		this.timestamp = timestamp;
-		this.catalogueId = catalogueId;
-	}
-
+	/**
+	 * @param courseId
+	 * @param courseName
+	 * @param fees
+	 * @param credit
+	 * @param catalogueId
+	 */
 	public Course(String courseId, String courseName, int fees, double credit, String catalogueId) {
 		super();
 		this.courseId = courseId;
@@ -26,19 +22,12 @@ public class Course {
 		this.credit = credit;
 		this.catalogueId = catalogueId;
 	}
-
-	@Override
-	public String toString() {
-		return "Course [courseId=" + courseId + ", courseName=" + courseName + ", fees=" + fees + ", credit="
-				+ credit + ", lastUpdate=" + timestamp + "]";
-	}
-
-	public String getCatalogueId() {
-		return catalogueId;
-	}
-
-	public void setCatalogueId(String catalogueId) {
-		this.catalogueId = catalogueId;
+	
+	/**
+	 * 
+	 */
+	public Course() {
+		super();
 	}
 
 	/**
@@ -98,18 +87,23 @@ public class Course {
 	}
 
 	/**
-	 * @return the timestamp
+	 * @return the catalogueId
 	 */
-	public String getTimestamp() {
-		return timestamp;
+	public String getCatalogueId() {
+		return catalogueId;
 	}
 
 	/**
-	 * @param timestamp the timestamp to set
+	 * @param catalogueId the catalogueId to set
 	 */
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
+	public void setCatalogueId(String catalogueId) {
+		this.catalogueId = catalogueId;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Course [" + (courseId != null ? "courseId=" + courseId + ", " : "")
+				+ (courseName != null ? "courseName=" + courseName + ", " : "") + "fees=" + fees + ", credit=" + credit
+				+ ", " + (catalogueId != null ? "catalogueId=" + catalogueId : "") + "]";
+	}
 }
