@@ -36,7 +36,7 @@ public class ProfessorService implements UserService {
 	}
 	
 	public List<Course> viewCoursesToTeach() {
-		return catalogueDAO.printCatalogueByProfessorUsername(professor.getUsername());
+		return catalogueDAO.getCourseByProfessor(professor.getUsername());
 	}
 
 	@Override

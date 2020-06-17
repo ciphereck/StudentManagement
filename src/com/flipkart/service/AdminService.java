@@ -35,7 +35,7 @@ public class AdminService extends CredentialService implements UserService {
 		} else if(role.equals("ADMIN")) {
 			userDAO = new AdminDAOImpl();
 		}
-		return userDAO.printUserByType(role + 's');
+		return userDAO.getUserByRole(role + 's');
 	}
 
 	@Override
@@ -53,14 +53,14 @@ public class AdminService extends CredentialService implements UserService {
 	}
 	
 	public void addCatalogue(Course course) {
-		catalogueDAO.addCatalogue(course);
+		catalogueDAO.addCourse(course);
 	}
 	
 	public void editCatalogue(Course course) {
-		catalogueDAO.editCatalogue(course);
+		catalogueDAO.editCourse(course);
 	}
 	
 	public void removeCatalogue(String courseId) {
-		catalogueDAO.deleteCatalogue(courseId);
+		catalogueDAO.deleteCourse(courseId);
 	}
 }

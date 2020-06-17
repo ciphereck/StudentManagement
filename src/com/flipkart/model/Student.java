@@ -69,6 +69,13 @@ public class Student extends User {
 	public void setRegistrationCompledted(boolean registrationCompledted) {
 		this.registrationCompledted = registrationCompledted;
 	}
+	
+	/**
+	 * @param registrationCompledted the registrationCompledted to set
+	 */
+	public void setRegistrationCompledted(int registrationCompledted) {
+		this.registrationCompledted = !(registrationCompledted == 0);
+	}
 
 	@Override
 	public String toString() {
