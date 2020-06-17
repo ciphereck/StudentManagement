@@ -10,7 +10,7 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-import com.flipkart.DAO.Impl.UserDAOImpl;
+import com.flipkart.DAO.Impl.CredentialDAOImpl;
 
 public class DBUtil {
 	private static final Logger logger = Logger.getLogger(DBUtil.class);

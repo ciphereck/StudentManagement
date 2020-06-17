@@ -68,7 +68,7 @@ public class ProfessorClient implements SubClient {
 			}
 		} else if(option == 2) {
 			professorService
-				.printAllCourses()
+				.getAllCourses()
 				.forEach(logger::info);
 		} else if(option == 3) {
 			String courseId = sc.next();
@@ -78,7 +78,7 @@ public class ProfessorClient implements SubClient {
 			professorService.deleteCourseToTeach(courseId);
 		} else if(option == 5) {
 			professorService
-			.viewCoursesToTeach()
+			.getTeachingCourses()
 			.forEach(logger::info);
 		} else if(option == 7) {
 			String username = sc.next();
