@@ -1,107 +1,79 @@
 package com.flipkart.model;
 
-import org.apache.log4j.Logger;
+public class Student extends User {
+	boolean registrationCompledted;
 
-public class Student implements User {
-	String username;
-	String name;
-	String dob;
-	String gender;
-	int payment;
-	private Logger logger = Logger.getLogger(Student.class);
-	
-	public Student(String username, String name, String dob, String gender, int payment) {
-		super();
-		this.username = username;
-		this.name = name;
-		this.dob = dob;
-		this.gender = gender;
-		this.payment = payment;
+	/**
+	 * @param username
+	 * @param name
+	 * @param dob
+	 * @param gender
+	 * @param registrationCompledted
+	 */
+	public Student(String username, String name, String dob, String gender, boolean registrationCompledted) {
+		super(username, name, dob, gender);
+		this.registrationCompledted = registrationCompledted;
 	}
 
+	/**
+	 * @param username
+	 * @param registrationCompledted
+	 */
+	public Student(String username, boolean registrationCompledted) {
+		super(username);
+		this.registrationCompledted = registrationCompledted;
+	}
+
+	/**
+	 * @param registrationCompledted
+	 */
+	public Student(boolean registrationCompledted) {
+		super();
+		this.registrationCompledted = registrationCompledted;
+	}
+
+	/**
+	 * @param username
+	 * @param name
+	 * @param dob
+	 * @param gender
+	 */
+	public Student(String username, String name, String dob, String gender) {
+		super(username, name, dob, gender);
+	}
+
+	/**
+	 * @param username
+	 */
 	public Student(String username) {
-		super();
-		this.username = username;
+		super(username);
 	}
 
-	@Override
-	public void printUser() {
-		logger.info(this);
+	/**
+	 * 
+	 */
+	public Student() {
+		super();
 	}
-	
+
+	/**
+	 * @return the registrationCompledted
+	 */
+	public boolean isRegistrationCompledted() {
+		return registrationCompledted;
+	}
+
+	/**
+	 * @param registrationCompledted the registrationCompledted to set
+	 */
+	public void setRegistrationCompledted(boolean registrationCompledted) {
+		this.registrationCompledted = registrationCompledted;
+	}
+
 	@Override
 	public String toString() {
-		return "Student [username=" + username + ", name=" + name + ", dob=" + dob + ", gender=" + gender + ", payment="
-				+ payment + "]";
-	}
-
-	/**
-	 * @return the username
-	 */
-	public String getUsername() {
-		return username;
-	}
-
-	/**
-	 * @param username the username to set
-	 */
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * @return the dob
-	 */
-	public String getDob() {
-		return dob;
-	}
-
-	/**
-	 * @param dob the dob to set
-	 */
-	public void setDob(String dob) {
-		this.dob = dob;
-	}
-
-	/**
-	 * @return the gender
-	 */
-	public String getGender() {
-		return gender;
-	}
-
-	/**
-	 * @param gender the gender to set
-	 */
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	/**
-	 * @return the payment
-	 */
-	public int getPayment() {
-		return payment;
-	}
-
-	/**
-	 * @param payment the payment to set
-	 */
-	public void setPayment(int payment) {
-		this.payment = payment;
-	}
+		return "Student [" + (username != null ? "username=" + username + ", " : "") 
+				+ (name != null ? "name=" + name + ", " : "") + (dob != null ? "dob=" + dob + ", " : "") 
+				+ (gender != null ? "gender=" + gender + "," : "") + "registrationCompledted=" + registrationCompledted + "]";
+	}	
 }

@@ -1,21 +1,100 @@
 package com.flipkart.model;
 
-public interface User {
-	public void printUser();
+public class User {
+	String username;
+	String name;
+	String dob;
+	String gender;
 	
-	public String getUsername();
+	/**
+	 * @param username
+	 * @param name
+	 * @param dob
+	 * @param gender
+	 */
+	public User(String username, String name, String dob, String gender) {
+		super();
+		this.username = username;
+		this.name = name;
+		this.dob = dob;
+		this.gender = gender;
+	}
+	
+	/**
+	 * @param username
+	 */
+	public User(String username) {
+		super();
+		this.username = username;
+	}
 
-	public void setUsername(String username);
+	/**
+	 * 
+	 */
+	public User() {
+		super();
+	}
 
-	public String getName();
+	/**
+	 * @return the username
+	 */
+	public String getUsername() {
+		return username;
+	}
 
-	public void setName(String name);
+	/**
+	 * @param username the username to set
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-	public String getDob();
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
 
-	public void setDob(String dob);
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public String getGender();
+	/**
+	 * @return the dob
+	 */
+	public String getDob() {
+		return dob;
+	}
 
-	public void setGender(String gender);
+	/**
+	 * @param dob the dob to set
+	 */
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	@Override
+	public String toString() {
+		return "User [" + (username != null ? "username=" + username + ", " : "")
+				+ (name != null ? "name=" + name + ", " : "") + (dob != null ? "dob=" + dob + ", " : "")
+				+ (gender != null ? "gender=" + gender : "") + "]";
+	}
 }
