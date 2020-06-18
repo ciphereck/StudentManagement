@@ -5,29 +5,14 @@ public class StudentRegistration {
 	String regId;
 	int fees;
 	String paymentId;
-	String paymentModeId;
 	
-	public StudentRegistration(String studentUsername, String regId, int fees, String paymentId, String paymentModeId) {
+	public StudentRegistration(String studentUsername, String regId, int fees, String paymentId) {
 		super();
 		this.studentUsername = studentUsername;
 		this.regId = regId;
 		this.fees = fees;
 		this.paymentId = paymentId;
-		this.paymentModeId = paymentModeId;
 	}
-
-	public String getPaymentModeId() {
-		return paymentModeId;
-	}
-
-
-
-	public void setPaymentModeId(String paymentModeId) {
-		this.paymentModeId = paymentModeId;
-	}
-
-
-
 	/**
 	 * @return the studentUsername
 	 */
