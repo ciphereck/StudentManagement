@@ -1,6 +1,7 @@
 package com.flipkart.client;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -12,6 +13,7 @@ import com.flipkart.exception.IllegalObjectException;
 import com.flipkart.exception.IllegalRoleException;
 import com.flipkart.model.Admin;
 import com.flipkart.model.Course;
+import com.flipkart.model.Role;
 import com.flipkart.model.User;
 import com.flipkart.service.AdminService;
 
@@ -80,15 +82,24 @@ public class AdminClient implements SubClient {
 	
 	public void addUser() {
 		logger.info("Enter username, password, role");
-		logger.info("Enter role as 1: Student, 2: Professor, 3: Admin");
+		List<Role> roles;
+		try {
+			roles = adminService.getRoles();
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			return;
+		}
+		for(int i=0; i<roles.size(); i++) {
+			logger.info("Enter " + (i+1) + " for " + roles.get(i));
+		}
 		
 		String username = sc.next();
 		String password = sc.next();
 		int role = sc.nextInt();
 		
-		if(role - 1 < Roles.values().length) {
+		if(role -1 < roles.size()) {
 			try {
-				int row = adminService.addUser(username, password, Roles.values()[role-1].toString());
+				int row = adminService.addUser(username, password, roles.get(role-1).getRoleId());
 				logger.info("Adding success: " + (row>0));
 			} catch (SQLException e) {
 				logger.info(e.getMessage());
@@ -111,14 +122,23 @@ public class AdminClient implements SubClient {
 	}
 	
 	public void viewUser() {
-		logger.info("Enter role as 1: Student, 2: Professor, 3: Admin");
+		List<Role> roles;
+		try {
+			roles = adminService.getRoles();
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+			return;
+		}
+		for(int i=0; i<roles.size(); i++) {
+			logger.info("Enter " + (i+1) + " for " + roles.get(i));
+		}
 		int role = sc.nextInt();
 		
-		if(role - 1 < Roles.values().length) {
+		if(role - 1 < roles.size()) {
 			Supplier<Stream<User>> users = () -> {
 					try {
 						return adminService
-									.getUserByRole(Roles.values()[role-1].toString())
+									.getUserByRole(roles.get(role-1).getRoleId())
 									.stream();
 					} catch (IllegalRoleException | SQLException e) {
 						logger.error(e.getMessage());

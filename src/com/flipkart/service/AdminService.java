@@ -5,18 +5,22 @@ import java.util.List;
 
 import com.flipkart.DAO.AdminDAO;
 import com.flipkart.DAO.CourseDAO;
+import com.flipkart.DAO.RoleDAO;
 import com.flipkart.DAO.UserDAO;
 import com.flipkart.DAO.Impl.AdminDAOImpl;
 import com.flipkart.DAO.Impl.CourseDAOImpl;
 import com.flipkart.DAO.Impl.ProfessorDAOImpl;
+import com.flipkart.DAO.Impl.RoleDAOImpl;
 import com.flipkart.DAO.Impl.StudentDAOImpl;
 import com.flipkart.constant.Roles;
 import com.flipkart.exception.IllegalRoleException;
 import com.flipkart.model.Course;
+import com.flipkart.model.Role;
 import com.flipkart.model.User;
 
 public class AdminService extends CredentialService implements UserService {	
 	private CourseDAO courseDAO = new CourseDAOImpl();
+	private RoleDAO roleDAO = new RoleDAOImpl();
 
 	public int deleteUser(String username) throws SQLException {
 		return credentialDAO.deleteUser(username);
@@ -47,5 +51,9 @@ public class AdminService extends CredentialService implements UserService {
 	
 	public int deleteCourse(String courseId) throws SQLException {
 		return courseDAO.deleteCourse(courseId);
+	}
+	
+	public List<Role> getRoles() throws SQLException {
+		return roleDAO.getRoles();
 	}
 }

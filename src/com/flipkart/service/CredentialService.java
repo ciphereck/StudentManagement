@@ -2,8 +2,6 @@ package com.flipkart.service;
 
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
-
 import com.flipkart.DAO.CredentialDAO;
 import com.flipkart.DAO.Impl.CredentialDAOImpl;
 import com.flipkart.exception.BadCredentialException;
