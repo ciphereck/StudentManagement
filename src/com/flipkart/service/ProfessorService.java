@@ -11,6 +11,9 @@ import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
 import com.flipkart.DAO.Impl.StudentDAOImpl;
 import com.flipkart.constant.Roles;
 import com.flipkart.exception.IllegalRoleException;
+import com.flipkart.exception.ProfessorNotTeachingCourseException;
+import com.flipkart.exception.StudentNotFoundException;
+import com.flipkart.exception.StudentRegistrationNotCompletedException;
 import com.flipkart.model.Course;
 import com.flipkart.model.ProfessorCourse;
 import com.flipkart.model.Student;
@@ -34,10 +37,10 @@ public class ProfessorService implements UserService {
 		return catalogueDAO.getCourseByProfessor(username);
 	}
 	
-	public int updateGrades(StudentCourse studentCourse, String profUsername) throws SQLException, IllegalRoleException {
+	public int updateGrades(StudentCourse studentCourse, String profUsername) throws SQLException, IllegalRoleException, StudentNotFoundException, ProfessorNotTeachingCourseException, StudentRegistrationNotCompletedException {
 		User user = getDetailByUsername(studentCourse.getStudentUsername(), Roles.STUDENT.toString());
 		if(user == null) {
-			return -1;
+			throw new StudentNotFoundException(studentCourse.getStudentUsername());
 		}
 		
 		long courseTeach = getTeachingCourses(profUsername)
@@ -45,13 +48,13 @@ public class ProfessorService implements UserService {
 			.filter(course -> course.getCourseId().equals(studentCourse.getCourseId()))
 			.count();
 		if(courseTeach == 0) {
-			return -3;
+			throw new ProfessorNotTeachingCourseException(studentCourse.getCourseId());
 		}
 			
 		Student student = (Student) user;
 		if(student.isRegistrationCompledted())
 			return studentCourseDAO.updateGrade(studentCourse);
-		else return -2;
+		else throw new StudentRegistrationNotCompletedException(studentCourse.getStudentUsername());
 	}
 	
 	public List<Student> getStudentTaughtByProfessor(String username) throws SQLException {
