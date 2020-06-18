@@ -11,5 +11,10 @@ import com.flipkart.model.Role;
  *
  */
 public interface RoleDAO {
+	/**
+	 * 
+	 * @return List of All Roles
+	 * @throws SQLException
+	 */
 	public List<Role> getRoles() throws SQLException;
 }

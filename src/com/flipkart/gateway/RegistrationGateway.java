@@ -6,6 +6,12 @@ package com.flipkart.gateway;
  *
  */
 public class RegistrationGateway {
+	/**
+	 * 
+	 * @param username
+	 * @param amount
+	 * @return Registration Id
+	 */
 	public String register(String username, int amount) {
 		return username + System.currentTimeMillis() + amount;
 	}

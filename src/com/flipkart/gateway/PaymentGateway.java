@@ -24,6 +24,12 @@ public class PaymentGateway {
 	public static final String FAILIURE_MESSAGE = "FAILIURE";
 	Scanner sc = new Scanner(System.in);
 	
+	/**
+	 * 
+	 * @param amount
+	 * @return Transaction Information
+	 * @throws PaymentFailedException
+	 */
 	public Transaction makePayment(int amount) throws PaymentFailedException {
 		List<Payment> paymentMode = null;
 		try {

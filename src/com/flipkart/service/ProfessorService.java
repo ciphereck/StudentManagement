@@ -30,18 +30,45 @@ public class ProfessorService implements UserService {
 	private StudentDAO studentDAO = new StudentDAOImpl();
 	private StudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();
 	
+	/**
+	 * 
+	 * @param course
+	 * @throws SQLException
+	 */
 	public void addCouseToTeach(ProfessorCourse course) throws SQLException {
 		professorCourseDAO.addCourseToTeach(course);
 	}
 	
+	/**
+	 * 
+	 * @param course
+	 * @throws SQLException
+	 */
 	public void deleteCourseToTeach(ProfessorCourse course) throws SQLException {
 		professorCourseDAO.deleteCourseToTeach(course);
 	}
 	
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<ProfessorCourse> getTeachingCourses(String username) throws SQLException {
 		return catalogueDAO.getCourseByProfessor(username);
 	}
 	
+	/**
+	 * 
+	 * @param studentCourse
+	 * @param profUsername
+	 * @return
+	 * @throws SQLException
+	 * @throws IllegalRoleException
+	 * @throws StudentNotFoundException
+	 * @throws ProfessorNotTeachingCourseException
+	 * @throws StudentRegistrationNotCompletedException
+	 */
 	public int updateGrades(StudentCourse studentCourse, String profUsername) throws SQLException, IllegalRoleException, StudentNotFoundException, ProfessorNotTeachingCourseException, StudentRegistrationNotCompletedException {
 		User user = getDetailByUsername(studentCourse.getStudentUsername(), Roles.STUDENT.toString());
 		if(user == null) {
@@ -62,6 +89,12 @@ public class ProfessorService implements UserService {
 		else throw new StudentRegistrationNotCompletedException(studentCourse.getStudentUsername());
 	}
 	
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<Student> getStudentTaughtByProfessor(String username) throws SQLException {
 		return studentDAO.getStudentByProfessor(username);
 	}

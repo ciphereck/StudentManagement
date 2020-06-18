@@ -27,6 +27,13 @@ import com.flipkart.model.User;
 public interface UserService {
 	CourseDAOImpl catalogueDAO = new CourseDAOImpl();
 	
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 * @throws IllegalObjectException
+	 * @throws SQLException
+	 */
 	default public int editUser(User user) throws IllegalObjectException, SQLException {
 		UserDAO userDAO = null;
 		if(user instanceof Student) {
@@ -41,6 +48,14 @@ public interface UserService {
 		return userDAO.editUser(user);
 	}
 	
+	/**
+	 * 
+	 * @param username
+	 * @param role
+	 * @return
+	 * @throws SQLException
+	 * @throws IllegalRoleException
+	 */
 	default public User getDetailByUsername(String username, String role) throws SQLException, IllegalRoleException {
 		UserDAO userDAO = null;
 		if(Roles.ADMIN.toString().equals(role)) {

@@ -11,5 +11,10 @@ import com.flipkart.model.Payment;
  *
  */
 public interface PaymentDAO {
+	/**
+	 * 
+	 * @return All Payment Modes
+	 * @throws SQLException
+	 */
 	public List<Payment> getPaymentMode() throws SQLException;
 }

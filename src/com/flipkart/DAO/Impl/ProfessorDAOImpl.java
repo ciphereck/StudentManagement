@@ -17,6 +17,9 @@ import com.flipkart.model.User;
  *
  */
 public class ProfessorDAOImpl implements ProfessorDAO {
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public User convertToUser(ResultSet rs) throws SQLException {
 		Professor professor = new Professor();
@@ -29,6 +32,9 @@ public class ProfessorDAOImpl implements ProfessorDAO {
 		return professor;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public PreparedStatement getPreparedStatementForEditUser(User user, Connection conn) throws SQLException, IllegalObjectException {
 		if(!(user instanceof Professor)) {

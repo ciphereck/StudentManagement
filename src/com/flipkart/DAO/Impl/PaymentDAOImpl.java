@@ -20,6 +20,9 @@ import com.flipkart.utils.MySQLQuery;
  */
 public class PaymentDAOImpl implements PaymentDAO {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Payment> getPaymentMode() throws SQLException {
 		List<Payment> paymentList = new ArrayList<>();

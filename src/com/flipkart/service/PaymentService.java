@@ -15,6 +15,11 @@ import com.flipkart.model.Payment;
 public class PaymentService {
 	PaymentDAO paymentDAO = new PaymentDAOImpl();
 	
+	/**
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<Payment> getPaymentMode() throws SQLException {
 		return paymentDAO.getPaymentMode();
 	}

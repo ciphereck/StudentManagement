@@ -16,6 +16,9 @@ import com.flipkart.utils.MySQLQuery;
  *
  */
 public class StudentRegistrationImpl implements StudentRegistrationDAO {
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int addRegistrationDetails(StudentRegistration regData) throws SQLException {
 		Connection conn = DBUtil.getConnection();

@@ -18,10 +18,21 @@ public class Service {
 	CourseDAOImpl courseDAO = new CourseDAOImpl();
 	StudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();
 	
+	/**
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<Course> getAllCourses() throws SQLException {
 		return courseDAO.getCourses();
 	}
 	
+	/**
+	 * 
+	 * @param studentCourse
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<StudentCourse> getReportCard(StudentCourse studentCourse) throws SQLException {
 		return studentCourseDAO.getReportCard(studentCourse);
 	}

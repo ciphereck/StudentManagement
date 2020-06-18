@@ -16,6 +16,9 @@ import com.flipkart.utils.MySQLQuery;
  *
  */
 public class ProfessorCourseDAOImpl implements ProfessourCourseDAO {
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int addCourseToTeach(ProfessorCourse professorCourse) throws SQLException {
 		Connection conn = DBUtil.getConnection();
@@ -26,6 +29,9 @@ public class ProfessorCourseDAOImpl implements ProfessourCourseDAO {
 		return MySQLQuery.executeUpdate(statement);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int deleteCourseToTeach(ProfessorCourse professorCourse) throws SQLException {
 		Connection conn = DBUtil.getConnection();

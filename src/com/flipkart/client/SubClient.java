@@ -23,12 +23,20 @@ public interface SubClient {
 	static final Scanner sc = new Scanner(System.in);
 	public void showMenu();
 	
+	/**
+	 * 
+	 * @param login
+	 * @param type
+	 */
 	default public void showCurrentTime(boolean login, String type) { // 1 for login and 0 for logout
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String message = type + " Logged " + (login==true? "In" : "Out") + " at: " + localDateTime;
 		subClientLogger.info(message);
 	}
 	
+	/**
+	 * Show All Available Course
+	 */
 	default public void showAllCourses() {
 		try {
 			courseDAO
@@ -39,6 +47,9 @@ public interface SubClient {
 		}
 	}
 	
+	/**
+	 * show report card of student
+	 */
 	default public void printReportCard() {
 		String username = sc.next();
 		StudentCourse course = new StudentCourse();
@@ -46,6 +57,10 @@ public interface SubClient {
 		printReportCard(course);
 	}
 	
+	/**
+	 * 
+	 * @param course
+	 */
 	default public void printReportCard(StudentCourse course) {
 		try {
 			service

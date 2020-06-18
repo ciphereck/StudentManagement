@@ -32,11 +32,17 @@ public class ProfessorClient implements SubClient {
 	private Professor professor;
 	private final Scanner sc = new Scanner(System.in);
 	
+	/**
+	 * @param username
+	 */
 	public ProfessorClient(String username) {
 		showCurrentTime(true, Roles.PROFESSOR.toString());
 		professor = new Professor(username);
 	}
 	
+	/**
+	 * Show Menu of Professor
+	 */
 	public void showMenu() {
 			Scanner sc = new Scanner(System.in);
 			int option = 0;
@@ -86,7 +92,7 @@ public class ProfessorClient implements SubClient {
 		}
 	}
 		
-	public void recordGrade() {
+	private void recordGrade() {
 		logger.info("Enter courseId, username, grade");
 		String courseId = sc.next();
 		String username = sc.next();
@@ -106,7 +112,7 @@ public class ProfessorClient implements SubClient {
 				
 	}
 	
-	public void addCourseToTeach() {
+	private void addCourseToTeach() {
 		String courseId = sc.next();
 		ProfessorCourse course = new ProfessorCourse();
 		course.setCourseId(courseId);
@@ -118,7 +124,7 @@ public class ProfessorClient implements SubClient {
 		}
 	}
 	
-	public void deleteCourseToTeach() {
+	private void deleteCourseToTeach() {
 		String courseId = sc.next();
 		ProfessorCourse course = new ProfessorCourse();
 		course.setCourseId(courseId);
@@ -130,7 +136,7 @@ public class ProfessorClient implements SubClient {
 		}
 	}
 	
-	public void viewMyCourses() {
+	private void viewMyCourses() {
 		try {
 			professorService
 			.getTeachingCourses(professor.getUsername())
@@ -140,7 +146,7 @@ public class ProfessorClient implements SubClient {
 		}
 	}
 	
-	public void viewStudentList() {
+	private void viewStudentList() {
 		try {
 			professorService
 				.getStudentTaughtByProfessor(professor.getUsername())
@@ -150,7 +156,7 @@ public class ProfessorClient implements SubClient {
 		}
 	}
 	
-	public void editDetails() {
+	private void editDetails() {
 		logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 
 		professor.setName(sc.next());
@@ -165,7 +171,7 @@ public class ProfessorClient implements SubClient {
 		}
 	}
 	
-	public void viewDetails() {
+	private void viewDetails() {
 		try {
 			User user = professorService.getDetailByUsername(professor.getUsername(), Roles.PROFESSOR.toString());
 			if(user != null) {

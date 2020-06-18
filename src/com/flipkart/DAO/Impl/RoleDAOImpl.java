@@ -20,7 +20,9 @@ import com.flipkart.utils.MySQLQuery;
  *
  */
 public class RoleDAOImpl implements RoleDAO {
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Role> getRoles() throws SQLException {
 		List<Role> roleList = new ArrayList<>();

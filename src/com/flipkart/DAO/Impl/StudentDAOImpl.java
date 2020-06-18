@@ -21,6 +21,9 @@ import com.flipkart.utils.MySQLQuery;
  *
  */
 public class StudentDAOImpl implements StudentDAO {
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public User convertToUser(ResultSet rs) throws SQLException {
 		Student student = new Student();
@@ -34,6 +37,9 @@ public class StudentDAOImpl implements StudentDAO {
 		return student;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public PreparedStatement getPreparedStatementForEditUser(User user, Connection conn) throws SQLException, IllegalObjectException {
 		if(!(user instanceof Student)) {
@@ -49,6 +55,9 @@ public class StudentDAOImpl implements StudentDAO {
 		return statement;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Student> getStudentByProfessor(String username) throws SQLException {
 		Connection conn = DBUtil.getConnection();

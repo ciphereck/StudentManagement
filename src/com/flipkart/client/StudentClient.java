@@ -28,11 +28,17 @@ public class StudentClient implements SubClient {
 	Scanner sc = new Scanner(System.in);
 	private Student student;
 	
+	/**
+	 * @param username
+	 */
 	public StudentClient(String username) {
 		showCurrentTime(true, Roles.STUDENT.toString());
 		student = new Student(username);
 	}
 	
+	/**
+	 * Show Menu of Student
+	 */
 	public void showMenu() {
 		int option = 0;
 		do {
@@ -78,7 +84,7 @@ public class StudentClient implements SubClient {
 		}
 	}
 	
-	public void addMyCourse() {
+	private void addMyCourse() {
 		String courseId = sc.next();
 		StudentCourse course = new StudentCourse();
 		course.setCourseId(courseId);
@@ -90,7 +96,7 @@ public class StudentClient implements SubClient {
 		}
 	}
 	
-	public void deleteMyCourse() {
+	private void deleteMyCourse() {
 		String courseId = sc.next();
 		StudentCourse course = new StudentCourse();
 		course.setCourseId(courseId);
@@ -102,7 +108,7 @@ public class StudentClient implements SubClient {
 		}
 	}
 	
-	public void viewMyCourse() {
+	private void viewMyCourse() {
 		try {
 			studentService
 				.getStudentCourse(student.getUsername())
@@ -112,7 +118,7 @@ public class StudentClient implements SubClient {
 		}
 	}
 	
-	public void payAndRegister() {
+	private void payAndRegister() {
 		try {
 			studentService.registerStudent(student.getUsername());
 			logger.info("Congrats! You have registered for Courses successfully");
@@ -128,7 +134,7 @@ public class StudentClient implements SubClient {
 		printReportCard(course);
 	}
 	
-	public void editDetails() {
+	private void editDetails() {
 		logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 
 		student.setName(sc.next());
@@ -143,7 +149,7 @@ public class StudentClient implements SubClient {
 		}
 	}
 	
-	public void viewDetails() {
+	private void viewDetails() {
 		try {
 			User user = studentService.getDetailByUsername(student.getUsername(), Roles.STUDENT.toString());
 			if(user != null) {

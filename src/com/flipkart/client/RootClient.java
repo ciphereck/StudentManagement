@@ -19,12 +19,20 @@ public class RootClient {
 	private static final CredentialService credentialService = new CredentialService();
 	private static int loginTry = 0;
 	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		logger.info("Pragram Started.....");
 		showMenu();
 		logger.info("End of Program");
 	}
 	
+	/**
+	 * Show Menu for Root CLient
+	 * Login/Sign Up For Student
+	 */
 	public static void showMenu() {
 		
 		int option;
@@ -69,7 +77,7 @@ public class RootClient {
 		login(username, password);
 	}
 
-	public static void login(String username, String password) {
+	private static void login(String username, String password) {
 		try {
 			String typeOfUser = credentialService.checkIdentityAndRole(username, password);
 			showSubClient(typeOfUser, username);
@@ -78,7 +86,7 @@ public class RootClient {
 		}
 	}
 	
-	public static void showSubClient(String typeOfUser, String username) {
+	private static void showSubClient(String typeOfUser, String username) {
 		SubClient client = null;
 		if(Roles.STUDENT.toString().equals(typeOfUser)) {
 			client = new StudentClient(username);

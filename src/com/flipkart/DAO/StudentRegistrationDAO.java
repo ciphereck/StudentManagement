@@ -10,5 +10,11 @@ import com.flipkart.model.StudentRegistration;
  *
  */
 public interface StudentRegistrationDAO {
+	/**
+	 * 
+	 * @param regData
+	 * @return Registration Data Added Successfully
+	 * @throws SQLException
+	 */
 	public int addRegistrationDetails(StudentRegistration regData) throws SQLException;
 }

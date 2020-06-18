@@ -14,6 +14,14 @@ import com.flipkart.exception.BadCredentialException;
 public class CredentialService {
 	CredentialDAO credentialDAO = new CredentialDAOImpl();
 	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 * @throws SQLException
+	 * @throws BadCredentialException
+	 */
 	public final String checkIdentityAndRole(String username, String password) throws SQLException, BadCredentialException {
 		String typeOfUser = credentialDAO.checkIdentity(username, password);
 		if(typeOfUser==null || typeOfUser.length() == 0) {
@@ -22,6 +30,14 @@ public class CredentialService {
 		return typeOfUser;
 	}
 	
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @param role
+	 * @return
+	 * @throws SQLException
+	 */
 	public int addUser(String username, String password, String role) throws SQLException {
 		return credentialDAO.addUser(username, password, role);
 	}

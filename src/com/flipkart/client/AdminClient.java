@@ -28,12 +28,17 @@ public class AdminClient implements SubClient {
 	private Admin admin;
 	private final Scanner sc = new Scanner(System.in);
 	
-	
+	/**
+	 * @param username
+	 */
 	public AdminClient(String username) {
 		showCurrentTime(true, Roles.ADMIN.toString());
 		admin = new Admin(username);
 	}
 	
+	/**
+	 * Show Menu of Student
+	 */
 	public void showMenu() {
 		int option = 0;
 		
@@ -85,7 +90,7 @@ public class AdminClient implements SubClient {
 		}
 	}
 	
-	public void addUser() {
+	private void addUser() {
 		logger.info("Enter username, password, role");
 		List<Role> roles;
 		try {
@@ -114,7 +119,7 @@ public class AdminClient implements SubClient {
 		}
 	}
 	
-	public void deleteUser() {
+	private void deleteUser() {
 		logger.info("Enter username to remove");
 		String username = sc.next();
 		
@@ -126,7 +131,7 @@ public class AdminClient implements SubClient {
 		}
 	}
 	
-	public void viewUser() {
+	private void viewUser() {
 		List<Role> roles;
 		try {
 			roles = adminService.getRoles();
@@ -175,7 +180,7 @@ public class AdminClient implements SubClient {
 		}
 	}
 	
-	public void addCourse() {
+	private void addCourse() {
 		String courseId = sc.next();
 		String courseName = sc.next();
 		int fees = sc.nextInt();
@@ -190,7 +195,7 @@ public class AdminClient implements SubClient {
 		}
 	}
 	
-	public void deleteCourse() {
+	private void deleteCourse() {
 		String courseId = sc.next();
 		try {
 			adminService.deleteCourse(courseId);
@@ -199,7 +204,7 @@ public class AdminClient implements SubClient {
 		}
 	}
 	
-	public void editCourse() {
+	private void editCourse() {
 		String courseId = sc.next();
 		String courseName = sc.next();
 		int fees = sc.nextInt();
@@ -214,7 +219,7 @@ public class AdminClient implements SubClient {
 		}
 	}
 	
-	public void editDetails() {
+	private void editDetails() {
 		logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 
 		admin.setName(sc.next());
@@ -229,7 +234,7 @@ public class AdminClient implements SubClient {
 		}
 	}
 	
-	public void viewDetails() {
+	private void viewDetails() {
 		try {
 			User user = adminService.getDetailByUsername(admin.getUsername(), Roles.ADMIN.toString());
 			if(user != null) {

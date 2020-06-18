@@ -34,18 +34,41 @@ public class StudentService implements UserService {
 	private final StudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();
 	private final StudentRegistrationDAO studentRegistrationDAO = new StudentRegistrationImpl();
 	
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<Course> getStudentCourse(String username) throws SQLException {
 		return catalogueDAO.getCourseEnrolledByStudent(username);
 	}
 	
+	/**
+	 * 
+	 * @param studentCourse
+	 * @throws SQLException
+	 */
 	public void addStudentCourse(StudentCourse studentCourse) throws SQLException {
 		studentCourseDAO.addCourseToStudentCourses(studentCourse);
 	}
 	
+	/**
+	 * 
+	 * @param studentCourse
+	 * @throws SQLException
+	 */
 	public void deleteStudentCourse(StudentCourse studentCourse) throws SQLException {
 		studentCourseDAO.deleteCourse(studentCourse);
 	}
 	
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 * @throws WrongNoOfCourseException
+	 */
 	public int calculateFees(String username) throws SQLException, WrongNoOfCourseException {
 		List<Course> courses = getStudentCourse(username);
 		if(courses.size() != 4) {
@@ -60,6 +83,15 @@ public class StudentService implements UserService {
 		return amount;
 	}
 	
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * @throws SQLException
+	 * @throws WrongNoOfCourseException
+	 * @throws PaymentFailedException
+	 * @throws PaymentSucceedRegistrationFailedException
+	 */
 	public int registerStudent(String username) throws SQLException, WrongNoOfCourseException, PaymentFailedException, PaymentSucceedRegistrationFailedException {
 		int totalFees = calculateFees(username);
 		

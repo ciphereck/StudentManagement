@@ -19,6 +19,9 @@ import com.flipkart.utils.MySQLQuery;
  *
  */
 public class StudentCourseDAOImpl implements StudentCourseDAO {
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int addCourseToStudentCourses(StudentCourse studentCourse) throws SQLException {
 		Connection conn = DBUtil.getConnection();
@@ -30,6 +33,9 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
 		return MySQLQuery.executeUpdate(statement);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int deleteCourse(StudentCourse studentCourse) throws SQLException {
 		Connection conn = DBUtil.getConnection();
@@ -42,6 +48,9 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
 		
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int updateGrade(StudentCourse studentCourse) throws SQLException {
 		Connection conn = DBUtil.getConnection();
@@ -54,6 +63,9 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
 		return MySQLQuery.executeUpdate(statement);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<StudentCourse> getReportCard(StudentCourse course) throws SQLException {
 		List<StudentCourse> courseList = new ArrayList<>();

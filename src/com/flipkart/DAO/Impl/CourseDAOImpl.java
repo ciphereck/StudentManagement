@@ -21,6 +21,9 @@ import com.flipkart.utils.MySQLQuery;
  *
  */
 public class CourseDAOImpl implements CourseDAO {
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Course> getCourses() throws SQLException {
 		List<Course> courseList = new ArrayList<>();
@@ -42,6 +45,9 @@ public class CourseDAOImpl implements CourseDAO {
 		return courseList;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Course> getCourseEnrolledByStudent(String username) throws SQLException {
 		List<Course> courseList = new ArrayList<>();
@@ -65,6 +71,9 @@ public class CourseDAOImpl implements CourseDAO {
 		return courseList;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<ProfessorCourse> getCourseByProfessor(String username) throws SQLException {
 		List<ProfessorCourse> courseList = new ArrayList<>();
@@ -89,6 +98,9 @@ public class CourseDAOImpl implements CourseDAO {
 		return courseList;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int addCourse(Course course) throws SQLException {
 		Connection conn = DBUtil.getConnection();
@@ -103,6 +115,9 @@ public class CourseDAOImpl implements CourseDAO {
 		return MySQLQuery.executeUpdate(statement);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int editCourse(Course course) throws SQLException {
 		Connection conn = DBUtil.getConnection();
@@ -118,6 +133,9 @@ public class CourseDAOImpl implements CourseDAO {
 		return MySQLQuery.executeUpdate(statement);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int deleteCourse(String courseId) throws SQLException {
 		Connection conn = DBUtil.getConnection();
