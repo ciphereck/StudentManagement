@@ -8,9 +8,6 @@ import org.apache.log4j.Logger;
 import com.flipkart.constant.Roles;
 import com.flipkart.exception.IllegalObjectException;
 import com.flipkart.exception.IllegalRoleException;
-import com.flipkart.exception.ProfessorNotTeachingCourseException;
-import com.flipkart.exception.StudentNotFoundException;
-import com.flipkart.exception.StudentRegistrationNotCompletedException;
 import com.flipkart.model.Admin;
 import com.flipkart.model.Professor;
 import com.flipkart.model.ProfessorCourse;
@@ -93,12 +90,20 @@ public class ProfessorClient implements SubClient {
 
 		try {
 			int res = professorService.updateGrades(course, professor.getUsername());
-			logger.info("Student Grades Updated Successfully");
-		} catch (SQLException | IllegalRoleException | StudentNotFoundException
-				| ProfessorNotTeachingCourseException | StudentRegistrationNotCompletedException e) {
+			if(res == -1) {
+				logger.info("no such student");
+			} else if(res == -2) {
+				logger.info("student not registered");
+			} else if(res == 0) {
+				logger.info("DB error");
+			} else if(res == -3) {
+				logger.info("You are not teaching this course");
+			} else {
+				logger.info("Student Grades Updated Successfully");
+			}
+		} catch (SQLException | IllegalRoleException e) {
 			logger.error(e.getMessage());
 		}
-				
 	}
 	
 	public void addCourseToTeach() {

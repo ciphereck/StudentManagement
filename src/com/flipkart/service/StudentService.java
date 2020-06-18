@@ -13,9 +13,6 @@ import com.flipkart.DAO.Impl.StudentDAOImpl;
 import com.flipkart.DAO.Impl.StudentRegistrationImpl;
 import com.flipkart.constant.PaymentMode;
 import com.flipkart.constant.Roles;
-import com.flipkart.exception.PaymentFailedException;
-import com.flipkart.exception.PaymentSucceedRegistrationFailedException;
-import com.flipkart.exception.WrongNoOfCourseException;
 import com.flipkart.gateway.PaymentGateway;
 import com.flipkart.gateway.RegistrationGateway;
 import com.flipkart.model.Course;
@@ -40,10 +37,10 @@ public class StudentService implements UserService {
 		studentCourseDAO.deleteCourse(studentCourse);
 	}
 	
-	public int calculateFees(String username) throws SQLException, WrongNoOfCourseException {
+	public int calculateFees(String username) throws SQLException {
 		List<Course> courses = getStudentCourse(username);
 		if(courses.size() != 4) {
-			throw new WrongNoOfCourseException(courses.size());
+			return -1;
 		}
 		int amount = 0;
 		amount = courses
@@ -54,19 +51,19 @@ public class StudentService implements UserService {
 		return amount;
 	}
 	
-	public int registerStudent(String username) throws SQLException, WrongNoOfCourseException, PaymentFailedException, PaymentSucceedRegistrationFailedException {
+	public int registerStudent(String username) throws SQLException {
 		int totalFees = calculateFees(username);
-		
+		if(totalFees == -1) {
+			return -1;
+		}
 		String txId = (new PaymentGateway()).makePayment(totalFees);
-		
+		if(txId == PaymentGateway.FAILIURE_MESSAGE) {
+			return -2;
+		}
 		String regId = (new RegistrationGateway())
 				.register(username, totalFees);
-		int row = studentRegistrationDAO.addRegistrationDetails(
+		return studentRegistrationDAO.addRegistrationDetails(
 				new StudentRegistration(username, 
 						regId, totalFees, txId, PaymentMode.CREDIT_CARD.toString()));
-		if(row == 0) {
-			throw new PaymentSucceedRegistrationFailedException();
-		}
-		return row;
 	}
 }
