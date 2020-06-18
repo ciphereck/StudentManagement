@@ -1,5 +1,7 @@
 package com.flipkart.gateway;
 
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -7,41 +9,41 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 
 import com.flipkart.exception.PaymentFailedException;
+import com.flipkart.model.Payment;
+import com.flipkart.model.Transaction;
+import com.flipkart.service.PaymentService;
 
 public class PaymentGateway {
+	PaymentService paymentService = new PaymentService();
 	Logger logger = Logger.getLogger(PaymentGateway.class);
 	public static final String FAILIURE_MESSAGE = "FAILIURE";
 	Scanner sc = new Scanner(System.in);
 	
-	public String makePayment(int amount) throws PaymentFailedException {
-		logger.info("Enter 1. For Debit/Credit Card and 2. For Netbanking");
-		int modeOfPayment = sc.nextInt();
-		String txId;
-		if(modeOfPayment == 1)
-			txId = payThroughDebitCard(amount);
-		else 
-			txId = payThroughNetBanking(amount);
-		
-		if(txId == FAILIURE_MESSAGE) {
+	public Transaction makePayment(int amount) throws PaymentFailedException {
+		List<Payment> paymentMode = null;
+		try {
+			paymentMode = paymentService.getPaymentMode();
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
 			throw new PaymentFailedException();
 		}
-		return txId;
-	}
-	
-	private String payThroughDebitCard(int amount) {
-		if(payCompletion(amount)) {
-			return "DEBIT_CREDIT_CARD" + System.currentTimeMillis();
-		} else {
-			return FAILIURE_MESSAGE;
+		
+		for(int i=0; i<paymentMode.size(); i++) {
+			logger.info("Enter " + i + " for: " + paymentMode.get(i));
 		}
-	}
-	
-	private String payThroughNetBanking(int amount) {
+		
+		int modeOfPayment = sc.nextInt();
+		
 		if(payCompletion(amount)) {
-			return "NET_BANKING" + System.currentTimeMillis();
-		} else {
-			return FAILIURE_MESSAGE;
+			Transaction transaction = new Transaction();
+			transaction.setPaymentModeid(paymentMode.get(modeOfPayment).getPaymentModeId());
+			transaction
+				.setTransactionId(paymentMode.get(modeOfPayment).getPaymentModeId() 
+							+ System.currentTimeMillis() + amount);
+			logger.info(transaction);
+			return transaction;
 		}
+		throw new PaymentFailedException();
 	}
 	
 	private boolean payCompletion(int amount) {

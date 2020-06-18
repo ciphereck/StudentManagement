@@ -22,6 +22,7 @@ import com.flipkart.model.Course;
 import com.flipkart.model.Student;
 import com.flipkart.model.StudentCourse;
 import com.flipkart.model.StudentRegistration;
+import com.flipkart.model.Transaction;
 import com.flipkart.model.User;
 
 public class StudentService implements UserService {
@@ -57,13 +58,13 @@ public class StudentService implements UserService {
 	public int registerStudent(String username) throws SQLException, WrongNoOfCourseException, PaymentFailedException, PaymentSucceedRegistrationFailedException {
 		int totalFees = calculateFees(username);
 		
-		String txId = (new PaymentGateway()).makePayment(totalFees);
+		Transaction transaction = (new PaymentGateway()).makePayment(totalFees);
 		
 		String regId = (new RegistrationGateway())
 				.register(username, totalFees);
 		int row = studentRegistrationDAO.addRegistrationDetails(
 				new StudentRegistration(username, 
-						regId, totalFees, txId, PaymentMode.CREDIT_CARD.toString()));
+						regId, totalFees, transaction.getTransactionId(), transaction.getPaymentModeid()));
 		if(row == 0) {
 			throw new PaymentSucceedRegistrationFailedException();
 		}
