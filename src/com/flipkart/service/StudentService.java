@@ -12,7 +12,7 @@ import com.flipkart.constant.PaymentMode;
 import com.flipkart.constant.Roles;
 import com.flipkart.gateway.PaymentGateway;
 import com.flipkart.gateway.RegistrationGateway;
-import com.flipkart.model.Course;
+import com.flipkart.model.Catalogue;
 import com.flipkart.model.Student;
 import com.flipkart.model.StudentRegistration;
 import com.flipkart.model.User;
@@ -27,7 +27,7 @@ public class StudentService implements UserService {
 		this.student = student;
 	}
 	
-	public List<Course> printStudentCourse() {
+	public List<Catalogue> printStudentCourse() {
 		return catalogueDAO.printCatalogueByStudentUsername(student.getUsername());
 	}
 	
@@ -49,12 +49,12 @@ public class StudentService implements UserService {
 	}
 	
 	public int calculateFees() {
-		List<Course> courses = printStudentCourse();
+		List<Catalogue> courses = printStudentCourse();
 		if(courses.size() != 4) {
 			return -1;
 		}
 		int amount = 0;
-		for(Course course : courses) {
+		for(Catalogue course : courses) {
 			amount+= course.getFees();
 		}
 		

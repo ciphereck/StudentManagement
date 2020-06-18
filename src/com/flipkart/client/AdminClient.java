@@ -5,7 +5,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.flipkart.model.Admin;
-import com.flipkart.model.Course;
+import com.flipkart.model.Catalogue;
 import com.flipkart.model.Student;
 import com.flipkart.service.AdminService;
 
@@ -96,7 +96,7 @@ public class AdminClient implements SubClient {
 			}
 		} else if(option == 4) {
 			adminService
-				.printAllCourses()
+				.printCatalogue()
 				.forEach(logger::info);
 		} else if(option == 5) {
 			String username = sc.next();
@@ -108,10 +108,9 @@ public class AdminClient implements SubClient {
 			String courseName = sc.next();
 			int fees = sc.nextInt();
 			double credit = sc.nextDouble();
-			String catalogueId = sc.next();
 			
-			Course course = new Course(courseId, courseName, fees, credit, catalogueId);
-			adminService.addCatalogue(course);
+			Catalogue catalogue = new Catalogue(courseId, courseName, fees, credit);
+			adminService.addCatalogue(catalogue);
 		} else if(option == 7) {
 			String courseId = sc.next();
 			adminService.removeCatalogue(courseId);
@@ -120,10 +119,9 @@ public class AdminClient implements SubClient {
 			String courseName = sc.next();
 			int fees = sc.nextInt();
 			double credit = sc.nextDouble();
-			String catalogueId = sc.next();
 			
-			Course course = new Course(courseId, courseName, fees, credit, catalogueId);
-			adminService.editCatalogue(course);
+			Catalogue catalogue = new Catalogue(courseId, courseName, fees, credit);
+			adminService.editCatalogue(catalogue);
 		}  else if(option == 9) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			

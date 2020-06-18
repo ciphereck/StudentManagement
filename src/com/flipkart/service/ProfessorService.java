@@ -11,7 +11,7 @@ import com.flipkart.DAO.Impl.ProfessorDAOImpl;
 import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
 import com.flipkart.DAO.Impl.StudentDAOImpl;
 import com.flipkart.constant.Roles;
-import com.flipkart.model.Course;
+import com.flipkart.model.Catalogue;
 import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
 import com.flipkart.model.User;
@@ -35,7 +35,7 @@ public class ProfessorService implements UserService {
 		professorCourseDAO.deleteCourse(courseId, professor.getUsername());
 	}
 	
-	public List<Course> viewCoursesToTeach() {
+	public List<Catalogue> viewCoursesToTeach() {
 		return catalogueDAO.printCatalogueByProfessorUsername(professor.getUsername());
 	}
 
