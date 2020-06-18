@@ -9,53 +9,59 @@ import java.util.List;
 
 import com.flipkart.DAO.StudentDAO;
 import com.flipkart.constant.SqlQueryConstant;
-import com.flipkart.exception.IllegalObjectException;
+import com.flipkart.model.Admin;
 import com.flipkart.model.Student;
 import com.flipkart.model.User;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
 public class StudentDAOImpl implements StudentDAO {
+
 	@Override
-	public User convertToUser(ResultSet rs) throws SQLException {
-		Student student = new Student();
+	public User convertToUser(ResultSet rs) {
+		Student student = null;
+		try {
+			String username = rs.getString("username");
+			String name = rs.getString("name");
+			String gender = rs.getString("gender");
+			String dob = rs.getString("dob");
+			int payment = rs.getInt("payment");
 			
-		student.setUsername(rs.getString("username"));
-		student.setName(rs.getString("name"));
-		student.setGender(rs.getString("gender"));
-		student.setDob(rs.getString("dob"));
-		student.setRegistrationCompledted(rs.getInt("payment"));
-		
+			student = new Student(username, name, dob, gender, payment);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return student;
 	}
 
 	@Override
-	public PreparedStatement getPreparedStatementForEditUser(User user, Connection conn) throws SQLException, IllegalObjectException {
-		if(!(user instanceof Student)) {
-			throw new IllegalObjectException(Student.class.getClass().getName(), user.getClass().getName());
-		}
-		
+	public PreparedStatement getPreparedStatementForEditUser(User user, Connection conn) throws SQLException {
 		Student student = (Student) user;
 		PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.UPDATE_STUDENT);
 		statement.setString(1, student.getName());
 		statement.setString(2, student.getDob());
-		statement.setString(3, student.getGender());
+		statement.setString(3, "" + student.getGender());
 		statement.setString(4, student.getUsername());
 		return statement;
 	}
 
 	@Override
-	public List<Student> getStudentByProfessor(String username) throws SQLException {
+	public List<Student> getStudentByProfessor(String username) {
 		Connection conn = DBUtil.getConnection();
 		List<Student> students = new ArrayList<>();
 		
-		PreparedStatement statement = conn
-				.prepareStatement(SqlQueryConstant.GET_STUDENT_LIST_FOR_PROFESSOR);
-		statement.setString(1, username);
+		try {
+			PreparedStatement statement = conn
+					.prepareStatement(SqlQueryConstant.GET_STUDENT_LIST_FOR_PROFESSOR);
+			statement.setString(1, username);
 
-		ResultSet rs = MySQLQuery.executeQuery(statement);
-		while(rs!=null && rs.next()) {
-			students.add((Student) convertToUser(rs));
+			ResultSet rs = MySQLQuery.executeQuery(statement);
+			while(rs.next()) {
+				students.add((Student) convertToUser(rs));
+			}
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
 		}
 		
 		return students;

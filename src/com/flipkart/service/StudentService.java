@@ -28,11 +28,11 @@ public class StudentService implements UserService {
 	}
 	
 	public List<Course> printStudentCourse() {
-		return catalogueDAO.getCourseEnrolledByStudent(student.getUsername());
+		return catalogueDAO.printCatalogueByStudentUsername(student.getUsername());
 	}
 	
 	public void addStudentCourse(String courseId) {
-		studentCourseDAO.addCourseToStudentCourses(courseId, student.getUsername());
+		studentCourseDAO.addCourse(courseId, student.getUsername());
 	}
 	
 	public void deleteStudentCourse(String courseId) {

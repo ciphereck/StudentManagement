@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.flipkart.DAO.UserDAO;
 import com.flipkart.DAO.Impl.AdminDAOImpl;
-import com.flipkart.DAO.Impl.CourseDAOImpl;
+import com.flipkart.DAO.Impl.CatalogueDAOImpl;
 import com.flipkart.DAO.Impl.ProfessorDAOImpl;
 import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
 import com.flipkart.DAO.Impl.StudentDAOImpl;
@@ -17,10 +17,10 @@ import com.flipkart.model.StudentCourse;
 import com.flipkart.model.User;
 
 public interface UserService {
-	CourseDAOImpl catalogueDAO = new CourseDAOImpl();
+	CatalogueDAOImpl catalogueDAO = new CatalogueDAOImpl();
 	
 	public default List<Course> printAllCourses() {
-		return catalogueDAO.getCourses();
+		return catalogueDAO.printCatalogue();
 	}
 	
 	public default int editUser(User user) {

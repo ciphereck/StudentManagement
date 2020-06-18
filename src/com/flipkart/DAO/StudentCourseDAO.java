@@ -1,13 +1,12 @@
 package com.flipkart.DAO;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.flipkart.model.StudentCourse;
 
 public interface StudentCourseDAO {
-	public int addCourseToStudentCourses(StudentCourse studentCourse) throws SQLException;
-	public int deleteCourse(StudentCourse studentCourse) throws SQLException;
-	public int updateGrade(StudentCourse studentCourse) throws SQLException;
-	public List<StudentCourse> getReportCard(StudentCourse studentCourse) throws SQLException;
+	public void addCourse(String courseId, String username);
+	public void deleteCourse(String courseId, String username);
+	public int updateGrade(String courseId, String grade, String username);
+	public List<StudentCourse> getReportCard(String username);
 }

@@ -7,56 +7,74 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.constant.SqlQueryConstant;
-import com.flipkart.exception.IllegalObjectException;
 import com.flipkart.model.User;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
 public interface UserDAO {
-	default public User getUserDetail(String role, String username) throws SQLException {
+	Logger logger = Logger.getLogger(UserDAO.class);
+	
+	default public User getUserDetail(String role, String username) {
 		Connection conn = DBUtil.getConnection();
 		User user = null;
 		
-		PreparedStatement statement = conn
-				.prepareStatement(SqlQueryConstant
-						.GET_USER_BY_ID.replace("$tableName", role.toLowerCase()+'s'));
-		statement.setString(1, username);
+		try {
+			PreparedStatement statement = conn
+					.prepareStatement(SqlQueryConstant
+							.GET_USER_BY_ID.replace("$tableName", role.toLowerCase()+'s'));
+			statement.setString(1, username);
 
-		ResultSet rs = MySQLQuery.executeQuery(statement);
-		while(rs!=null && rs.next()) {
-			user = convertToUser(rs);
+			ResultSet rs = MySQLQuery.executeQuery(statement);
+			while(rs.next()) {
+				user = convertToUser(rs);
+			}
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
 		}
+		
 		return user;
 	}
 	
-	default public List<User> getUserByRole(String role) throws SQLException {
+	default public List<User> printUserByType(String role) {
 		List<User> users = new ArrayList<>();
 		Connection conn = DBUtil.getConnection();
 		
-		PreparedStatement statement = conn
-				.prepareStatement(SqlQueryConstant
-						.GET_USER.replace("$tableName", role.toLowerCase()+'s'));
-		
-		ResultSet rs = MySQLQuery.executeQuery(statement);
-		while(rs!=null && rs.next()) {
-			users.add(convertToUser(rs));
+		try {
+			PreparedStatement statement = conn
+					.prepareStatement(SqlQueryConstant
+							.GET_USER.replace("$tableName", role.toLowerCase()));
+			
+			ResultSet rs = MySQLQuery.executeQuery(statement);
+			while(rs.next()) {
+				users.add(convertToUser(rs));
+			}
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
 		}
 		
 		return users;
 	}
 	
-	public User convertToUser(ResultSet rs) throws SQLException;
+	public User convertToUser(ResultSet rs);
 	
-	default public int editUser(User user) throws IllegalObjectException, SQLException {
+	default public int editUser(User user) {
 		Connection conn = DBUtil.getConnection();
+		int row = 0;
 		
 		PreparedStatement statement;
-		statement = getPreparedStatementForEditUser(user, conn);
-				
-		return MySQLQuery.executeUpdate(statement);
+		try {
+			statement = getPreparedStatementForEditUser(user, conn);
+			if(statement != null)
+				return MySQLQuery.executeUpdate(statement);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	
-	public PreparedStatement getPreparedStatementForEditUser(User user, Connection conn) throws SQLException, IllegalObjectException;
+	public PreparedStatement getPreparedStatementForEditUser(User user, Connection conn) throws SQLException;
 	
 }
