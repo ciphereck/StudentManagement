@@ -19,6 +19,11 @@ import com.flipkart.model.Student;
 import com.flipkart.model.StudentCourse;
 import com.flipkart.model.User;
 
+/**
+ * @author ciphereck
+ * @category Service
+ *
+ */
 public interface UserService {
 	CourseDAOImpl catalogueDAO = new CourseDAOImpl();
 	

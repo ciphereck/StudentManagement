@@ -6,6 +6,11 @@ import java.util.List;
 import com.flipkart.model.Course;
 import com.flipkart.model.ProfessorCourse;
 
+/**
+ * @author ciphereck
+ * @category DAO Interface
+ *
+ */
 public interface CourseDAO {
 	public List<Course> getCourses() throws SQLException;
 	public List<Course> getCourseEnrolledByStudent(String username) throws SQLException;

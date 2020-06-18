@@ -7,6 +7,11 @@ import com.flipkart.DAO.PaymentDAO;
 import com.flipkart.DAO.Impl.PaymentDAOImpl;
 import com.flipkart.model.Payment;
 
+/**
+ * @author ciphereck
+ * @category Service
+ *
+ */
 public class PaymentService {
 	PaymentDAO paymentDAO = new PaymentDAOImpl();
 	

@@ -11,6 +11,11 @@ import com.flipkart.exception.IllegalObjectException;
 import com.flipkart.model.Admin;
 import com.flipkart.model.User;
 
+/**
+ * @author ciphereck
+ * @category DAO Implementation
+ *
+ */
 public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public User convertToUser(ResultSet rs) throws SQLException {

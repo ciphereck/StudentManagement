@@ -15,6 +15,11 @@ import com.flipkart.model.StudentCourse;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
+/**
+ * @author ciphereck
+ * @category DAO Implementation
+ *
+ */
 public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public List<Course> getCourses() throws SQLException {

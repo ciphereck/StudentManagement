@@ -1,5 +1,10 @@
 package com.flipkart.exception;
 
+/**
+ * @author ciphereck
+ * @category Exception
+ *
+ */
 public class StudentRegistrationNotCompletedException extends Exception {
 	String studentUsername;
 

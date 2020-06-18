@@ -13,6 +13,11 @@ import com.flipkart.model.Payment;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
+/**
+ * @author ciphereck
+ * @category DAO Implementation
+ *
+ */
 public class PaymentDAOImpl implements PaymentDAO {
 
 	@Override

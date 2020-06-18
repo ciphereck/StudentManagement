@@ -1,5 +1,10 @@
 package com.flipkart.exception;
 
+/**
+ * @author ciphereck
+ * @category Exception
+ *
+ */
 public class IllegalRoleException extends Exception {
 	String role;
 

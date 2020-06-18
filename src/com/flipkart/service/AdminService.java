@@ -18,6 +18,11 @@ import com.flipkart.model.Course;
 import com.flipkart.model.Role;
 import com.flipkart.model.User;
 
+/**
+ * @author ciphereck
+ * @category Service
+ *
+ */
 public class AdminService extends CredentialService implements UserService {	
 	private CourseDAO courseDAO = new CourseDAOImpl();
 	private RoleDAO roleDAO = new RoleDAOImpl();

@@ -10,6 +10,11 @@ import com.flipkart.constant.SqlQueryConstant;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
+/**
+ * @author ciphereck
+ * @category DAO Implementation
+ *
+ */
 public class CredentialDAOImpl implements CredentialDAO {
 	@Override
 	public String checkIdentity(String username, String password) throws SQLException {

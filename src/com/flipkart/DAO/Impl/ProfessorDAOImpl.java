@@ -11,6 +11,11 @@ import com.flipkart.exception.IllegalObjectException;
 import com.flipkart.model.Professor;
 import com.flipkart.model.User;
 
+/**
+ * @author ciphereck
+ * @category DAO Implementation
+ *
+ */
 public class ProfessorDAOImpl implements ProfessorDAO {
 	@Override
 	public User convertToUser(ResultSet rs) throws SQLException {

@@ -17,6 +17,11 @@ import com.flipkart.model.StudentCourse;
 import com.flipkart.model.User;
 import com.flipkart.service.StudentService;
 
+/**
+ * @author ciphereck
+ * @category Client
+ *
+ */
 public class StudentClient implements SubClient {
 	private final Logger logger = Logger.getLogger(StudentClient.class);
 	private final StudentService studentService = new StudentService();

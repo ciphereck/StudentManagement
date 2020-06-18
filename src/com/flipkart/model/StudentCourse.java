@@ -1,5 +1,10 @@
 package com.flipkart.model;
 
+/**
+ * @author ciphereck
+ * @category Model
+ *
+ */
 public class StudentCourse extends Course {
 	String studentUsername;
 	String timestamp;

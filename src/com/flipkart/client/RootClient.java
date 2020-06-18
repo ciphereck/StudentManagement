@@ -8,6 +8,11 @@ import com.flipkart.constant.Roles;
 import com.flipkart.exception.BadCredentialException;
 import com.flipkart.service.CredentialService;
 
+/**
+ * @author ciphereck
+ * @category Client
+ *
+ */
 public class RootClient {
 	private static final Logger logger = Logger.getLogger(RootClient.class);
 	private static final Scanner sc = new Scanner(System.in);

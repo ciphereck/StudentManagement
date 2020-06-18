@@ -13,6 +13,11 @@ import com.flipkart.model.User;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
+/**
+ * @author ciphereck
+ * @category DAO Interface
+ *
+ */
 public interface UserDAO {
 	default public User getUserDetail(String role, String username) throws SQLException {
 		Connection conn = DBUtil.getConnection();

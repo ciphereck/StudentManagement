@@ -21,6 +21,11 @@ import com.flipkart.service.ProfessorService;
 import com.flipkart.service.UserService;
 import com.flipkart.service.StudentService;
 
+/**
+ * @author ciphereck
+ * @category Client
+ *
+ */
 public class ProfessorClient implements SubClient {
 	private static final Logger logger = Logger.getLogger(ProfessorClient.class);
 	private final ProfessorService professorService = new ProfessorService();

@@ -1,5 +1,10 @@
 package com.flipkart.model;
 
+/**
+ * @author ciphereck
+ * @category Model
+ *
+ */
 public class Role {
 	String roleId;
 	String roleName;

@@ -5,6 +5,11 @@ import java.util.List;
 
 import com.flipkart.model.Payment;
 
+/**
+ * @author ciphereck
+ * @category DAO Interface
+ *
+ */
 public interface PaymentDAO {
 	public List<Payment> getPaymentMode() throws SQLException;
 }

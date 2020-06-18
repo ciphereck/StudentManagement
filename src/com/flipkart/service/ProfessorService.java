@@ -20,6 +20,11 @@ import com.flipkart.model.Student;
 import com.flipkart.model.StudentCourse;
 import com.flipkart.model.User;
 
+/**
+ * @author ciphereck
+ * @category Service
+ *
+ */
 public class ProfessorService implements UserService {
 	private ProfessourCourseDAO professorCourseDAO = new ProfessorCourseDAOImpl();
 	private StudentDAO studentDAO = new StudentDAOImpl();

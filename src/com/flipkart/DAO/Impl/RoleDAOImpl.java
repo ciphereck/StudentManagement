@@ -14,6 +14,11 @@ import com.flipkart.model.Role;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
+/**
+ * @author ciphereck
+ * @category DAO Implementation
+ *
+ */
 public class RoleDAOImpl implements RoleDAO {
 
 	@Override

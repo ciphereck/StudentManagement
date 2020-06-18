@@ -17,6 +17,11 @@ import com.flipkart.model.Role;
 import com.flipkart.model.User;
 import com.flipkart.service.AdminService;
 
+/**
+ * @author ciphereck
+ * @category Client
+ *
+ */
 public class AdminClient implements SubClient {
 	private final Logger logger = Logger.getLogger(AdminClient.class);
 	private final AdminService adminService = new AdminService();

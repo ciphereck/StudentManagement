@@ -9,6 +9,11 @@ import com.flipkart.DAO.Impl.StudentCourseDAOImpl;
 import com.flipkart.model.Course;
 import com.flipkart.model.StudentCourse;
 
+/**
+ * @author ciphereck
+ * @category Service
+ *
+ */
 public class Service {
 	CourseDAOImpl courseDAO = new CourseDAOImpl();
 	StudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();

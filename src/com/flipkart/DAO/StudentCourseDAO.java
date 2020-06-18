@@ -5,6 +5,11 @@ import java.util.List;
 
 import com.flipkart.model.StudentCourse;
 
+/**
+ * @author ciphereck
+ * @category DAO Interface
+ *
+ */
 public interface StudentCourseDAO {
 	public int addCourseToStudentCourses(StudentCourse studentCourse) throws SQLException;
 	public int deleteCourse(StudentCourse studentCourse) throws SQLException;

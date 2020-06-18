@@ -1,5 +1,10 @@
 package com.flipkart.exception;
 
+/**
+ * @author ciphereck
+ * @category Exception
+ *
+ */
 public class WrongNoOfCourseException extends Exception {
 	int totalCourse;
 

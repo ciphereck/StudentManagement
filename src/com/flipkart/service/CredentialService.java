@@ -6,6 +6,11 @@ import com.flipkart.DAO.CredentialDAO;
 import com.flipkart.DAO.Impl.CredentialDAOImpl;
 import com.flipkart.exception.BadCredentialException;
 
+/**
+ * @author ciphereck
+ * @category Service
+ *
+ */
 public class CredentialService {
 	CredentialDAO credentialDAO = new CredentialDAOImpl();
 	

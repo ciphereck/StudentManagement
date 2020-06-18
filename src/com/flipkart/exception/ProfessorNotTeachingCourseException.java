@@ -5,6 +5,7 @@ package com.flipkart.exception;
 
 /**
  * @author ciphereck
+ * @category Exception
  *
  */
 public class ProfessorNotTeachingCourseException extends Exception {

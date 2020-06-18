@@ -11,6 +11,11 @@ import com.flipkart.DAO.Impl.CourseDAOImpl;
 import com.flipkart.model.StudentCourse;
 import com.flipkart.service.Service;
 
+/**
+ * @author ciphereck
+ * @category Client
+ *
+ */
 public interface SubClient {
 	static final Logger subClientLogger = Logger.getLogger(SubClient.class);
 	static final CourseDAO courseDAO = new CourseDAOImpl();

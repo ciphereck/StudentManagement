@@ -1,5 +1,10 @@
 package com.flipkart.exception;
 
+/**
+ * @author ciphereck
+ * @category Exception
+ *
+ */
 public class IllegalObjectException extends Exception {
 	String fromObject;
 	String toObject;

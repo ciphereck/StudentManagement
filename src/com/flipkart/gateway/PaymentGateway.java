@@ -13,6 +13,11 @@ import com.flipkart.model.Payment;
 import com.flipkart.model.Transaction;
 import com.flipkart.service.PaymentService;
 
+/**
+ * @author ciphereck
+ * @category Dummy Gateway
+ *
+ */
 public class PaymentGateway {
 	PaymentService paymentService = new PaymentService();
 	Logger logger = Logger.getLogger(PaymentGateway.class);

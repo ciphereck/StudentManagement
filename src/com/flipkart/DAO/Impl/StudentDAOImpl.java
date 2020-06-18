@@ -15,6 +15,11 @@ import com.flipkart.model.User;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.utils.MySQLQuery;
 
+/**
+ * @author ciphereck
+ * @category DAO Implementation
+ *
+ */
 public class StudentDAOImpl implements StudentDAO {
 	@Override
 	public User convertToUser(ResultSet rs) throws SQLException {

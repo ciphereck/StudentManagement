@@ -25,6 +25,11 @@ import com.flipkart.model.StudentRegistration;
 import com.flipkart.model.Transaction;
 import com.flipkart.model.User;
 
+/**
+ * @author ciphereck
+ * @category Service
+ *
+ */
 public class StudentService implements UserService {
 	private final StudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();
 	private final StudentRegistrationDAO studentRegistrationDAO = new StudentRegistrationImpl();
