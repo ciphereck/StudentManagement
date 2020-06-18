@@ -9,7 +9,7 @@ public class SqlQueryConstant {
 	public static final String GET_COURSE_BY_STUDENT = "select courses.*, studentCourses.studentUsername, studentCourses.timeOfLastUpdate from courses inner join  studentCourses on courses.courseId=studentCourses.courseId where studentUsername=?;";
 	public static final String GET_COURSE_BY_PROFESSOR = "select courses.*, professorCourses.timeOfLastUpdate from courses inner join professorCourses on courses.courseId=professorCourses.courseId where professorUsername=?;";
 	public static final String DELETE_COURSE = "delete from courses where courseId=? and (? not in (select courseId from studentCourses))";
-	public static final String ADD_COURSE = "insert into courses (courseId, courseName, fees, credit, catalgueId) values(?, ?, ?, ?, ?)";
+	public static final String ADD_COURSE = "insert into courses (courseId, courseName, fees, credit, catalogueId) values(?, ?, ?, ?, ?)";
 	public static final String UPDATE_COURSE = "update courses set courseName=?, fees=?, credit=?, catalogueId=? where courseId=? and (? not in (select courseId from studentCourses))";
 	
 	public static final String ADD_SYUDENT_COURSE = "insert into studentCourses (courseId, studentUsername) values(?, ?)";
