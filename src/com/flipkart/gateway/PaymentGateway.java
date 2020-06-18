@@ -6,17 +6,26 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 
+import com.flipkart.exception.PaymentFailedException;
+
 public class PaymentGateway {
 	Logger logger = Logger.getLogger(PaymentGateway.class);
 	public static final String FAILIURE_MESSAGE = "FAILIURE";
 	Scanner sc = new Scanner(System.in);
 	
-	public String makePayment(int amount) {
+	public String makePayment(int amount) throws PaymentFailedException {
 		logger.info("Enter 1. For Debit/Credit Card and 2. For Netbanking");
 		int modeOfPayment = sc.nextInt();
+		String txId;
 		if(modeOfPayment == 1)
-			return payThroughDebitCard(amount);
-		return payThroughNetBanking(amount);
+			txId = payThroughDebitCard(amount);
+		else 
+			txId = payThroughNetBanking(amount);
+		
+		if(txId == FAILIURE_MESSAGE) {
+			throw new PaymentFailedException();
+		}
+		return txId;
 	}
 	
 	private String payThroughDebitCard(int amount) {

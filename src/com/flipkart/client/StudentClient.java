@@ -8,6 +8,9 @@ import org.apache.log4j.Logger;
 import com.flipkart.constant.Roles;
 import com.flipkart.exception.IllegalObjectException;
 import com.flipkart.exception.IllegalRoleException;
+import com.flipkart.exception.PaymentFailedException;
+import com.flipkart.exception.PaymentSucceedRegistrationFailedException;
+import com.flipkart.exception.WrongNoOfCourseException;
 import com.flipkart.model.Admin;
 import com.flipkart.model.Student;
 import com.flipkart.model.StudentCourse;
@@ -106,20 +109,12 @@ public class StudentClient implements SubClient {
 	
 	public void payAndRegister() {
 		try {
-			int regStatus = studentService.registerStudent(student.getUsername());
-			if(regStatus == -1) {
-				logger.info("Wrong Number of courses");
-			} else if(regStatus == -2) {
-				logger.info("payment failed.....No Money will deduct from your account");
-			} else if(regStatus == 0) {
-				logger.info("payment succeed. Registration failed.... Your transaction will be reverted");
-			} else {
-				logger.info("Congrats! You have registered for Courses successfully");
-			}
-		} catch (SQLException e) {
-			logger.info(e.getMessage());
+			studentService.registerStudent(student.getUsername());
+			logger.info("Congrats! You have registered for Courses successfully");
+		} catch (SQLException | WrongNoOfCourseException | PaymentFailedException
+				| PaymentSucceedRegistrationFailedException e) {
+			logger.error(e.getMessage());
 		}
-		
 	}
 	
 	public void printReportCard() {
