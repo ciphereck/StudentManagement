@@ -1,17 +1,13 @@
 package com.flipkart.client;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.flipkart.constant.Roles;
-import com.flipkart.exception.BadCredentialException;
 import com.flipkart.service.CredentialService;
 
 public class RootClient {
 	private static final Logger logger = Logger.getLogger(RootClient.class);
-	private static final Scanner sc = new Scanner(System.in);
-	private static final CredentialService credentialService = new CredentialService();
 	private static int loginTry = 0;
 	
 	public static void main(String[] args) {
@@ -21,7 +17,7 @@ public class RootClient {
 	}
 	
 	public static void showMenu() {
-		
+		Scanner sc = new Scanner(System.in);
 		int option;
 		do {
 			logger.info("0. To Exit");
@@ -49,29 +45,22 @@ public class RootClient {
 	}
 	
 	private static void registerStudent(String username, String password) {
-		try {
-			int row = credentialService.addUser(username, password, Roles.STUDENT.toString());
-			if(row == 0) {
-				loginTry++;
-				logger.error("Duplicate username, Please select another username");
-				return;
-			}
-		} catch (SQLException e) {
-			logger.error(e.getMessage());
+		CredentialService credentialService = new CredentialService();
+		int row = credentialService.addUser(username, password, Roles.STUDENT.toString());
+		if(row == 0) {
+			loginTry++;
+			logger.info("Duplicate username, Please select another username");
 			return;
 		}
-		
 		login(username, password);
 	}
 
 	public static void login(String username, String password) {
-		try {
-			String typeOfUser = credentialService.checkIdentityAndRole(username, password);
-			showSubClient(typeOfUser, username);
-		} catch (SQLException | BadCredentialException e) {
-			logger.error(e.getMessage());
-		}
-	}
+		CredentialService credentialService = new CredentialService();
+		String typeOfUser = credentialService.checkIdentityAndRole(username, password);
+		
+		showSubClient(typeOfUser, username);
+}
 	
 	public static void showSubClient(String typeOfUser, String username) {
 		SubClient client = null;

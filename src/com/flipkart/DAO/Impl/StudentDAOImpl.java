@@ -24,7 +24,7 @@ public class StudentDAOImpl implements StudentDAO {
 		student.setName(rs.getString("name"));
 		student.setGender(rs.getString("gender"));
 		student.setDob(rs.getString("dob"));
-		student.setRegistrationCompledted(rs.getInt("registrationDone"));
+		student.setRegistrationCompledted(rs.getInt("payment"));
 		
 		return student;
 	}

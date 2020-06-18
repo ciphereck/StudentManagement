@@ -21,9 +21,11 @@ import com.flipkart.model.StudentCourse;
 import com.flipkart.model.StudentRegistration;
 import com.flipkart.model.User;
 
-public class StudentService implements UserService {
+public class StudentService extends UserService {
 	private final StudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();
 	private final StudentRegistrationDAO studentRegistrationDAO = new StudentRegistrationImpl();
+	private final StudentDAO studentDAO = new StudentDAOImpl();
+	private final CourseDAO courseDAO = new CourseDAOImpl();
 	
 	public List<Course> getStudentCourse(String username) throws SQLException {
 		return catalogueDAO.getCourseEnrolledByStudent(username);

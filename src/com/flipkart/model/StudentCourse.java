@@ -62,7 +62,7 @@ public class StudentCourse extends Course {
 				+ (studentUsername != null ? "studentUsername=" + studentUsername + ", " : "")
 				+ (courseName != null ? "courseName=" + courseName + ", " : "") 
 				+ (timestamp != null ? "timestamp=" + timestamp + ", " : "")
-				+ "grade=" + grade + ", "
+				+ (grade != null ? "grade=" + grade + ", " : "")
 				+ "fees=" + fees + ", credit=" + credit + ", " 
 				+ (catalogueId != null ? "catalogueId=" + catalogueId : "") + "]";
 	}

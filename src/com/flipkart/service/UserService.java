@@ -19,10 +19,10 @@ import com.flipkart.model.Student;
 import com.flipkart.model.StudentCourse;
 import com.flipkart.model.User;
 
-public interface UserService {
+public class UserService {
 	CourseDAOImpl catalogueDAO = new CourseDAOImpl();
 	
-	default public int editUser(User user) throws IllegalObjectException, SQLException {
+	public int editUser(User user) throws IllegalObjectException, SQLException {
 		UserDAO userDAO = null;
 		if(user instanceof Student) {
 			userDAO = new StudentDAOImpl();
@@ -36,7 +36,7 @@ public interface UserService {
 		return userDAO.editUser(user);
 	}
 	
-	default public User getDetailByUsername(String username, String role) throws SQLException, IllegalRoleException {
+	public User getDetailByUsername(String username, String role) throws SQLException, IllegalRoleException {
 		UserDAO userDAO = null;
 		if(Roles.ADMIN.toString().equals(role)) {
 			userDAO = new AdminDAOImpl();

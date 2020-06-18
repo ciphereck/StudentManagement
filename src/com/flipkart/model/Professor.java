@@ -26,11 +26,5 @@ public class Professor extends User {
 	public Professor(String username) {
 		super(username);
 	}
-
-	@Override
-	public String toString() {
-		return "Professor [" + (username != null ? "username=" + username + ", " : "")
-				+ (name != null ? "name=" + name + ", " : "") + (dob != null ? "dob=" + dob + ", " : "")
-				+ (gender != null ? "gender=" + gender : "") + "]";
-	}
+	
 }

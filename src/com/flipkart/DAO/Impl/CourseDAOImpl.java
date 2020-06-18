@@ -61,8 +61,8 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public List<ProfessorCourse> getCourseByProfessor(String username) throws SQLException {
-		List<ProfessorCourse> courseList = new ArrayList<>();
+	public List<Course> getCourseByProfessor(String username) throws SQLException {
+		List<Course> courseList = new ArrayList<>();
 		Connection conn = DBUtil.getConnection();
 		
 		PreparedStatement statement = conn.prepareStatement(SqlQueryConstant.GET_COURSE_BY_PROFESSOR);

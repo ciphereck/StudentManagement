@@ -17,7 +17,7 @@ import com.flipkart.model.Student;
 import com.flipkart.model.StudentCourse;
 import com.flipkart.model.User;
 
-public class ProfessorService implements UserService {
+public class ProfessorService extends UserService {
 	private ProfessourCourseDAO professorCourseDAO = new ProfessorCourseDAOImpl();
 	private StudentDAO studentDAO = new StudentDAOImpl();
 	private StudentCourseDAO studentCourseDAO = new StudentCourseDAOImpl();
@@ -30,7 +30,7 @@ public class ProfessorService implements UserService {
 		professorCourseDAO.deleteCourseToTeach(course);
 	}
 	
-	public List<ProfessorCourse> getTeachingCourses(String username) throws SQLException {
+	public List<Course> getTeachingCourses(String username) throws SQLException {
 		return catalogueDAO.getCourseByProfessor(username);
 	}
 	
