@@ -37,15 +37,15 @@ public class AdminService extends CredentialService implements UserService {
 		return userDAO.getUserByRole(role);
 	}
 	
-	public int addCourse(Course course) throws SQLException {
-		return courseDAO.addCourse(course);
+	public void addCourse(Course course) throws SQLException {
+		courseDAO.addCourse(course);
 	}
 	
-	public int editCourse(Course course) throws SQLException {
-		return courseDAO.editCourse(course);
+	public void editCourse(Course course) throws SQLException {
+		courseDAO.editCourse(course);
 	}
 	
-	public int deleteCourse(String courseId) throws SQLException {
-		return courseDAO.deleteCourse(courseId);
+	public void deleteCourse(String courseId) throws SQLException {
+		courseDAO.deleteCourse(courseId);
 	}
 }
