@@ -1,51 +1,66 @@
 package com.flipkart.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.flipkart.DAO.AdminDAO;
-import com.flipkart.DAO.CourseDAO;
 import com.flipkart.DAO.UserDAO;
 import com.flipkart.DAO.Impl.AdminDAOImpl;
-import com.flipkart.DAO.Impl.CourseDAOImpl;
 import com.flipkart.DAO.Impl.ProfessorDAOImpl;
 import com.flipkart.DAO.Impl.StudentDAOImpl;
 import com.flipkart.constant.Roles;
-import com.flipkart.exception.IllegalRoleException;
+import com.flipkart.model.Admin;
 import com.flipkart.model.Course;
+import com.flipkart.model.Student;
 import com.flipkart.model.User;
 
-public class AdminService extends CredentialService {	
-	private CourseDAO courseDAO = new CourseDAOImpl();
+public class AdminService extends CredentialService implements UserService {	
+	private Admin admin;
+	private AdminDAO adminDAO = new AdminDAOImpl();
+	
+	public AdminService(Admin admin) {
+		super();
+		this.admin = admin;
+	}
 
-	public void deleteUser(String username) throws SQLException {
+	public void deleteUser(String username) {
 		credentialDAO.deleteUser(username);
 	}
 	
-	public List<User> getUserByRole(String role) throws IllegalRoleException, SQLException {
-		UserDAO userDAO = null;
-		
-		if(Roles.STUDENT.toString().equals(role)) {
+	public List<User> viewUsers(String role) {
+		UserDAO userDAO = new StudentDAOImpl();
+		if(role.equals("STUDENT")) {
 			userDAO = new StudentDAOImpl();
-		} else if(Roles.PROFESSOR.toString().equals(role)) {
+		} else if(role.equals("PROFESSOR")) {
 			userDAO = new ProfessorDAOImpl();
-		} else if(Roles.ADMIN.toString().equals(role)) {
+		} else if(role.equals("ADMIN")) {
 			userDAO = new AdminDAOImpl();
-		} else {
-			throw new IllegalRoleException(role);
 		}
-		return userDAO.getUserByRole(role);
+		return userDAO.getUserByRole(role + 's');
+	}
+
+	@Override
+	public User getUser() {
+		User user = adminDAO.getUserDetail(Roles.ADMIN.toString(), admin.getUsername());
+		if(user != null && user instanceof Admin) {
+			admin = (Admin) user;
+		}
+		return admin;
+	}
+
+	@Override
+	public String getUsername() {
+		return admin.getUsername();
 	}
 	
-	public void addCourse(Course course) throws SQLException {
-		courseDAO.addCourse(course);
+	public void addCatalogue(Course course) {
+		catalogueDAO.addCourse(course);
 	}
 	
-	public void editCourse(Course course) throws SQLException {
-		courseDAO.editCourse(course);
+	public void editCatalogue(Course course) {
+		catalogueDAO.editCourse(course);
 	}
 	
-	public void deleteCourse(String courseId) throws SQLException {
-		courseDAO.deleteCourse(courseId);
+	public void removeCatalogue(String courseId) {
+		catalogueDAO.deleteCourse(courseId);
 	}
 }

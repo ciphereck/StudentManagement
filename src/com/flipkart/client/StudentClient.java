@@ -44,7 +44,7 @@ public class StudentClient implements SubClient {
 			return;
 		} else if(option == 1) {
 			studentService
-				.getAllCourses()
+				.printAllCourses()
 				.forEach(logger::info);
 		} else if(option == 2) {
 			String courseId = sc.next();
@@ -54,7 +54,7 @@ public class StudentClient implements SubClient {
 			studentService.deleteStudentCourse(courseId);
 		} else if(option == 4) {
 			studentService
-				.getStudentCourse()
+				.printStudentCourse()
 				.forEach(logger::info);
 		} else if(option == 5) {
 			int regStatus = studentService.registerStudent();

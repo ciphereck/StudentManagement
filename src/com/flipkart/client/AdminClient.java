@@ -73,21 +73,21 @@ public class AdminClient implements SubClient {
 			
 			if(role - 1 < roleName.length) {
 				adminService
-					.getUserByRole(roleName[role-1])
+					.viewUsers(roleName[role-1])
 					.stream()
 					.filter(user -> user.getGender() != null)
 					.filter(user -> user.getGender().charAt(0)=='M')
 					.forEach(user -> logger.info("Mr. " + user.getName() + " " + user.getUsername()));
 				
 				adminService
-					.getUserByRole(roleName[role-1])
+					.viewUsers(roleName[role-1])
 					.stream()
 					.filter(user -> user.getGender() != null)
 					.filter(user -> user.getGender().charAt(0)=='F')
 					.forEach(user -> logger.info("Ms. " + user.getName() + " " + user.getUsername()));
 				
 				adminService
-					.getUserByRole(roleName[role-1])
+					.viewUsers(roleName[role-1])
 					.stream()
 					.filter(user -> user.getGender() == null)
 					.forEach(user -> logger.info("Mr./Ms. " + user.getName() + " " + user.getUsername()));
@@ -96,7 +96,7 @@ public class AdminClient implements SubClient {
 			}
 		} else if(option == 4) {
 			adminService
-				.getAllCourses()
+				.printAllCourses()
 				.forEach(logger::info);
 		} else if(option == 5) {
 			String username = sc.next();
@@ -111,10 +111,10 @@ public class AdminClient implements SubClient {
 			String catalogueId = sc.next();
 			
 			Course course = new Course(courseId, courseName, fees, credit, catalogueId);
-			adminService.addCourse(course);
+			adminService.addCatalogue(course);
 		} else if(option == 7) {
 			String courseId = sc.next();
-			adminService.deleteCourse(courseId);
+			adminService.removeCatalogue(courseId);
 		} else if(option == 8) {
 			String courseId = sc.next();
 			String courseName = sc.next();
@@ -123,7 +123,7 @@ public class AdminClient implements SubClient {
 			String catalogueId = sc.next();
 			
 			Course course = new Course(courseId, courseName, fees, credit, catalogueId);
-			adminService.editCourse(course);
+			adminService.editCatalogue(course);
 		}  else if(option == 9) {
 			logger.info("Enter name, dob(YYYY-MM-DD) and gender (M/F)");
 			
