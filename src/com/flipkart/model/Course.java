@@ -5,15 +5,19 @@ public class Course {
 	String courseName;
 	int fees;
 	double credit;
+	String timestamp = null;
 	String catalogueId;
 	
-	/**
-	 * @param courseId
-	 * @param courseName
-	 * @param fees
-	 * @param credit
-	 * @param catalogueId
-	 */
+	public Course(String courseId, String courseName, int fees, double credit, String timestamp, String catalogueId) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.fees = fees;
+		this.credit = credit;
+		this.timestamp = timestamp;
+		this.catalogueId = catalogueId;
+	}
+
 	public Course(String courseId, String courseName, int fees, double credit, String catalogueId) {
 		super();
 		this.courseId = courseId;
@@ -22,12 +26,19 @@ public class Course {
 		this.credit = credit;
 		this.catalogueId = catalogueId;
 	}
-	
-	/**
-	 * 
-	 */
-	public Course() {
-		super();
+
+	@Override
+	public String toString() {
+		return "Course [courseId=" + courseId + ", courseName=" + courseName + ", fees=" + fees + ", credit="
+				+ credit + ", lastUpdate=" + timestamp + "]";
+	}
+
+	public String getCatalogueId() {
+		return catalogueId;
+	}
+
+	public void setCatalogueId(String catalogueId) {
+		this.catalogueId = catalogueId;
 	}
 
 	/**
@@ -87,23 +98,18 @@ public class Course {
 	}
 
 	/**
-	 * @return the catalogueId
+	 * @return the timestamp
 	 */
-	public String getCatalogueId() {
-		return catalogueId;
+	public String getTimestamp() {
+		return timestamp;
 	}
 
 	/**
-	 * @param catalogueId the catalogueId to set
+	 * @param timestamp the timestamp to set
 	 */
-	public void setCatalogueId(String catalogueId) {
-		this.catalogueId = catalogueId;
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
 	}
-
-	@Override
-	public String toString() {
-		return "Course [" + (courseId != null ? "courseId=" + courseId + ", " : "")
-				+ (courseName != null ? "courseName=" + courseName + ", " : "") + "fees=" + fees + ", credit=" + credit
-				+ ", " + (catalogueId != null ? "catalogueId=" + catalogueId : "") + "]";
-	}
+	
+	
 }
