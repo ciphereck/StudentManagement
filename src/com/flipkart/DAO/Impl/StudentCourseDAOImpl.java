@@ -80,10 +80,12 @@ public class StudentCourseDAOImpl implements StudentCourseDAO {
 			
 			studentCourse.setCourseId(rs.getString("courseId"));
 			studentCourse.setGrade(rs.getString("grades"));
-			studentCourse.setCourseId(studentCourse.getStudentUsername());
+			studentCourse.setStudentUsername(course.getStudentUsername());
 			studentCourse.setCourseName(rs.getString("courseName"));
 			studentCourse.setCredit(rs.getDouble("credit"));
-			studentCourse.setFees(rs.getInt("credit"));
+			studentCourse.setFees(rs.getInt("fees"));
+			studentCourse.setCatalogueId(rs.getString("catalogueId"));
+			studentCourse.setTimestamp(rs.getString("timeOfLastUpdate"));
 
 			courseList.add(studentCourse);
 		}
