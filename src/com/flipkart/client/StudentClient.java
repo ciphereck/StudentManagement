@@ -42,6 +42,8 @@ public class StudentClient implements SubClient {
 	public void showMenu() {
 		int option = 0;
 		do {
+			logger.info("");
+			logger.info("=================================");
 			logger.info("0. Logout");
 			logger.info("1. View Course");
 			logger.info("2. Add Course to My Courses");
@@ -51,6 +53,8 @@ public class StudentClient implements SubClient {
 			logger.info("6. View Report Card");
 			logger.info("7. Edit Details");
 			logger.info("8. View My Details");
+			logger.info("=================================");
+			logger.info("");
 			
 			Scanner sc = new Scanner(System.in);
 			option = sc.nextInt();
@@ -85,6 +89,7 @@ public class StudentClient implements SubClient {
 	}
 	
 	private void addMyCourse() {
+		logger.info("Enter course id");
 		String courseId = sc.next();
 		StudentCourse course = new StudentCourse();
 		course.setCourseId(courseId);
@@ -97,6 +102,7 @@ public class StudentClient implements SubClient {
 	}
 	
 	private void deleteMyCourse() {
+		logger.info("Enter course id");
 		String courseId = sc.next();
 		StudentCourse course = new StudentCourse();
 		course.setCourseId(courseId);

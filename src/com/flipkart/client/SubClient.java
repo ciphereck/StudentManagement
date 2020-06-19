@@ -30,7 +30,8 @@ public interface SubClient {
 	 */
 	default public void showCurrentTime(boolean login, String type) { // 1 for login and 0 for logout
 		LocalDateTime localDateTime = LocalDateTime.now();
-		String message = type + " Logged " + (login==true? "In" : "Out") + " at: " + localDateTime;
+		String dayOfWeek = localDateTime.getDayOfWeek().toString();
+		String message = type + " Logged " + (login==true? "In" : "Out") + " on: " + dayOfWeek + " " + localDateTime;
 		subClientLogger.info(message);
 	}
 	
@@ -51,6 +52,7 @@ public interface SubClient {
 	 * show report card of student
 	 */
 	default public void printReportCard() {
+		subClientLogger.info("Enter username");
 		String username = sc.next();
 		StudentCourse course = new StudentCourse();
 		course.setStudentUsername(username);

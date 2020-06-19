@@ -43,6 +43,8 @@ public class AdminClient implements SubClient {
 		int option = 0;
 		
 		do {
+			logger.info("");
+			logger.info("=================================");
 			logger.info("0. logout");
 			logger.info("1. Add User");
 			logger.info("2. Remove User");
@@ -54,6 +56,8 @@ public class AdminClient implements SubClient {
 			logger.info("8. Update Course");
 			logger.info("9. Edit My Details");
 			logger.info("10. View My Details");
+			logger.info("=================================");
+			logger.info("");
 			
 			option = sc.nextInt();
 			
@@ -181,6 +185,7 @@ public class AdminClient implements SubClient {
 	}
 	
 	private void addCourse() {
+		logger.info("Enter course info -> id name fees credit catalogueId");
 		String courseId = sc.next();
 		String courseName = sc.next();
 		int fees = sc.nextInt();
@@ -196,6 +201,7 @@ public class AdminClient implements SubClient {
 	}
 	
 	private void deleteCourse() {
+		logger.info("Enter course id");
 		String courseId = sc.next();
 		try {
 			adminService.deleteCourse(courseId);
@@ -205,6 +211,7 @@ public class AdminClient implements SubClient {
 	}
 	
 	private void editCourse() {
+		logger.info("Enter course info -> id name fees credit catalogueId");
 		String courseId = sc.next();
 		String courseName = sc.next();
 		int fees = sc.nextInt();

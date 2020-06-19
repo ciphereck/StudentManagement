@@ -48,6 +48,8 @@ public class ProfessorClient implements SubClient {
 			int option = 0;
 			
 			do {
+				logger.info("");
+				logger.info("=================================");
 				logger.info("0. logout");
 				logger.info("1. Record Grades");
 				logger.info("2. View Course");
@@ -58,6 +60,8 @@ public class ProfessorClient implements SubClient {
 				logger.info("7. View Students Grade");
 				logger.info("8. Edit Details");
 				logger.info("9. View My Details");
+				logger.info("=================================");
+				logger.info("");
 				
 				option = sc.nextInt();
 				
@@ -113,6 +117,7 @@ public class ProfessorClient implements SubClient {
 	}
 	
 	private void addCourseToTeach() {
+		logger.info("Enter courseId");
 		String courseId = sc.next();
 		ProfessorCourse course = new ProfessorCourse();
 		course.setCourseId(courseId);
@@ -125,6 +130,7 @@ public class ProfessorClient implements SubClient {
 	}
 	
 	private void deleteCourseToTeach() {
+		logger.info("Enter courseId");
 		String courseId = sc.next();
 		ProfessorCourse course = new ProfessorCourse();
 		course.setCourseId(courseId);

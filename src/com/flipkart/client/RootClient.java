@@ -24,9 +24,9 @@ public class RootClient {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		logger.info("Pragram Started.....");
+		logger.info("****  Welcome to Student Management System  *****");
 		showMenu();
-		logger.info("End of Program");
+		logger.info("*****Thank you for using Student Management System *****");
 	}
 	
 	/**
@@ -37,9 +37,14 @@ public class RootClient {
 		
 		int option;
 		do {
+			logger.info("");
+			logger.info("=================================");
+			
 			logger.info("0. To Exit");
 			logger.info("1. Student Registration");
 			logger.info("2. Login");
+			logger.info("=================================");
+			logger.info("");
 			
 			option = sc.nextInt();
 			if(option == 0) {
